@@ -2,6 +2,7 @@
   "name": "@fil-frame/hardhat",
   "version": "0.0.1",
   "scripts": {
+    "account": "hardhat run scripts/listAccount.ts",
     "test": "REPORT_GAS=true hardhat test --network hardhat",
     "chain": "hardhat node --network hardhat",
     "compile": "hardhat compile",

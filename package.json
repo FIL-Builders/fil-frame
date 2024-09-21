@@ -8,7 +8,24 @@
       "packages/nextjs"
     ]
   },
-  "scripts": {},
+  "scripts": {
+    "account": "yarn workspace @fil-frame/hardhat account",
+    "compile": "yarn workspace @fil-frame/hardhat compile",
+    "fork": "yarn workspace @fil-frame/hardhat fork",
+    "generate": "yarn workspace @fil-frame/hardhat run scripts/generateAccount.ts",
+    "flatten": "yarn workspace @fil-frame/hardhat flatten",
+    "lint": "yarn workspace @fil-frame/hardhat eslint --config ./.eslintrc.json --ignore-path ./.eslintignore ./*.ts ./deploy/**/*.ts ./scripts/**/*.ts ./test/**/*.ts",
+    "lint-staged": "yarn workspace @fil-frame/hardhat eslint --config ./.eslintrc.json --ignore-path ./.eslintignore",
+    "format": "yarn workspace @fil-frame/hardhat prettier --write ./*.ts ./deploy/**/*.ts ./scripts/**/*.ts ./test/**/*.ts",
+    "verify": "yarn workspace @fil-frame/hardhat etherscan-verify",
+    "hardhat-verify": "yarn workspace @fil-frame/hardhat verify",
+    "deploy": "yarn workspace @fil-frame/hardhat deploy",
+    "chain": "yarn workspace @fil-frame/hardhat chain",
+    "test": "yarn workspace @fil-frame/hardhat test",
+    "dev": "yarn workspace @fil-frame/nextjs dev",
+    "build": "yarn workspace @fil-frame/nextjs build",
+    "start": "yarn workspace @fil-frame/nextjs start"
+  },
   "devDependencies": {
     "husky": "^8.0.1",
     "lint-staged": "^13.0.3"
