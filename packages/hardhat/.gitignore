@@ -1,27 +1,22 @@
-# dependencies
 node_modules
-
-# env files
 .env
 
-# coverage
-coverage
-coverage.json
+# Foundry files
+out
+cache_forge
+lib
 
-# typechain
-typechain
-typechain-types
+# Hardhat files
+/cache
+/artifacts
 
-# hardhat files
-cache
-artifacts
+# TypeChain files
+/typechain
+/typechain-types
 
-# zkSync files
-artifacts-zk
-cache-zk
+# solidity-coverage files
+/coverage
+/coverage.json
 
-# deployments
-deployments/localhost
-
-# other
-temp
+# Hardhat Ignition default folder for deployments against a local node
+ignition/deployments/chain-31337

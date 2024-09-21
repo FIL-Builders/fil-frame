@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: '/api/',
     },
-    sitemap: 'https://wireframes.internet.dev/sitemap.xml',
+    sitemap: 'https://fil-frame.com/sitemap.xml',
   };
 }

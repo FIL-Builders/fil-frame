@@ -2,7 +2,7 @@
 
 import * as React from 'react';
 
-import { ModalContext } from '@system/providers/ModalContextProvider';
+import { ModalContext } from "@system/providers/ModalContextProvider";
 
 interface ModalContent {
   data?: any;
