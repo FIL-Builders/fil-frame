@@ -4,7 +4,6 @@ node_modules
 # Foundry files
 out
 cache_forge
-lib
 
 # Hardhat files
 /cache
