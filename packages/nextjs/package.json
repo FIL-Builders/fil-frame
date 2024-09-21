@@ -1,5 +1,5 @@
 {
-  "name": "fil-frame-frontend",
+  "name": "@fil-frame/frontend",
   "description": "A starting website repository for your next project.",
   "engines": {
     "node": ">=18"
