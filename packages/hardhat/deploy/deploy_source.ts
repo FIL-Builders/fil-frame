@@ -24,10 +24,37 @@ const deployYourContract: DeployFunction = async function (
   const { deployer } = await hre.getNamedAccounts();
   const { deploy } = hre.deployments;
 
-  await deploy("YourContract", {
+  const filecoinNetwork = hre.network.name === "calibnet";
+  const linearNetwork = hre.network.name === "linea";
+  const hederaNetwork = hre.network.name === "hedera";
+  const flowNetwork = hre.network.name === "flow";
+
+  let axelarGatewayAddress;
+  let axelarGasReceiver;
+
+  if (hederaNetwork) {
+    axelarGatewayAddress = "0xe432150cce91c13a887f7D836923d5597adD8E31";
+    axelarGasReceiver = "0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6";
+  } else if (linearNetwork) {
+    axelarGatewayAddress = "0xe432150cce91c13a887f7D836923d5597adD8E31";
+    axelarGasReceiver = "0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6";
+  } else if (flowNetwork) {
+    axelarGatewayAddress = "0xe432150cce91c13a887f7D836923d5597adD8E31";
+    axelarGasReceiver = "0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6";
+  } else if (filecoinNetwork) {
+    axelarGatewayAddress = "0x999117D44220F33e0441fbAb2A5aDB8FF485c54D";
+    axelarGasReceiver = "0xbe406f0189a0b4cf3a05c286473d23791dd44cc6";
+  } else {
+    console.error(
+      "Unsupported network. Use 'calibnet' for Filecoin, 'linea' for Linear, 'hedera' for Hedera, or 'flow' for Flow."
+    );
+    process.exit(1);
+  }
+
+  await deploy("OnRampSource", {
     from: deployer,
     // Contract constructor arguments
-    args: [deployer],
+    args: [axelarGatewayAddress, axelarGasReceiver],
     log: true,
     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
     // automatically mining the contract deployment transaction. There is no effect on live networks.
@@ -35,15 +62,15 @@ const deployYourContract: DeployFunction = async function (
   });
 
   // Get the deployed contract to interact with it after deploying.
-  const yourContract = await hre.ethers.getContract<Contract>(
-    "YourContract",
+  const onRampSource = await hre.ethers.getContract<Contract>(
+    "OnRampSource",
     deployer
   );
-  console.log("👋 Initial greeting:", await yourContract.greeting());
+  console.log("👋 Deployed OnRampSource:", onRampSource);
 };
 
 export default deployYourContract;
 
 // Tags are useful if you have multiple deploy files and only want to run one of them.
-// e.g. yarn deploy --tags YourContract
-deployYourContract.tags = ["YourContract"];
+// e.g. yarn deploy --tags OnRampSource
+deployYourContract.tags = ["OnRampSource"];

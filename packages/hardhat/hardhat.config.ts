@@ -1,3 +1,5 @@
+import "dotenv/config";
+
 import { HardhatUserConfig } from "hardhat/config";
 import "@nomicfoundation/hardhat-foundry";
 import "@nomicfoundation/hardhat-ethers";
@@ -21,7 +23,7 @@ const etherscanApiKey =
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: "0.8.17",
+    version: "0.8.20",
     settings: {
       optimizer: {
         enabled: true,
@@ -118,10 +120,58 @@ const config: HardhatUserConfig = {
       url: "https://sepolia.publicgoods.network",
       accounts: [deployerPrivateKey],
     },
+    flow: {
+      url: "https://testnet.evm.nodes.onflow.org",
+      accounts: [deployerPrivateKey],
+    },
+    calibnet: {
+      url: "https://api.calibration.node.glif.io/rpc/v1",
+      accounts: [deployerPrivateKey],
+    },
+    linea: {
+      url: "https://rpc.sepolia.linea.build",
+      chainId: 59141,
+      accounts: [deployerPrivateKey],
+    },
+    hedera: {
+      url: "https://testnet.hashio.io/api",
+      chainId: 296,
+      accounts: [deployerPrivateKey],
+    },
   },
   // configuration for harhdat-verify plugin
   etherscan: {
-    apiKey: `${etherscanApiKey}`,
+    apiKey: {
+      linea: "RXVBE8WNAMCZ3UABT1XIHXE1YAY9H72TEF", // Your Etherscan API key
+      hedera: "RXVBE8WNAMCZ3UABT1XIHXE1YAY9H72TEF", // Your Etherscan API key
+      flow: "RXVBE8WNAMCZ3UABT1XIHXE1YAY9H72TEF", // Your Etherscan API key
+    },
+    customChains: [
+      {
+        network: "hedera",
+        chainId: 296,
+        urls: {
+          apiURL: "https://etherscan.io/",
+          browserURL: "https://etherscan.io/",
+        },
+      },
+      {
+        network: "linea",
+        chainId: 59141,
+        urls: {
+          apiURL: "https://api-sepolia.lineascan.build/api",
+          browserURL: "https://sepolia.lineascan.build",
+        },
+      },
+      {
+        network: "flow",
+        chainId: 545,
+        urls: {
+          apiURL: "https://evm-testnet.flowscan.io",
+          browserURL: "https://evm-testnet.flowscan.io/",
+        },
+      },
+    ],
   },
   // configuration for etherscan-verify from hardhat-deploy plugin
   verify: {
