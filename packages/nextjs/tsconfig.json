@@ -4,12 +4,13 @@
     "paths": {
       "@root/*": ["./*"],
       "@system/*": ["./system/*"],
-      "@demos/*": ["./demos/*"],
       "@common/*": ["./common/*"],
+      "@contracts/*": ["./contracts/*"],
       "@data/*": ["./data/*"],
       "@components/*": ["./components/*"],
       "@pages/*": ["./pages/*"],
-      "@modules/*": ["./modules/*"]
+      "@modules/*": ["./modules/*"],
+      "@utils/*": ["./utils/*"]
     },
     "target": "es5",
     "lib": ["dom", "dom.iterable", "esnext"],
