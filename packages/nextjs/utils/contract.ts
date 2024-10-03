@@ -26,7 +26,8 @@ import { WriteContractParameters, WriteContractReturnType } from "wagmi/actions"
 import { WriteContractVariables } from "wagmi/query";
 import deployedContractsData from "@contracts/deployedContracts";
 import externalContractsData from "@contracts/externalContracts";
-import scaffoldConfig from "~~/scaffold.config";
+
+import * as Constants from "@common/constants";
 
 type AddExternalFlag<T> = {
   [ChainId in keyof T]: {
@@ -75,7 +76,7 @@ export type GenericContractsDeclaration = {
 
 export const contracts = contractsData as GenericContractsDeclaration | null;
 
-type ConfiguredChainId = (typeof scaffoldConfig)["targetNetworks"][0]["id"];
+type ConfiguredChainId = typeof Constants.targetNetworks[0]["id"];
 
 type IsContractDeclarationMissing<TYes, TNo> = typeof contractsData extends { [key in ConfiguredChainId]: any }
   ? TNo

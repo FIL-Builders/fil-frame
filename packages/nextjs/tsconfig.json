@@ -7,6 +7,7 @@
       "@common/*": ["./common/*"],
       "@contracts/*": ["./contracts/*"],
       "@data/*": ["./data/*"],
+      "@hooks/*": ["./hooks/*"],
       "@components/*": ["./components/*"],
       "@pages/*": ["./pages/*"],
       "@modules/*": ["./modules/*"],
