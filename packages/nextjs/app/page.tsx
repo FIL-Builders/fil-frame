@@ -6,6 +6,8 @@ import ListItem from '@components/ListItem';
 import Package from '@root/package.json';
 import Script from 'next/script';
 
+import { SectionLanding } from '@sections/SectionLanding';
+
 export async function generateMetadata({ params, searchParams }) {
   const title = Package.name;
   const description = Package.description;
@@ -54,8 +56,6 @@ export async function generateMetadata({ params, searchParams }) {
 
 export default async function Page(props) {
   return (
-    <DefaultLayout>
-      <div style={{ lineHeight: '1.6', maxWidth: 768 }}>FIL-Frame</div>
-    </DefaultLayout>
+    <SectionLanding />
   );
 }
