@@ -2,8 +2,8 @@ import { useTargetNetwork } from "./useTargetNetwork";
 import { Account, Address, Chain, Client, Transport, getContract } from "viem";
 import { usePublicClient } from "wagmi";
 import { GetWalletClientReturnType } from "wagmi/actions";
-import { useDeployedContractInfo } from "@hooks/fil-frame";
-import { Contract, ContractName } from "@utils/contract";
+import { useDeployedContractInfo } from "~~/hooks/fil-frame";
+import { Contract, ContractName } from "~~/utils/fil-frame/contract";
 
 /**
  * Gets a viem instance of the contract present in deployedContracts.ts or externalContracts.ts corresponding to
@@ -26,7 +26,7 @@ export const useScaffoldContract = <
   const { targetNetwork } = useTargetNetwork();
   const publicClient = usePublicClient({ chainId: targetNetwork.id });
 
-  let contract;
+  let contract = undefined;
   if (deployedContractData && publicClient) {
     contract = getContract<
       Transport,

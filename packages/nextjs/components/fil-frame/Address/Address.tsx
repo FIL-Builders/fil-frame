@@ -1,14 +1,13 @@
-
 "use client";
 
-import { AddressCopyIcon } from "@components/fil-frame/Address/AddressCopyIcon";
-import { AddressLinkWrapper } from "@components/fil-frame/Address/AddressLinkWrapper";
+import { AddressCopyIcon } from "./AddressCopyIcon";
+import { AddressLinkWrapper } from "./AddressLinkWrapper";
 import { Address as AddressType, getAddress, isAddress } from "viem";
 import { normalize } from "viem/ens";
 import { useEnsAvatar, useEnsName } from "wagmi";
-import { BlockieAvatar } from "@components/fil-frame/BlockieAvatar";
-import { useTargetNetwork } from "@hooks/fil-frame/useTargetNetwork";
-import { getBlockExplorerAddressLink } from "@utils/networks";
+import { BlockieAvatar } from "~~/components/fil-frame";
+import { useTargetNetwork } from "~~/hooks/fil-frame/useTargetNetwork";
+import { getBlockExplorerAddressLink } from "~~/utils/fil-frame";
 
 const textSizeMap = {
   "3xs": "text-[10px]",
@@ -54,22 +53,14 @@ const copyIconSizeMap = {
 
 type SizeMap = typeof textSizeMap | typeof blockieSizeMap;
 
-const getNextSize = <T extends SizeMap>(
-  sizeMap: T,
-  currentSize: keyof T,
-  step = 1
-): keyof T => {
+const getNextSize = <T extends SizeMap>(sizeMap: T, currentSize: keyof T, step = 1): keyof T => {
   const sizes = Object.keys(sizeMap) as Array<keyof T>;
   const currentIndex = sizes.indexOf(currentSize);
   const nextIndex = Math.min(currentIndex + step, sizes.length - 1);
   return sizes[nextIndex];
 };
 
-const getPrevSize = <T extends SizeMap>(
-  sizeMap: T,
-  currentSize: keyof T,
-  step = 1
-): keyof T => {
+const getPrevSize = <T extends SizeMap>(sizeMap: T, currentSize: keyof T, step = 1): keyof T => {
   const sizes = Object.keys(sizeMap) as Array<keyof T>;
   const currentIndex = sizes.indexOf(currentSize);
   const prevIndex = Math.max(currentIndex - step, 0);
@@ -111,23 +102,15 @@ export const Address = ({
     },
   });
 
-  const shortAddress =
-    checkSumAddress?.slice(0, 6) + "..." + checkSumAddress?.slice(-4);
+  const shortAddress = checkSumAddress?.slice(0, 6) + "..." + checkSumAddress?.slice(-4);
   const displayAddress = format === "long" ? checkSumAddress : shortAddress;
   const displayEnsOrAddress = ens || displayAddress;
 
-  const showSkeleton =
-    !checkSumAddress || (!onlyEnsOrAddress && (ens || isEnsNameLoading));
+  const showSkeleton = !checkSumAddress || (!onlyEnsOrAddress && (ens || isEnsNameLoading));
 
-  const addressSize =
-    showSkeleton && !onlyEnsOrAddress
-      ? getPrevSize(textSizeMap, size, 2)
-      : size;
+  const addressSize = showSkeleton && !onlyEnsOrAddress ? getPrevSize(textSizeMap, size, 2) : size;
   const ensSize = getNextSize(textSizeMap, addressSize);
-  const blockieSize =
-    showSkeleton && !onlyEnsOrAddress
-      ? getNextSize(blockieSizeMap, addressSize, 4)
-      : addressSize;
+  const blockieSize = showSkeleton && !onlyEnsOrAddress ? getNextSize(blockieSizeMap, addressSize, 4) : addressSize;
 
   if (!checkSumAddress) {
     return (
@@ -141,15 +124,11 @@ export const Address = ({
         ></div>
         <div className="flex flex-col space-y-1">
           {!onlyEnsOrAddress && (
-            <div
-              className={`ml-1.5 skeleton rounded-lg font-bold ${textSizeMap[ensSize]}`}
-            >
+            <div className={`ml-1.5 skeleton rounded-lg font-bold ${textSizeMap[ensSize]}`}>
               <span className="invisible">0x1234...56789</span>
             </div>
           )}
-          <div
-            className={`ml-1.5 skeleton rounded-lg ${textSizeMap[addressSize]}`}
-          >
+          <div className={`ml-1.5 skeleton rounded-lg ${textSizeMap[addressSize]}`}>
             <span className="invisible">0x1234...56789</span>
           </div>
         </div>
@@ -161,10 +140,7 @@ export const Address = ({
     return <span className="text-error">Wrong address</span>;
   }
 
-  const blockExplorerAddressLink = getBlockExplorerAddressLink(
-    targetNetwork,
-    checkSumAddress
-  );
+  const blockExplorerAddressLink = getBlockExplorerAddressLink(targetNetwork, checkSumAddress);
 
   return (
     <div className="flex items-center flex-shrink-0">
@@ -178,9 +154,7 @@ export const Address = ({
       <div className="flex flex-col">
         {showSkeleton &&
           (isEnsNameLoading ? (
-            <div
-              className={`ml-1.5 skeleton rounded-lg font-bold ${textSizeMap[ensSize]}`}
-            >
+            <div className={`ml-1.5 skeleton rounded-lg font-bold ${textSizeMap[ensSize]}`}>
               <span className="invisible">{shortAddress}</span>
             </div>
           ) : (

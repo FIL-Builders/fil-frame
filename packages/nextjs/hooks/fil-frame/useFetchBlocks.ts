@@ -10,7 +10,7 @@ import {
   webSocket,
 } from "viem";
 import { hardhat } from "viem/chains";
-import { decodeTransactionData } from "@utils/decodeTxData";
+import { decodeTransactionData } from "~~/utils/fil-frame";
 
 const BLOCKS_PER_PAGE = 20;
 
@@ -28,7 +28,7 @@ export const useFetchBlocks = () => {
     [key: string]: TransactionReceipt;
   }>({});
   const [currentPage, setCurrentPage] = useState(0);
-  const [totalBlocks, setTotalBlocks] = useState(BigInt(0));
+  const [totalBlocks, setTotalBlocks] = useState(0n);
   const [error, setError] = useState<Error | null>(null);
 
   const fetchBlocks = useCallback(async () => {
@@ -40,7 +40,7 @@ export const useFetchBlocks = () => {
 
       const startingBlock = blockNumber - BigInt(currentPage * BLOCKS_PER_PAGE);
       const blockNumbersToFetch = Array.from(
-        { length: Number(BLOCKS_PER_PAGE < startingBlock + BigInt(1) ? BLOCKS_PER_PAGE : startingBlock + BigInt(1)) },
+        { length: Number(BLOCKS_PER_PAGE < startingBlock + 1n ? BLOCKS_PER_PAGE : startingBlock + 1n) },
         (_, i) => startingBlock - BigInt(i),
       );
 

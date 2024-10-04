@@ -1,6 +1,6 @@
 import { useTargetNetwork } from "./useTargetNetwork";
 import { useTheme } from "next-themes";
-import { ChainWithAttributes } from "@utils/networks";
+import { ChainWithAttributes } from "~~/utils/fil-frame";
 
 export const DEFAULT_NETWORK_COLOR: [string, string] = ["#666666", "#bbbbbb"];
 

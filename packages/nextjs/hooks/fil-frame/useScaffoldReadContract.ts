@@ -4,13 +4,13 @@ import { QueryObserverResult, RefetchOptions, useQueryClient } from "@tanstack/r
 import type { ExtractAbiFunctionNames } from "abitype";
 import { ReadContractErrorType } from "viem";
 import { useBlockNumber, useReadContract } from "wagmi";
-import { useDeployedContractInfo } from "@hooks/fil-frame";
+import { useDeployedContractInfo } from "~~/hooks/fil-frame";
 import {
   AbiFunctionReturnType,
   ContractAbi,
   ContractName,
   UseScaffoldReadConfig,
-} from "@utils/contract";
+} from "~~/utils/fil-frame/contract";
 
 /**
  * Wrapper around wagmi's useContractRead hook which automatically loads (by name) the contract ABI and address from

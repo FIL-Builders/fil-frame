@@ -2,11 +2,9 @@ import { getPublicClient } from "@wagmi/core";
 import { Hash, SendTransactionParameters, TransactionReceipt, WalletClient } from "viem";
 import { Config, useWalletClient } from "wagmi";
 import { SendTransactionMutate } from "wagmi/query";
-import { wagmiConfig } from "services/web3/wagmiConfig";
-import { getBlockExplorerTxLink } from "@utils/networks";
-import { getParsedError } from "@utils/getParsedError";
-import { notification } from "@utils/notification";
-import { TransactorFuncOptions } from "@utils/contract";
+import { wagmiConfig } from "~~/services/web3/wagmiConfig";
+import { getBlockExplorerTxLink, getParsedError, notification } from "~~/utils/fil-frame";
+import { TransactorFuncOptions } from "~~/utils/fil-frame/contract";
 
 type TransactionFunc = (
   tx: (() => Promise<Hash>) | Parameters<SendTransactionMutate<Config, undefined>>[0],
@@ -48,7 +46,7 @@ export const useTransactor = (_walletClient?: WalletClient): TransactionFunc => 
       return;
     }
 
-    let notificationId: string | null = null;
+    let notificationId = null;
     let transactionHash: Hash | undefined = undefined;
     let transactionReceipt: TransactionReceipt | undefined;
     let blockExplorerTxURL = "";
@@ -74,10 +72,6 @@ export const useTransactor = (_walletClient?: WalletClient): TransactionFunc => 
       notificationId = notification.loading(
         <TxnNotification message="Waiting for transaction to complete." blockExplorerLink={blockExplorerTxURL} />,
       );
-
-      if (!publicClient) {
-        throw new Error("Public client is not available");
-      }
 
       transactionReceipt = await publicClient.waitForTransactionReceipt({
         hash: transactionHash,

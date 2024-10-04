@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { hardhat } from "viem/chains";
-import { useTargetNetwork } from "@hooks/fil-frame";
+import { useTargetNetwork } from "~~/hooks/fil-frame";
 
 type AddressLinkWrapperProps = {
   children: React.ReactNode;

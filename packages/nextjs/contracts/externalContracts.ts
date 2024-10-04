@@ -1,4 +1,4 @@
-import { GenericContractsDeclaration } from "@utils/contract";
+import { GenericContractsDeclaration } from "~~/utils/fil-frame/contract";
 
 /**
  * @example
