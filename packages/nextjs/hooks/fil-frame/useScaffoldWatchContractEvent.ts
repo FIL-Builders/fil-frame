@@ -2,8 +2,8 @@ import { useTargetNetwork } from "./useTargetNetwork";
 import { Abi, ExtractAbiEventNames } from "abitype";
 import { Log } from "viem";
 import { useWatchContractEvent } from "wagmi";
-import { addIndexedArgsToEvent, useDeployedContractInfo } from "~~/hooks/scaffold-eth";
-import { ContractAbi, ContractName, UseScaffoldEventConfig } from "~~/utils/scaffold-eth/contract";
+import { addIndexedArgsToEvent, useDeployedContractInfo } from "~~/hooks/fil-frame";
+import { ContractAbi, ContractName, UseScaffoldEventConfig } from "~~/utils/fil-frame/contract";
 
 /**
  * Wrapper around wagmi's useEventSubscriber hook which automatically loads (by name) the contract ABI and

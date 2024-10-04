@@ -1,7 +1,6 @@
 import { create } from "zustand";
-import { ChainWithAttributes } from "@utils/networks";
-
-import * as Constants from "@common/constants";
+import scaffoldConfig from "~~/scaffold.config";
+import { ChainWithAttributes } from "~~/utils/fil-frame";
 
 /**
  * Zustand Store
@@ -32,6 +31,6 @@ export const useGlobalState = create<GlobalState>(set => ({
     set(state => ({ nativeCurrency: { ...state.nativeCurrency, price: newValue } })),
   setIsNativeCurrencyFetching: (newValue: boolean): void =>
     set(state => ({ nativeCurrency: { ...state.nativeCurrency, isFetching: newValue } })),
-  targetNetwork: Constants.targetNetworks[0],
+  targetNetwork: scaffoldConfig.targetNetworks[0],
   setTargetNetwork: (newTargetNetwork: ChainWithAttributes) => set(() => ({ targetNetwork: newTargetNetwork })),
 }));

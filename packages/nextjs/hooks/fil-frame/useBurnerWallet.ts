@@ -6,7 +6,7 @@ import { WalletClient } from "viem";
 import { generatePrivateKey, privateKeyToAccount } from "viem/accounts";
 import { usePublicClient } from "wagmi";
 
-const burnerStorageKey = "scaffoldEth2.burnerWallet.sk";
+const burnerStorageKey = "FilFrame2.burnerWallet.sk";
 
 /**
  * Checks if the private key is valid

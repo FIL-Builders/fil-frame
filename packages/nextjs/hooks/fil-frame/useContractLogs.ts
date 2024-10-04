@@ -14,7 +14,7 @@ export const useContractLogs = (address: Address) => {
       try {
         const existingLogs = await client.getLogs({
           address: address,
-          fromBlock: BigInt(0),
+          fromBlock: 0n,
           toBlock: "latest",
         });
         setLogs(existingLogs);

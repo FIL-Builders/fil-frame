@@ -3,7 +3,7 @@ import { Chain, createClient, http } from "viem";
 import { hardhat, mainnet } from "viem/chains";
 import { createConfig } from "wagmi";
 import scaffoldConfig from "~~/scaffold.config";
-import { getAlchemyHttpUrl } from "~~/utils/scaffold-eth";
+import { getAlchemyHttpUrl } from "~~/utils/fil-frame";
 
 const { targetNetworks } = scaffoldConfig;
 
