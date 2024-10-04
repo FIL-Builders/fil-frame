@@ -9,9 +9,9 @@ import {
 } from "@rainbow-me/rainbowkit/wallets";
 import { rainbowkitBurnerWallet } from "burner-connector";
 import * as chains from "viem/chains";
-import scaffoldConfig from "~~/scaffold.config";
+import * as Constants from "@common/constants";
 
-const { onlyLocalBurnerWallet, targetNetworks } = scaffoldConfig;
+const { onlyLocalBurnerWallet, targetNetworks } = Constants;
 
 const wallets = [
   metaMaskWallet,
@@ -38,6 +38,6 @@ export const wagmiConnectors = connectorsForWallets(
 
   {
     appName: "scaffold-eth-2",
-    projectId: scaffoldConfig.walletConnectProjectId,
+    projectId: Constants.walletConnectProjectId,
   },
 );

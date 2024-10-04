@@ -6,8 +6,11 @@ import Link from "next/link";
 
 import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { useAccount } from "wagmi";
+import { Address } from "@components/fil-frame/Address/Address";
 
 export function SectionLanding() {
+  const { address: connectedAddress } = useAccount();
+
   return (
     <>
       <div className={styles.container}>
@@ -18,7 +21,7 @@ export function SectionLanding() {
           </h1>
           <div className={styles.addressContainer}>
             <p className={styles.addressLabel}>Connected Address:</p>
-            0x42
+            <Address address={connectedAddress} />
           </div>
           <p className={styles.ctaLabel}>
             Get started by editing{" "}
