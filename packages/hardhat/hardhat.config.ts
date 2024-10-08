@@ -30,7 +30,7 @@ const config: HardhatUserConfig = {
       },
     },
   },
-  defaultNetwork: "localhost",
+  defaultNetwork: "calibrationnet",
   namedAccounts: {
     deployer: {
       // By default, it will take the first Hardhat account as the deployer
@@ -45,6 +45,16 @@ const config: HardhatUserConfig = {
         url: `https://eth-mainnet.alchemyapi.io/v2/${providerApiKey}`,
         enabled: process.env.MAINNET_FORKING_ENABLED === "true",
       },
+    },
+    calibrationnet: {
+      chainId: 314159,
+      url: "https://api.calibration.node.glif.io/rpc/v1",
+      accounts: [deployerPrivateKey],
+    },
+    filecoinmainnet: {
+        chainId: 314,
+        url: "https://api.node.glif.io",
+        accounts: [deployerPrivateKey],
     },
     mainnet: {
       url: `https://eth-mainnet.alchemyapi.io/v2/${providerApiKey}`,
