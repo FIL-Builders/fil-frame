@@ -30,7 +30,7 @@ const config: HardhatUserConfig = {
       },
     },
   },
-  defaultNetwork: "localhost", // Replace "localhost" with "calibrationnet" or "filecoinmainnet" to deploy on Filecoin network
+  defaultNetwork: "localhost", // Replace "localhost" with "calibration" or "mainnet" to deploy on Filecoin network
   namedAccounts: {
     deployer: {
       // By default, it will take the first Hardhat account as the deployer
@@ -46,12 +46,12 @@ const config: HardhatUserConfig = {
         enabled: process.env.MAINNET_FORKING_ENABLED === "true",
       },
     },
-    calibrationnet: {
+    calibration: {
       chainId: 314159,
       url: "https://api.calibration.node.glif.io/rpc/v1",
       accounts: [deployerPrivateKey],
     },
-    filecoinmainnet: {
+    mainnet: {
         chainId: 314,
         url: "https://api.node.glif.io",
         accounts: [deployerPrivateKey],
