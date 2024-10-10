@@ -30,7 +30,7 @@ const config: HardhatUserConfig = {
       },
     },
   },
-  defaultNetwork: "calibrationnet",
+  defaultNetwork: "localhost", // Replace "localhost" with "calibrationnet" or "filecoinmainnet" to deploy on Filecoin network
   namedAccounts: {
     deployer: {
       // By default, it will take the first Hardhat account as the deployer
@@ -56,7 +56,7 @@ const config: HardhatUserConfig = {
         url: "https://api.node.glif.io",
         accounts: [deployerPrivateKey],
     },
-    mainnet: {
+    ethereumMainnet: {
       url: `https://eth-mainnet.alchemyapi.io/v2/${providerApiKey}`,
       accounts: [deployerPrivateKey],
     },
