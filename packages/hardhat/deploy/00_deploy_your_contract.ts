@@ -1,6 +1,5 @@
-import { HardhatRuntimeEnvironment } from "hardhat/types";
 import { DeployFunction } from "hardhat-deploy/types";
-import { Contract } from "ethers";
+import { HardhatRuntimeEnvironment } from "hardhat/types";
 
 /**
  * Deploys a contract named "YourContract" using the deployer account and
@@ -21,10 +20,12 @@ const deployYourContract: DeployFunction = async function (
     with a random private key in the .env file (then used on hardhat.config.ts)
     You can run the `yarn account` command to check your balance in every network.
   */
-  const { deployer } = await hre.getNamedAccounts();
+  const [deployerSigner] = await hre.ethers.getSigners();
+  const deployer = await deployerSigner.getAddress();
+
   const { deploy } = hre.deployments;
 
-  await deploy("YourContract", {
+  const YourContract = await deploy("YourContract", {
     from: deployer,
     // Contract constructor arguments
     args: [deployer],
@@ -34,12 +35,36 @@ const deployYourContract: DeployFunction = async function (
     autoMine: true,
   });
 
+  console.log("🚀 YourContract deployed at: ", YourContract.address);
+  const YourContractAddress = YourContract.address;
+
   // Get the deployed contract to interact with it after deploying.
-  const yourContract = await hre.ethers.getContract<Contract>(
+  const yourContract = await hre.ethers.getContractAt(
     "YourContract",
-    deployer
+    YourContractAddress
   );
   console.log("👋 Initial greeting:", await yourContract.greeting());
+
+  // Timeout for 10 Seconds to wait for the contract to be indexed on explorer
+  console.log(
+    "⏳ Waiting for 10 seconds for the contract to be indexed on the explorer..."
+  );
+  await new Promise((resolve) => setTimeout(resolve, 10000));
+
+  console.log("🕵️‍♂️ Verifying the contract on the explorer...");
+
+  const filecoinNetworks = ["calibration", "filecoin"];
+  if (filecoinNetworks.includes(hre.network.name)) {
+    // Verify the contract on the filfox explorer
+    await hre.run("verifyContract", {
+      contractName: "YourContract",
+    });
+  } else {
+    await hre.run("verify:verify", {
+      address: YourContractAddress,
+      constructorArguments: [deployer],
+    });
+  }
 };
 
 export default deployYourContract;
