@@ -1,15 +1,15 @@
-import { HardhatUserConfig } from "hardhat/config";
-import { config as dotenvConfig } from "dotenv";
-import "@nomicfoundation/hardhat-foundry";
-import "@nomicfoundation/hardhat-ethers";
+import "./tasks/verifyContract";
 import "@nomicfoundation/hardhat-chai-matchers";
-import "@typechain/hardhat";
-import "hardhat-gas-reporter";
-import "solidity-coverage";
+import "@nomicfoundation/hardhat-ethers";
+import "@nomicfoundation/hardhat-foundry";
 import "@nomicfoundation/hardhat-verify";
+import "@typechain/hardhat";
+import { config as dotenvConfig } from "dotenv";
 import "hardhat-deploy";
 import "hardhat-deploy-ethers";
-import "./tasks/verifyContract";
+import "hardhat-gas-reporter";
+import { HardhatUserConfig } from "hardhat/config";
+import "solidity-coverage";
 
 dotenvConfig();
 const providerApiKey =
