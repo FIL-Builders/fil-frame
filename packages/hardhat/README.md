@@ -11,3 +11,11 @@ REPORT_GAS=true npx hardhat test
 npx hardhat node
 npx hardhat ignition deploy ./ignition/modules/Lock.ts
 ```
+
+## Contract verification
+
+For contracts deployed on Filecoin mainnet or Filecoin testnet (calibration) using this repo you can verify them by executing this script: 
+
+```shell
+npx hardhat verifyContract --network $networkName --contract-name $contractName
+```
