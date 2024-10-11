@@ -8,6 +8,7 @@ cache_forge
 # Hardhat files
 /cache
 /artifacts
+/deployments
 
 # TypeChain files
 /typechain
