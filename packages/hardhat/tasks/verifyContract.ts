@@ -82,13 +82,12 @@ function extractVerificationData(network: string, contractName: string) {
   const solhint: SolhintData = JSON.parse(fs.readFileSync(solhintPath, "utf8"));
 
   // Extract the necessary data from the deployments and solhint files
-  const sourceFiles = Object.keys(solhint.sources).reduce(
-    (acc: any, key: string) => {
+  const sourceFiles = Object.keys(solhint.sources)
+    .reverse()
+    .reduce((acc: any, key: string) => {
       acc[key.split("contracts/")[1]] = solhint.sources[key];
       return acc;
-    },
-    {}
-  );
+    }, {});
 
   const { compiler, language } = JSON.parse(deployments.metadata) as {
     compiler: {
