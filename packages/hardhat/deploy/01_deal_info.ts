@@ -2,12 +2,12 @@ import { DeployFunction } from "hardhat-deploy/types";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
 /**
- * Deploys a contract named "YourContract" using the deployer account and
+ * Deploys a contract named "DealInfo" using the deployer account and
  * constructor arguments set to the deployer address
  *
  * @param hre HardhatRuntimeEnvironment object.
  */
-const deployYourContract: DeployFunction = async function (
+const deployDealInfo: DeployFunction = async function (
   hre: HardhatRuntimeEnvironment
 ) {
   /*
@@ -25,25 +25,18 @@ const deployYourContract: DeployFunction = async function (
 
   const { deploy } = hre.deployments;
 
-  const YourContract = await deploy("YourContract", {
+  const DealInfo = await deploy("DealInfo", {
     from: deployer,
     // Contract constructor arguments
-    args: [deployer],
+    args: [],
     log: true,
     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
     // automatically mining the contract deployment transaction. There is no effect on live networks.
     autoMine: true,
   });
 
-  console.log("🚀 YourContract deployed at: ", YourContract.address);
-  const YourContractAddress = YourContract.address;
-
-  // Get the deployed contract to interact with it after deploying.
-  const yourContract = await hre.ethers.getContractAt(
-    "YourContract",
-    YourContractAddress
-  );
-  console.log("👋 Initial greeting:", await yourContract.greeting());
+  console.log("🚀 DealInfo deployed at: ", DealInfo.address);
+  const DealInfoAddress = DealInfo.address;
 
   // Check if the --verify flag is present
   const shouldVerify = process.env.VERIFY === "true";
@@ -60,20 +53,20 @@ const deployYourContract: DeployFunction = async function (
     const filecoinNetworks = ["calibration", "filecoin"];
     if (filecoinNetworks.includes(hre.network.name)) {
       // Verify the contract on the filfox explorer
-      await hre.run("verifyContract", {
-        contractName: "YourContract",
+      await hre.run("verify-contract", {
+        contractName: "DealInfo",
       });
     } else {
       await hre.run("verify:verify", {
-        address: YourContractAddress,
+        address: DealInfoAddress,
         constructorArguments: [deployer],
       });
     }
   }
 };
 
-export default deployYourContract;
+export default deployDealInfo;
 
 // Tags are useful if you have multiple deploy files and only want to run one of them.
-// e.g. yarn deploy --tags YourContract
-deployYourContract.tags = ["YourContract"];
+// e.g. yarn deploy --tags DealInfo
+deployDealInfo.tags = ["DealInfo"];
