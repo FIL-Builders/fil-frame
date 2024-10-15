@@ -1,4 +1,4 @@
-import "./tasks/verifyContract";
+import "./tasks";
 import "@nomicfoundation/hardhat-chai-matchers";
 import "@nomicfoundation/hardhat-ethers";
 import "@nomicfoundation/hardhat-foundry";
@@ -24,12 +24,12 @@ const etherscanApiKey =
 
 const config: HardhatUserConfig = {
   solidity: {
-    version: "0.8.17",
+    version: "0.8.23",
     settings: {
       optimizer: {
         enabled: true,
         // https://docs.soliditylang.org/en/latest/using-the-compiler.html#optimizer-options
-        runs: 200,
+        runs: 1000,
       },
     },
   },

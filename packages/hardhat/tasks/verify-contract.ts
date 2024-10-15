@@ -1,6 +1,6 @@
-import { HardhatRuntimeEnvironment } from "hardhat/types";
-import { task } from "hardhat/config";
 import fs from "fs";
+import { task } from "hardhat/config";
+import { HardhatRuntimeEnvironment } from "hardhat/types";
 
 interface VerifyContractParams {
   contractName: string;
@@ -27,7 +27,7 @@ interface DeploymentData {
   metadata: string;
 }
 
-task("verifyContract", "Verifies a contract on Filfox")
+task("verify-contract", "Verifies a contract on Filfox")
   .addParam("contractName", "The name of the contract to verify")
   .setAction(
     async (taskArgs: VerifyContractParams, hre: HardhatRuntimeEnvironment) => {
