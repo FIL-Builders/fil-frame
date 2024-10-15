@@ -1,13 +1,15 @@
+const hre = require('hardhat');
+const { ethers } = require('ethers');
 require('dotenv').config();
 
-const provider = new ethers.JsonRpcProvider(process.env.RPC_URL);
-const signer = new ethers.Wallet(process.env.PRIVATE_KEY, provider);
+const provider = new ethers.JsonRpcProvider(process.env.RPC_URL); // Change this to same url as in hardhat.config.ts
+const signer = new ethers.Wallet(process.env.DEPLOYER_PRIVATE_KEY, provider);
 
 async function deployContractFactory() {
     try {
-        const ContractFactory = await hre.ethers.getContractFactory('ContractFactory', signer);
+        const ContractFactory = await hre.ethers.getContractFactory('YourContractFactory', signer);
         
-        console.log('Deploying ContractFactory...');
+        console.log('Deploying YourContractFactory...');
         const factory = await ContractFactory.deploy();
         await factory.waitForDeployment();
 

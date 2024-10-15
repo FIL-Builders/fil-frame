@@ -1,8 +1,7 @@
 //SPDX-License-Identifier: MIT
-pragma solidity ^0.8.20;
+pragma solidity >=0.8.0 <0.9.0;
 
 import "./YourContract.sol";
-import "@openzeppelin/contracts/utils/Create2.sol";
 
 contract YourContractFactory {
     address public latestTokenAddress;
@@ -18,12 +17,17 @@ contract YourContractFactory {
         isContractNotDeployed(_salt) 
         returns (address) 
     {
-        latestTokenAddress = Create2.deploy(
-            0,
-            _salt,
-            abi.encodePacked(type(YourContract).creationCode, abi.encode(msg.sender))
-        );
+        bytes memory bytecode = abi.encodePacked(type(YourContract).creationCode, abi.encode(msg.sender));
+        address addr;
 
+        assembly {
+            addr := create2(0, add(bytecode, 0x20), mload(bytecode), _salt)
+            if iszero(extcodesize(addr)) {
+                revert(0, 0)
+            }
+        }
+
+        latestTokenAddress = addr;
         deployedContracts[_salt] = latestTokenAddress;
         return latestTokenAddress;
     }
@@ -33,9 +37,18 @@ contract YourContractFactory {
         view 
         returns (address) 
     {
-        return Create2.computeAddress(
-            _salt,
-            keccak256(abi.encodePacked(type(YourContract).creationCode, abi.encode(msg.sender)))
+        bytes32 bytecodeHash = keccak256(
+            abi.encodePacked(
+                type(YourContract).creationCode,
+                abi.encode(msg.sender)
+            )
         );
+        
+        return address(uint160(uint(keccak256(abi.encodePacked(
+            bytes1(0xff),
+            address(this),
+            _salt,
+            bytecodeHash
+        )))));
     }
 }
