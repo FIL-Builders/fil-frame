@@ -2,6 +2,11 @@ const hre = require('hardhat');
 const { ethers } = require('ethers');
 require('dotenv').config();
 
+/* For deploying contracts to the same address on different chains:
+* 1. Deploy YourContractFactory: `npx hardhat run --network <network_name> scripts/deployFactory.ts`
+* 2. Copy and paste the address you see in the console output into the deployYourContract.ts file
+* 3. Deploy YourContract: `npx hardhat run --network <network_name> scripts/deployYourContract.ts`
+*/
 const provider = new ethers.JsonRpcProvider(process.env.RPC_URL); // Change this to same url as in hardhat.config.ts
 const signer = new ethers.Wallet(process.env.DEPLOYER_PRIVATE_KEY, provider);
 

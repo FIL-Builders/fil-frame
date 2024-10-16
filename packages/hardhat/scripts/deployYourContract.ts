@@ -1,6 +1,6 @@
 require('dotenv').config();
 
-const contractFactoryAddress = '0x5670BD2621CccC4024238e267C15680d96a6BC01';
+const contractFactoryAddress = ''; // Fill this after running deployFactory.ts
 const deployerAddress = signer.address;
 const deployerBytes = ethers.getBytes(deployerAddress).slice(0, 20);
 const randomString = "gmrandomstring"; // This value must change on every deployment
