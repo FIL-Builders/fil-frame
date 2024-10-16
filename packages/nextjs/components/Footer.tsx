@@ -1,5 +1,6 @@
 import React from "react";
 import Link from "next/link";
+import Logo from "./svg/Logo";
 import { hardhat } from "viem/chains";
 import { CurrencyDollarIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { HeartIcon } from "@heroicons/react/24/outline";
@@ -58,12 +59,12 @@ export const Footer = () => {
               </p>
               <a
                 className="flex justify-center items-center gap-1"
-                href="https://buidlguidl.com/"
+                href="https://fil.builders/"
                 target="_blank"
                 rel="noreferrer"
               >
-                <BuidlGuidlLogo className="w-3 h-5 pb-1" />
-                <span className="link">BuidlGuidl</span>
+                <Logo className="w-3 h-5" />
+                <span className="link">Fil-Builders</span>
               </a>
             </div>
             <span>·</span>
