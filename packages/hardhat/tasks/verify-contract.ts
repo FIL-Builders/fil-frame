@@ -3,7 +3,7 @@ import { task } from "hardhat/config";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
 interface VerifyContractParams {
-  contractName: string;
+  contractname: string;
 }
 
 interface SourceFile {
@@ -28,16 +28,16 @@ interface DeploymentData {
 }
 
 task("verify-contract", "Verifies a contract on Filfox")
-  .addParam("contractName", "The name of the contract to verify")
+  .addParam("contractname", "The name of the contract to verify")
   .setAction(
     async (taskArgs: VerifyContractParams, hre: HardhatRuntimeEnvironment) => {
       const networkName = hre.network.name;
 
-      const { contractName } = taskArgs;
+      const { contractname } = taskArgs;
 
       const verificationData = extractVerificationData(
         networkName,
-        contractName
+        contractname
       );
       const url = "https://calibration.filfox.info/api/v1/tools/verifyContract";
       const headers = {
@@ -80,14 +80,26 @@ function extractVerificationData(network: string, contractName: string) {
 
   const solhintPath = `./deployments/${network}/solcInputs/${deployments.solcInputHash}.json`;
   const solhint: SolhintData = JSON.parse(fs.readFileSync(solhintPath, "utf8"));
-
   // Extract the necessary data from the deployments and solhint files
-  const sourceFiles = Object.keys(solhint.sources)
-    .reverse()
-    .reduce((acc: any, key: string) => {
-      acc[key.split("contracts/")[1]] = solhint.sources[key];
+  let sourceFiles = Object.keys(solhint.sources).reduce(
+    (acc: any, key: string) => {
+      acc[key] = solhint.sources[key]; // Add other sources
+
       return acc;
     }, {});
+
+  const contractToVerify = Object.keys(sourceFiles).find((key) =>
+    key.includes(contractName + ".sol")
+  );
+  if (!contractToVerify) {
+    throw new Error(
+      `Contract ${contractName} not found in the sources provided.`
+    );
+  }
+  // Ensure the contract source is the first entry
+  const contractSource = sourceFiles[contractToVerify];
+  delete sourceFiles[contractToVerify]; // Remove it from its current position
+  sourceFiles = { [contractToVerify]: contractSource, ...sourceFiles }; // Add it back at the start
 
   const { compiler, language } = JSON.parse(deployments.metadata) as {
     compiler: {
