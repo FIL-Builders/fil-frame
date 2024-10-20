@@ -9,6 +9,10 @@ import { Bars3Icon, BugAntIcon } from "@heroicons/react/24/outline";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/fil-frame";
 import { useOutsideClick } from "~~/hooks/fil-frame";
 
+const StorachaIcon = () => (
+  <Image alt="Storacha logo" src="/icons/storacha.svg" width={20} height={20} className="h-4 w-4 bg-white rounded-lg" />
+);
+
 type HeaderMenuLink = {
   label: string;
   href: string;
@@ -19,6 +23,11 @@ export const menuLinks: HeaderMenuLink[] = [
   {
     label: "Home",
     href: "/",
+  },
+  {
+    label: "Storacha",
+    href: "/storacha",
+    icon: <StorachaIcon />,
   },
   {
     label: "Debug Contracts",

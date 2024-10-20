@@ -2,12 +2,12 @@ import { DeployFunction } from "hardhat-deploy/types";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
 /**
- * Deploys a contract named "DealInfo" using the deployer account and
+ * Deploys a contract named "DealClient" using the deployer account and
  * constructor arguments set to the deployer address
  *
  * @param hre HardhatRuntimeEnvironment object.
  */
-const deployDealInfo: DeployFunction = async function (
+const deployStorachaNFT: DeployFunction = async function (
   hre: HardhatRuntimeEnvironment
 ) {
   /*
@@ -25,7 +25,7 @@ const deployDealInfo: DeployFunction = async function (
 
   const { deploy } = hre.deployments;
 
-  const DealInfo = await deploy("DealInfo", {
+  const StorachaNFT = await deploy("StorachaNFT", {
     from: deployer,
     // Contract constructor arguments
     args: [],
@@ -35,8 +35,8 @@ const deployDealInfo: DeployFunction = async function (
     autoMine: true,
   });
 
-  console.log("🚀 DealInfo deployed at: ", DealInfo.address);
-  const DealInfoAddress = DealInfo.address;
+  console.log("🚀 StorachaNFT deployed at: ", StorachaNFT.address);
+  const StorachaNFTAddress = StorachaNFT.address;
 
   // Check if the --verify flag is present
   const shouldVerify = process.env.VERIFY === "true";
@@ -44,9 +44,9 @@ const deployDealInfo: DeployFunction = async function (
   if (shouldVerify) {
     // Timeout for 10 Seconds to wait for the contract to be indexed on explorer
     console.log(
-      "⏳ Waiting for 10 seconds for the contract to be indexed on the explorer..."
+      "⏳ Waiting for 15 seconds for the contract to be indexed on the explorer..."
     );
-    await new Promise((resolve) => setTimeout(resolve, 10000));
+    await new Promise((resolve) => setTimeout(resolve, 15000));
 
     console.log("🕵️‍♂️ Verifying the contract on the explorer...");
 
@@ -54,19 +54,19 @@ const deployDealInfo: DeployFunction = async function (
     if (filecoinNetworks.includes(hre.network.name)) {
       // Verify the contract on the filfox explorer
       await hre.run("verify-contract", {
-        contractName: "DealInfo",
+        contractName: "StorachaNFT",
       });
     } else {
       await hre.run("verify:verify", {
-        address: DealInfoAddress,
-        constructorArguments: [deployer],
+        address: StorachaNFTAddress,
+        constructorArguments: [],
       });
     }
   }
 };
 
-export default deployDealInfo;
+export default deployStorachaNFT;
 
 // Tags are useful if you have multiple deploy files and only want to run one of them.
-// e.g. yarn deploy --tags DealInfo
-deployDealInfo.tags = ["DealInfo"];
+// e.g. yarn deploy --tags DealClient
+deployStorachaNFT.tags = ["StorachaNFT"];

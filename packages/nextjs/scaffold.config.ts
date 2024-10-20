@@ -8,9 +8,21 @@ export type ScaffoldConfig = {
   onlyLocalBurnerWallet: boolean;
 };
 
+const filecoinChains = [
+  {
+    ...chains.filecoin,
+    explorer: "https://filfox.info/en/",
+  },
+  {
+    ...chains.filecoinCalibration,
+    explorer: "https://calibration.filfox.info/en/",
+    
+  },
+] as const;
+
 const scaffoldConfig = {
   // The networks on which your DApp is live
-  targetNetworks: [chains.hardhat],
+  targetNetworks: filecoinChains,
 
   // The interval at which your front-end polls the RPC servers for new data
   // it has no effect if you only target the local network (default is 4000)

@@ -1,21 +1,43 @@
 # Sample Hardhat Project
 
-This project demonstrates a basic Hardhat use case. It comes with a sample contract, a test for that contract, and a Hardhat Ignition module that deploys that contract.
+This project demonstrates a basic use case of Hardhat for deploying an NFT contract. You can interact with the contract on the frontend and mint NFTs, with their files stored on the Storacha network.
 
-Try running some of the following tasks:
+## Prerequisites
 
-```shell
-npx hardhat help
-npx hardhat test
-REPORT_GAS=true npx hardhat test
-npx hardhat node
-npx hardhat ignition deploy ./ignition/modules/Lock.ts
-```
+1. **Private Key**: Ensure you have your private key ready.
+2. **Test FIL**: Visit the [Calibration Net faucet](https://faucet.triangleplatform.com/filecoin/calibration) to receive some test FIL.
 
-## Contract verification
+## Setup
 
-For contracts deployed on Filecoin mainnet or Filecoin testnet (calibration) using this repo you can verify them by executing this script:
+1. **Environment Variables**: Add your private key to the `.env` file.
 
-```shell
-npx hardhat verify-contract --network $networkName --contract-name $contractName
-```
+   ```shell
+   cp .env.example .env
+   ```
+
+   ```plaintext
+   PRIVATE_KEY=your_private_key_here
+   ```
+
+2. **Deployment**: Execute the following command to deploy and verify your contracts on the Calibration Net. This will also verify your contracts on Filfox.
+
+-  ```shell
+   yarn install
+   ```
+
+-  ```shell
+   yarn compile
+   ```
+
+-  ```shell
+   yarn deploy
+   ```
+
+## Next Steps
+
+After deploying your contracts, proceed to the Next.js app [README](../nextjs/README.md) and follow the instructions to set up the Storacha environment variables. This will allow you to start the app and mint your NFTs stored on Storacha.
+
+## Additional Resources
+
+- [Hardhat Documentation](https://hardhat.org/docs)
+- [Storacha Network](https://docs.storacha.network/)

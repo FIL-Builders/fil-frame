@@ -39,7 +39,10 @@ task("verify-contract", "Verifies a contract on Filfox")
         networkName,
         contractName
       );
-      const url = "https://calibration.filfox.info/api/v1/tools/verifyContract";
+      const url =
+        networkName === "calibration"
+          ? "https://calibration.filfox.info/api/v1/tools/verifyContract"
+          : "https://filfox.info/api/v1/tools/verifyContract";
       const headers = {
         "Content-Type": "application/json",
       };
@@ -58,9 +61,11 @@ task("verify-contract", "Verifies a contract on Filfox")
           network: networkName,
           address: verificationData.address,
         });
-      } catch (error) {
-        console.error("Error verifying contract:", error);
-        throw error;
+      } catch (error: any) {
+        console.error("⚠️ Error verifying contract: ", error.cause);
+        console.log(
+          "Please contact us on [Telegram](https://t.me/Filfoxofficial) if you encounter this error."
+        );
       }
     }
   );
@@ -82,12 +87,27 @@ function extractVerificationData(network: string, contractName: string) {
   const solhint: SolhintData = JSON.parse(fs.readFileSync(solhintPath, "utf8"));
 
   // Extract the necessary data from the deployments and solhint files
-  const sourceFiles = Object.keys(solhint.sources)
-    .reverse()
-    .reduce((acc: any, key: string) => {
-      acc[key.split("contracts/")[1]] = solhint.sources[key];
+  let sourceFiles = Object.keys(solhint.sources).reduce(
+    (acc: any, key: string) => {
+      acc[key] = solhint.sources[key]; // Add other sources
+
       return acc;
-    }, {});
+    },
+    {}
+  );
+
+  const contractToVerify = Object.keys(sourceFiles).find((key) =>
+    key.includes(contractName + ".sol")
+  );
+  if (!contractToVerify) {
+    throw new Error(
+      `Contract ${contractName} not found in the sources provided.`
+    );
+  }
+  // Ensure the contract source is the first entry
+  const contractSource = sourceFiles[contractToVerify];
+  delete sourceFiles[contractToVerify]; // Remove it from its current position
+  sourceFiles = { [contractToVerify]: contractSource, ...sourceFiles }; // Add it back at the start
 
   const { compiler, language } = JSON.parse(deployments.metadata) as {
     compiler: {
