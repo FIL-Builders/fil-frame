@@ -54,7 +54,7 @@ const deployDealInfo: DeployFunction = async function (
     if (filecoinNetworks.includes(hre.network.name)) {
       // Verify the contract on the filfox explorer
       await hre.run("verify-contract", {
-        contractname: "DealInfo",
+        contractName: "DealInfo",
       });
     } else {
       await hre.run("verify:verify", {

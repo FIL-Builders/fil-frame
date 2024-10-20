@@ -3,7 +3,7 @@ import { task } from "hardhat/config";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
 interface VerifyContractParams {
-  contractname: string;
+  contractName: string;
 }
 
 interface SourceFile {
@@ -28,18 +28,21 @@ interface DeploymentData {
 }
 
 task("verify-contract", "Verifies a contract on Filfox")
-  .addParam("contractname", "The name of the contract to verify")
+  .addParam("contractName", "The name of the contract to verify")
   .setAction(
     async (taskArgs: VerifyContractParams, hre: HardhatRuntimeEnvironment) => {
       const networkName = hre.network.name;
 
-      const { contractname } = taskArgs;
+      const { contractName } = taskArgs;
 
       const verificationData = extractVerificationData(
         networkName,
-        contractname
+        contractName
       );
-      const url = "https://calibration.filfox.info/api/v1/tools/verifyContract";
+      const url =
+        networkName === "calibration"
+          ? "https://calibration.filfox.info/api/v1/tools/verifyContract"
+          : "https://filfox.info/api/v1/tools/verifyContract";
       const headers = {
         "Content-Type": "application/json",
       };
@@ -58,9 +61,11 @@ task("verify-contract", "Verifies a contract on Filfox")
           network: networkName,
           address: verificationData.address,
         });
-      } catch (error) {
-        console.error("Error verifying contract:", error);
-        throw error;
+      } catch (error: any) {
+        console.error("⚠️ Error verifying contract: ", error.cause);
+        console.log(
+          "Please contact us on [Telegram](https://t.me/Filfoxofficial) if you encounter this error."
+        );
       }
     }
   );

@@ -17,5 +17,5 @@ npx hardhat ignition deploy ./ignition/modules/Lock.ts
 For contracts deployed on Filecoin mainnet or Filecoin testnet (calibration) using this repo you can verify them by executing this script:
 
 ```shell
-npx hardhat verify-contract --network $networkName --contractname $contractName
+npx hardhat verify-contract --network $networkName --contract-name $contractName
 ```
