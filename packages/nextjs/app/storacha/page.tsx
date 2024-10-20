@@ -21,21 +21,21 @@ const Home: NextPage = () => {
             <Address address={connectedAddress} />
           </div>
           <p className="text-center text-lg">
-            Get started with Storacha
+            Get started with Storacha.
             <br />
-            First go to{" "}
+            First, go to{" "}
             <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
               packages/hardhat/README.md
             </code>{" "}
-            for details on how to deploy the NFTContract
+            for details on deploying the NFTContract.
             <br />
-            Then go to{" "}
+            Then, go to{" "}
             <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
               packages/nextjs/README.md
             </code>{" "}
-            for details on how to set up the nextjs app environment variables
+            for details on setting up the Next.js app environment variables
             <br />
-            to allow the app to store files on Storacha and mint NFTs
+            to enable the app to store files on Storacha and mint NFTs.
           </p>
         </div>
       </div>

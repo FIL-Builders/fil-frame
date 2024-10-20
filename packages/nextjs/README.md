@@ -96,10 +96,20 @@ To interact with the `w3cli` and manage your Filecoin dApp, you'll need to set u
 
 ### Update Your Environment Variables
 
-   ```shell
-   cp .env.example .env.local
-   ```
+```shell
+cp .env.example .env.local
+```
 
 Make sure to update your environment variables in your system or project configuration to include `KEY` and `PROOF`. This will ensure secure and efficient interaction with your Filecoin dApp using the `w3cli`.
 
 By following these steps, you will have successfully set up your `w3cli`, created a Space, and configured the necessary environment variables to allow your app to upload files for the users by delegating them upload access!
+
+### Run the app
+
+1. ```shell
+   yarn install
+   ```
+
+2. ```shell
+   yarn dev
+   ```
