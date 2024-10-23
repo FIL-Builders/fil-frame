@@ -18,10 +18,11 @@
     "hardhat-verify": "hardhat verify"
   },
   "dependencies": {
+    "@axelar-network/axelar-gmp-sdk-solidity": "^6.0.0",
     "dotenv": "^16.0.3",
     "envfile": "^6.18.0",
-    "ts-node": "^10.9.2",
-    "qrcode": "^1.5.1"
+    "qrcode": "^1.5.1",
+    "ts-node": "^10.9.2"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-chai-matchers": "^2.0.8",

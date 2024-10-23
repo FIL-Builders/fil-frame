@@ -17,6 +17,11 @@
   resolved "https://registry.yarnpkg.com/@alloc/quick-lru/-/quick-lru-5.2.0.tgz#7bf68b20c0a350f936915fcae06f58e32007ce30"
   integrity sha512-UrcABB+4bUrFABwbluTIBErXwvbsU/V7TZWfmbgJfbkwiBuziS9gxdODUyuiecfdGQ85jglMW6juS3+z5TsKLw==
 
+"@axelar-network/axelar-gmp-sdk-solidity@^6.0.0":
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/@axelar-network/axelar-gmp-sdk-solidity/-/axelar-gmp-sdk-solidity-6.0.0.tgz#eb9b26779ee2f3c535403218632edf4811972cc9"
+  integrity sha512-skmHwbvYOkyuIrL5twVDlRNbyDAWQXcPGGufSMhBZ125iy85TAti76EFayoyfFXvLsq3BnKE8D+D1iC2mXB5eA==
+
 "@babel/code-frame@^7.22.13", "@babel/code-frame@^7.25.7":
   version "7.25.7"
   resolved "https://registry.yarnpkg.com/@babel/code-frame/-/code-frame-7.25.7.tgz#438f2c524071531d643c6f0188e1e28f130cebc7"
