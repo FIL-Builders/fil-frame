@@ -19,7 +19,7 @@ module.exports = {
           "neutral-content": "#ffffff",
           "base-100": "#0090FF",
           "base-200": "#0090FF",
-          "base-300": 'rgb(37, 99, 235)',
+          "base-300": "rgb(37, 99, 235)",
           "base-content": "#FFFFFF",
           info: "#93BBFB",
           success: "#34EEB6",
@@ -78,7 +78,7 @@ module.exports = {
     extend: {
       boxShadow: {
         center: "0 0 12px -2px rgb(0 0 0 / 0.05)",
-         "custom-black-box": "5px 5px 5px 5px black",
+        "custom-black-box": "5px 5px 5px 5px black",
       },
       animation: {
         "pulse-fast": "pulse 1s cubic-bezier(0.4, 0, 0.6, 1) infinite",

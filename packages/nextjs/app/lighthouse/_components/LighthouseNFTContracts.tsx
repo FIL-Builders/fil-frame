@@ -1,8 +1,9 @@
 "use client";
 
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
+import { LighthouseNFTUI } from "./LighthouseNFTUI";
 import { MintNFTForm } from "./MintNFTForm";
-import { StorachaNFTUI } from "./StorachaNFTUI";
+import { MintPrivateNFTForm } from "./MintPrivateNFTForm";
 import { useLocalStorage } from "usehooks-ts";
 import { BarsArrowUpIcon } from "@heroicons/react/20/solid";
 import { ContractName, GenericContract } from "~~/utils/fil-frame/contract";
@@ -10,7 +11,7 @@ import { useAllContracts } from "~~/utils/fil-frame/contractsData";
 
 const selectedContractStorageKey = "FilFrame2.selectedContract";
 
-export function StorachaNFTContracts() {
+export function LighthouseNFTContracts() {
   const contractsData = useAllContracts();
   const contractNames = useMemo(() => Object.keys(contractsData) as ContractName[], [contractsData]);
 
@@ -25,6 +26,7 @@ export function StorachaNFTContracts() {
       setSelectedContract(contractNames[0]);
     }
   }, [contractNames, selectedContract, setSelectedContract]);
+  const [activeTab, setActiveTab] = useState<"private" | "open">("private");
 
   return (
     <div className="flex flex-col gap-y-6 lg:gap-y-8 py-8 lg:py-12 justify-center items-center">
@@ -54,12 +56,36 @@ export function StorachaNFTContracts() {
               ))}
             </div>
           )}
-          <div className="flex flex-col  items-center justify-between gap-3 mx-5">
-            <div className="flex w-full max-w-7xl px-6 ">
+          <div className="flex flex-col items-center justify-between gap-3 mx-5">
+            <div className="flex w-full max-w-7xl px-6">
+              <div className="tabs flex-1 items-center ">
+                <button
+                  className={`btn btn-secondary btn-sm font-light hover:border-transparent ${
+                    activeTab === "private" ? "bg-base-300 border" : "bg-base-100 hover:bg-secondary"
+                  }`}
+                  onClick={() => setActiveTab("private")}
+                >
+                  Mint Private NFT
+                </button>
+                <button
+                  className={`btn btn-secondary btn-sm font-light hover:border-transparent ${
+                    activeTab === "open" ? "bg-base-300 border" : "bg-base-100 hover:bg-secondary"
+                  }`}
+                  onClick={() => setActiveTab("open")}
+                >
+                  Mint Open NFT
+                </button>
+              </div>
+            </div>
+            <div className={`${activeTab === "open" ? "hidden" : ""} flex w-full max-w-7xl px-6`}>
+              <MintPrivateNFTForm />
+            </div>
+            <div className={`${activeTab !== "open" ? "hidden" : ""} flex w-full max-w-7xl px-6`}>
               <MintNFTForm />
             </div>
+
             {contractNames.map(contractName => (
-              <StorachaNFTUI
+              <LighthouseNFTUI
                 key={contractName}
                 contractName={contractName}
                 className={contractName === selectedContract ? "" : "hidden"}

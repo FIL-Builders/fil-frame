@@ -1,6 +1,6 @@
 "use client";
 
-import { StorachaNFTContracts } from "./_components/StorachaNFTContracts";
+import { LighthouseNFTContracts } from "./_components/LighthouseNFTContracts";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { Address } from "~~/components/fil-frame";
@@ -21,7 +21,7 @@ const Home: NextPage = () => {
             <Address address={connectedAddress} />
           </div>
           <p className="text-center text-lg">
-            Get started with Storacha.
+            Get started with Lighthouse.
             <br />
             First, go to{" "}
             <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
@@ -33,13 +33,11 @@ const Home: NextPage = () => {
             <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
               packages/nextjs/README.md
             </code>{" "}
-            for details on setting up the Next.js app environment variables
-            <br />
-            to enable the app to store files on Storacha and mint NFTs.
+            for details on setting up the Next.js app
           </p>
         </div>
       </div>
-      <StorachaNFTContracts />
+      <LighthouseNFTContracts />
     </>
   );
 };

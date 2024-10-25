@@ -1,6 +1,6 @@
 # Sample Hardhat Project
 
-This project demonstrates a basic use case of Hardhat for deploying an NFT contract. You can interact with the contract on the frontend and mint NFTs, with their files stored on the Storacha network.
+This project demonstrates a basic use case of Hardhat for deploying an NFT contract. You can interact with the contract on the frontend and mint NFTs, with their files stored on the Lighthouse network.
 
 ## Prerequisites
 
@@ -21,23 +21,23 @@ This project demonstrates a basic use case of Hardhat for deploying an NFT contr
 
 2. **Deployment**: Execute the following command to deploy and verify your contracts on the Calibration Net. This will also verify your contracts on Filfox.
 
--  ```shell
-   yarn install
-   ```
+- ```shell
+  yarn install
+  ```
 
--  ```shell
-   yarn compile
-   ```
+- ```shell
+  yarn compile
+  ```
 
--  ```shell
-   yarn deploy
-   ```
+- ```shell
+  yarn deploy
+  ```
 
 ## Next Steps
 
-After deploying your contracts, proceed to the Next.js app [README](../nextjs/README.md) and follow the instructions to set up the Storacha environment variables. This will allow you to start the app and mint your NFTs stored on Storacha.
+After deploying your contracts, proceed to the Next.js app [README](../nextjs/README.md) and follow the instructions to set up the application and check Lighthouse abilities then copy the code and integrate into your amazing application.
 
 ## Additional Resources
 
 - [Hardhat Documentation](https://hardhat.org/docs)
-- [Storacha Network](https://docs.storacha.network/)
+- [Lighthouse Network Docs](https://docs.lighthouse.storage/lighthouse-1/quick-start)

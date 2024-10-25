@@ -1,4 +1,6 @@
-export default function YellowCircle(props) {
+import { JSX, SVGProps } from "react";
+
+export default function YellowCircle(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -11,16 +13,8 @@ export default function YellowCircle(props) {
     >
       <rect width="662" height="645" fill="url(#pattern0_1_4)" />
       <defs>
-        <pattern
-          id="pattern0_1_4"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image0_1_4"
-            transform="scale(0.00151057 0.00155039)"
-          />
+        <pattern id="pattern0_1_4" patternContentUnits="objectBoundingBox" width="1" height="1">
+          <use xlinkHref="#image0_1_4" transform="scale(0.00151057 0.00155039)" />
         </pattern>
         <image
           id="image0_1_4"

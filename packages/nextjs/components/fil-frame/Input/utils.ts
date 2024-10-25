@@ -83,7 +83,9 @@ export const isValidInteger = (dataType: IntegerVariant, value: string) => {
   let valueAsBigInt;
   try {
     valueAsBigInt = BigInt(value);
-  } catch (e) {}
+  } catch (e) {
+    console.error(e);
+  }
   if (typeof valueAsBigInt !== "bigint") {
     if (!value || typeof value !== "string") {
       return true;

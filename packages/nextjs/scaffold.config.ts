@@ -16,7 +16,6 @@ const filecoinChains = [
   {
     ...chains.filecoinCalibration,
     explorer: "https://calibration.filfox.info/en/",
-    
   },
 ] as const;
 

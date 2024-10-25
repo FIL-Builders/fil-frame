@@ -1,4 +1,11 @@
-export default function LogoLandscape(props) {
+import { JSX, SVGProps } from "react";
+
+export default function LogoLandscape(
+  props: JSX.IntrinsicAttributes &
+    SVGProps<SVGSVGElement> & {
+      height?: number;
+    },
+) {
   return (
     <svg
       {...props}

@@ -1,4 +1,6 @@
-export default function BlueBox(props) {
+import { JSX, SVGProps } from "react";
+
+export default function BlueBox(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -7,20 +9,12 @@ export default function BlueBox(props) {
       viewBox="0 0 747 719"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      xmlns:xlink="http://www.w3.org/1999/xlink"
+      xmlnsXlink="http://www.w3.org/1999/xlink"
     >
       <rect width="747" height="719" fill="url(#pattern0_1_6)" />
       <defs>
-        <pattern
-          id="pattern0_1_6"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image0_1_6"
-            transform="scale(0.00133869 0.00139082)"
-          />
+        <pattern id="pattern0_1_6" patternContentUnits="objectBoundingBox" width="1" height="1">
+          <use xlinkHref="#image0_1_6" transform="scale(0.00133869 0.00139082)" />
         </pattern>
         <image
           id="image0_1_6"

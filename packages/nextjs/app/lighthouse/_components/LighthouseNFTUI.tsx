@@ -9,7 +9,7 @@ import { useDeployedContractInfo, useNetworkColor } from "~~/hooks/fil-frame";
 import { useTargetNetwork } from "~~/hooks/fil-frame/useTargetNetwork";
 import { ContractName } from "~~/utils/fil-frame/contract";
 
-type StorachaNFTUIProps = {
+type LighthouseNFTUIProps = {
   contractName: ContractName;
   className?: string;
 };
@@ -17,7 +17,7 @@ type StorachaNFTUIProps = {
 /**
  * UI component to interface with deployed contracts.
  **/
-export const StorachaNFTUI = ({ contractName, className = "" }: StorachaNFTUIProps) => {
+export const LighthouseNFTUI = ({ contractName, className = "" }: LighthouseNFTUIProps) => {
   const [refreshDisplayVariables] = useReducer(value => !value, false);
   const { targetNetwork } = useTargetNetwork();
   const { data: deployedContractData, isLoading: deployedContractLoading } = useDeployedContractInfo(contractName);

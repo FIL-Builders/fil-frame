@@ -13,7 +13,7 @@ const nextConfig = {
     remotePatterns: [
       {
         protocol: "https",
-        hostname: "w3s.link",
+        hostname: "*",
         port: "",
         pathname: "/ipfs/**",
       },

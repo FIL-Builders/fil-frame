@@ -54,7 +54,7 @@ const config: HardhatUserConfig = {
       accounts: [deployerPrivateKey],
     },
     calibration: {
-      url: "https://rpc.ankr.com/filecoin_testnet",
+      url: "https://api.calibration.node.glif.io/rpc/v1	",
       accounts: [deployerPrivateKey],
     },
     sepolia: {

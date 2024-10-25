@@ -7,7 +7,7 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
  *
  * @param hre HardhatRuntimeEnvironment object.
  */
-const deployStorachaNFT: DeployFunction = async function (
+const deployLighthouseNFT: DeployFunction = async function (
   hre: HardhatRuntimeEnvironment
 ) {
   /*
@@ -25,7 +25,7 @@ const deployStorachaNFT: DeployFunction = async function (
 
   const { deploy } = hre.deployments;
 
-  const StorachaNFT = await deploy("StorachaNFT", {
+  const LighthouseNFT = await deploy("LighthouseNFT", {
     from: deployer,
     // Contract constructor arguments
     args: [],
@@ -35,8 +35,8 @@ const deployStorachaNFT: DeployFunction = async function (
     autoMine: true,
   });
 
-  console.log("🚀 StorachaNFT deployed at: ", StorachaNFT.address);
-  const StorachaNFTAddress = StorachaNFT.address;
+  console.log("🚀 LighthouseNFT deployed at: ", LighthouseNFT.address);
+  const LighthouseNFTAddress = LighthouseNFT.address;
 
   // Check if the --verify flag is present
   const shouldVerify = process.env.VERIFY === "true";
@@ -54,19 +54,19 @@ const deployStorachaNFT: DeployFunction = async function (
     if (filecoinNetworks.includes(hre.network.name)) {
       // Verify the contract on the filfox explorer
       await hre.run("verify-contract", {
-        contractName: "StorachaNFT",
+        contractName: "LighthouseNFT",
       });
     } else {
       await hre.run("verify:verify", {
-        address: StorachaNFTAddress,
+        address: LighthouseNFTAddress,
         constructorArguments: [],
       });
     }
   }
 };
 
-export default deployStorachaNFT;
+export default deployLighthouseNFT;
 
 // Tags are useful if you have multiple deploy files and only want to run one of them.
 // e.g. yarn deploy --tags DealClient
-deployStorachaNFT.tags = ["StorachaNFT"];
+deployLighthouseNFT.tags = ["LighthouseNFT"];

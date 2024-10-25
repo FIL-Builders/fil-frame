@@ -52,7 +52,7 @@ export const WriteContractFunctionForm = ({
     functionPropsWithIndexAndValue.forEach(({ value, index }) => {
       setFormValue(abiFunction.name, index, value);
     });
-  }, [functionPropsWithIndexAndValue]);
+  }, [functionPropsWithIndexAndValue, abiFunction.name, setFormValue]);
 
   const [form, setForm] = useState<Record<string, any>>(() => getInitialFormState(abiFunction));
   const [txValue, setTxValue] = useState<string>("");

@@ -13,7 +13,6 @@ import { BlockieAvatar } from "~~/components/fil-frame";
 import { useInitializeNativeCurrencyPrice } from "~~/hooks/fil-frame";
 import { wagmiConfig } from "~~/services/web3/wagmiConfig";
 
-
 const FILFrameApp = ({ children }: { children: React.ReactNode }) => {
   useInitializeNativeCurrencyPrice();
 

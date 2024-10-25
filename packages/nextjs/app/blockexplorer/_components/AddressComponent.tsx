@@ -6,7 +6,7 @@ export const AddressComponent = ({
   address,
   contractData,
 }: {
-  address: string;
+  address: `0x${string}`;
   contractData: { bytecode: string; assembly: string } | null;
 }) => {
   return (

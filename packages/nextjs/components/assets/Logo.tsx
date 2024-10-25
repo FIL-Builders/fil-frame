@@ -1,4 +1,6 @@
-export default function Logo(props) {
+import { JSX, SVGProps } from "react";
+
+export default function Logo(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -11,16 +13,8 @@ export default function Logo(props) {
     >
       <rect width="709" height="1073" fill="url(#pattern0_1_7)" />
       <defs>
-        <pattern
-          id="pattern0_1_7"
-          patternContentUnits="objectBoundingBox"
-          width="1"
-          height="1"
-        >
-          <use
-            xlinkHref="#image0_1_7"
-            transform="scale(0.000515996 0.000340952)"
-          />
+        <pattern id="pattern0_1_7" patternContentUnits="objectBoundingBox" width="1" height="1">
+          <use xlinkHref="#image0_1_7" transform="scale(0.000515996 0.000340952)" />
         </pattern>
         <image
           id="image0_1_7"

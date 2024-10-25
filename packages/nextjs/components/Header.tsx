@@ -9,8 +9,8 @@ import { Bars3Icon, BugAntIcon } from "@heroicons/react/24/outline";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/fil-frame";
 import { useOutsideClick } from "~~/hooks/fil-frame";
 
-const StorachaIcon = () => (
-  <Image alt="Storacha logo" src="/icons/storacha.svg" width={20} height={20} className="h-4 w-4 bg-white rounded-lg" />
+const LighthouseIcon = () => (
+  <Image alt="Lighthouse logo" src="/icons/lighthouse.jpg" width={20} height={20} className="size-5 rounded-xl" />
 );
 
 type HeaderMenuLink = {
@@ -25,9 +25,9 @@ export const menuLinks: HeaderMenuLink[] = [
     href: "/",
   },
   {
-    label: "Storacha",
-    href: "/storacha",
-    icon: <StorachaIcon />,
+    label: "Lighthouse",
+    href: "/lighthouse",
+    icon: <LighthouseIcon />,
   },
   {
     label: "Debug Contracts",
