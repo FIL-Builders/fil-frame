@@ -18,7 +18,7 @@
     "hardhat-verify": "hardhat verify"
   },
   "dependencies": {
-    "@axelar-network/axelar-gmp-sdk-solidity": "^6.0.0",
+    "@axelar-network/axelar-gmp-sdk-solidity": "3.3.0",
     "dotenv": "^16.0.3",
     "envfile": "^6.18.0",
     "qrcode": "^1.5.1",
