@@ -6,10 +6,10 @@ import { notification } from "~~/utils/fil-frame";
 
 export const LighthouseChains = {
   314: {
-    name: "FVM",
+    name: "Filecoin",
   },
   314159: {
-    name: "Calibration",
+    name: "Filecoin_Testnet",
   },
 };
 
