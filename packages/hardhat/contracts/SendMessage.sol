@@ -2,7 +2,6 @@
 // SPDX license identifier specifies which open-source license is being used for the contract
 pragma solidity 0.8.9;
 
-// Updated import statements
 import { AxelarExecutable } from '../../../node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/executable/AxelarExecutable.sol';
 import { IAxelarGateway } from '../../../node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGateway.sol';
 import { IAxelarGasService } from '../../../node_modules/@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol';
