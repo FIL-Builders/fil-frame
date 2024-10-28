@@ -30,7 +30,7 @@ Quickstart your Filecoin dApp using this open source dev stack.
 5. Navigate to the hardhat directory:
 
    ```bash
-   cd hardhat
+   cd packages/hardhat
    ```
 
 6. Set up the environment variables to deploy the smart contracts:
@@ -51,3 +51,19 @@ Quickstart your Filecoin dApp using this open source dev stack.
    Replace `<network>` with the desired network (e.g. `calibration` and `sepolia` in this case). Copy the contract address once the deployment is complete.
    
    > Ensure you update the Axelar gateway and gas service address for Filecoin Calibration and Ethereum Sepolia respectively in `deploy.ts` file under the `scripts` directory and deploy them seperately. You  can find the gateway and gas service address [here](https://docs.axelar.dev/resources/testnet).
+
+8. Send a message to the destination chain:
+
+   ```bash
+   npx hardhat run scripts/sendMessage.ts --network calibration
+   ```
+
+   Ensure you update the contract addresses in `sendMessage.ts`. After a couple of minutes, check [Axelarscan](https://testnet.axelarscan.io/gmp/search) - you should see a transaction from Filecoin Calibration to Ethereum Sepolia.
+
+9. Read the message received on the destination chain:
+
+   ```bash
+   npx hardhat run scripts/readMessage.ts
+   ```
+
+   This should print the message received in the console.

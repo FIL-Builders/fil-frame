@@ -3,7 +3,6 @@ import { abi } from '../artifacts/contracts/SendMessage.sol/SendMessage.json'
 
 async function main() {
     try {
-        // Validate environment variables
         if (!process.env.DEPLOYER_PRIVATE_KEY) {
             throw new Error("Missing required environment variables");
         }
@@ -11,15 +10,14 @@ async function main() {
         const provider = ethers.getDefaultProvider("https://rpc.ankr.com/filecoin_testnet");
         const wallet = new ethers.Wallet(process.env.DEPLOYER_PRIVATE_KEY, provider);
 
-        // Create contract instance
-        const contractAddress = "0xfF70C3ae45022AE728b62c90d0c14D526560e9Cf";
+        const contractAddress = "INSERT_ADDRESS"; // TO DO: Update to Filecoin Calibration Contract Address
         const contract = new ethers.Contract(contractAddress, abi, wallet);
 
         console.log("Sending message...");
         const transaction = await contract.sendMessage(
             "ethereum-sepolia",
-            "0xE714E764886047B55c41A9E7c4233f09347f01ad",
-            "This is a test message!!",
+            "INSERT_ADDRESS", // TO DO: Update to Ethereum Sepolia Contract Address
+            "This is a test message!!", // Change this to the message you want to send
             { value: ethers.parseEther("1") }
         );
 
@@ -33,7 +31,7 @@ async function main() {
         } else {
             console.error("An unknown error occurred:", error);
         }
-        throw error; // Re-throw to trigger the process.exitCode = 1
+        throw error;
     }
 }
 
