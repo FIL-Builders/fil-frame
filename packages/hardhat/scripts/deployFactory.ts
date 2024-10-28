@@ -25,8 +25,8 @@ async function deployContractFactory() {
     }
 }
 
-async function main() {
+async function mainfunction() {
     await deployContractFactory();
 }
 
-main().catch(err => console.error('Error in main function:', err));
+mainfunction().catch(err => console.error('Error in main function:', err));

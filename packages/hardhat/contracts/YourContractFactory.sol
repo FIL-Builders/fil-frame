@@ -1,14 +1,14 @@
 //SPDX-License-Identifier: MIT
 pragma solidity >=0.8.0 <0.9.0;
 
-import "./YourContract.sol";
+import './SendMessage.sol';
 
 contract YourContractFactory {
     address public latestTokenAddress;
     mapping(bytes32 => address) public deployedContracts;
 
     modifier isContractNotDeployed(bytes32 _salt) {
-        require(deployedContracts[_salt] == address(0), "Contract already deployed for this salt");
+        require(deployedContracts[_salt] == address(0), 'Contract already deployed for this salt');
         _;
     }
 
@@ -17,7 +17,7 @@ contract YourContractFactory {
         isContractNotDeployed(_salt) 
         returns (address) 
     {
-        bytes memory bytecode = abi.encodePacked(type(YourContract).creationCode, abi.encode(msg.sender));
+        bytes memory bytecode = abi.encodePacked(type(SendMessage).creationCode, abi.encode(msg.sender));
         address addr;
 
         assembly {
@@ -39,7 +39,7 @@ contract YourContractFactory {
     {
         bytes32 bytecodeHash = keccak256(
             abi.encodePacked(
-                type(YourContract).creationCode,
+                type(SendMessage).creationCode,
                 abi.encode(msg.sender)
             )
         );
