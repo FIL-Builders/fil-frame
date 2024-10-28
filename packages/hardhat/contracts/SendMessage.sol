@@ -7,10 +7,7 @@ import { IAxelarGateway } from '@axelar-network/axelar-gmp-sdk-solidity/contract
 import { IAxelarGasService } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IAxelarGasService.sol';
 import { IERC20 } from '@axelar-network/axelar-gmp-sdk-solidity/contracts/interfaces/IERC20.sol';
 
-// Contract definition and name
 contract SendMessage is AxelarExecutable {
-
-    // Three state variables that can be accessed by any function in the contract
     string public value;
     string public sourceChain;
     string public sourceAddress;
@@ -24,13 +21,11 @@ contract SendMessage is AxelarExecutable {
         gasService = IAxelarGasService(gasReceiver_);
     }
 
-    // Call this function to update the value of this contract along with all its siblings'.
     function sendMessage(
         string calldata destinationChain,
         string calldata destinationAddress,
         string calldata value_
     ) external payable {
-        // Encodes the new value string into bytes, which can be sent to the Axelar gateway contract
         bytes memory payload = abi.encode(value_);
         // If the sender of this function call included any native gas, use the gasService to pay for the function call
         if (msg.value > 0) {

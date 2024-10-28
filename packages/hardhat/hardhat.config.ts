@@ -23,14 +23,6 @@ const etherscanApiKey =
   process.env.ETHERSCAN_API_KEY || "DNXJA8RX2Q3VZ4URQIWP7Z68CJXQZSC6AW";
 
 const config: HardhatUserConfig = {
-  paths: {
-    sources: "./contracts",
-    tests: "./test",
-    cache: "./cache",
-    artifacts: "./artifacts",
-    // Add this line:
-    imports: "./node_modules"
-  },
   solidity: {
     version: "0.8.9",
     settings: {
