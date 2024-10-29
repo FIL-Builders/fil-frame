@@ -14,6 +14,10 @@ type HeaderMenuLink = {
   icon?: React.ReactNode;
 };
 
+const AxelarIcon = () => (
+  <Image alt="Axelar logo" src="/axelar.png" width={20} height={20} className="h-4 w-4 bg-white rounded-lg" />
+);
+
 export const menuLinks: HeaderMenuLink[] = [
   {
     label: "Home",
@@ -22,6 +26,7 @@ export const menuLinks: HeaderMenuLink[] = [
   {
     label: "Axelar",
     href: "axelar",
+    icon: <AxelarIcon />,
   },
   {
     label: "Debug Contracts",
