@@ -6,8 +6,8 @@ async function main() {
     // "0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6"
 
     // 2. Uncomment to deploy on Ethereum Sepolia
-    "0xe432150cce91c13a887f7D836923d5597adD8E31",
-    "0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6"
+    // "0xe432150cce91c13a887f7D836923d5597adD8E31",
+    // "0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6"
   );
 
   await sendMessage.waitForDeployment();
