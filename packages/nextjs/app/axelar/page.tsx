@@ -1,18 +1,19 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { abi } from "../../../hardhat/artifacts/contracts/SendMessage.sol/SendMessage.json";
 import { ethers } from "ethers";
 import { useWriteContract } from "wagmi";
 
-// import { ToastContainer, toast } from "react-toastify";
-
-const FIL_CONTRACT_ADDRESS = "0xfF70C3ae45022AE728b62c90d0c14D526560e9Cf";
-const ETH_CONTRACT_ADDRESS = "0xE714E764886047B55c41A9E7c4233f09347f01ad";
+const FIL_CONTRACT_ADDRESS = "<INSERT FIL CONTRACT ADDRESS HERE>";
+const ETH_CONTRACT_ADDRESS = "<INSERT ETH CONTRACT ADDRESS HERE>";
 
 const AxelarPage: React.FC = () => {
   const [message, setMessage] = useState("");
-  const { data: hash, writeContract } = useWriteContract();
+  const [value, setValue] = useState("");
+  const [sourceChain, setSourceChain] = useState("");
+
+  const { isPending, isSuccess, writeContract } = useWriteContract();
 
   const handleSendMessage = () => {
     writeContract({
@@ -22,25 +23,42 @@ const AxelarPage: React.FC = () => {
       args: ["ethereum-sepolia", ETH_CONTRACT_ADDRESS, message],
       value: ethers.parseEther("1"),
     });
-    console.log(hash);
-    // toast.info("Sending message...", {
-    //   position: "top-right",
-    //   autoClose: 5000,
-    //   hideProgressBar: false,
-    //   closeOnClick: true,
-    //   pauseOnHover: false,
-    //   draggable: true,
-    // });
   };
+
+  async function readDestinationChainVariables() {
+    try {
+      const provider = new ethers.JsonRpcProvider("https://rpc.sepolia.org");
+      const contract = new ethers.Contract(ETH_CONTRACT_ADDRESS, abi, provider);
+      const value = await contract.value();
+      const sourceChain = await contract.sourceChain();
+
+      setValue(value.toString());
+      setSourceChain(sourceChain.toString());
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    readDestinationChainVariables();
+  }, []);
 
   return (
     <main className="flex-grow flex flex-col items-center justify-center">
-      <h1 className="text-4xl font-bold mb-8 text-center">
-        Fullstack Interchain dApp with <span className="text-blue-500">Axelar 🔥 </span>
+      <h1 className="text-4xl font-bold mb-2 text-center">
+        FIL ➔ ETH Interchain dApp with <span className="text-blue-500">Axelar 🔥 </span>
       </h1>
       <p className=" mb-8 text-center max-w-3xl text-gray-500">
-        An interchain decentralized application using React, Solidity, and Axelar General Message Passing that allows
-        users to send messages between FIL and ETH. This is built off of{" "}
+        {`Follow the `}
+        <a
+          href="https://github.com/FIL-Builders/fil-frame/tree/axelar-integration"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-blue-500 hover:underline"
+        >
+          README.md
+        </a>
+        {` to get started with deploying the contracts! This is built off of `}
         <a
           href="https://github.com/axelarnetwork/fullstack-interchain-dapp-example"
           target="_blank"
@@ -49,6 +67,7 @@ const AxelarPage: React.FC = () => {
         >
           Axelar&apos;s example repo
         </a>
+        .
       </p>
 
       <div className="flex justify-center max-w-3xl">
@@ -58,6 +77,7 @@ const AxelarPage: React.FC = () => {
             type="text"
             placeholder="Message"
             className="border border-gray-300 rounded-lg p-2 mb-4 w-full"
+            style={{ height: "100px" }}
             onChange={(e) => setMessage(e.target.value)}
           />
           <button
@@ -70,30 +90,54 @@ const AxelarPage: React.FC = () => {
 
         <div className="border border-gray-300 rounded-lg p-8 m-2 w-2/5">
           <h2 className="text-2xl font-bold mb-4">Response 🎉 </h2>
-          {/* {value ? (
-                       <>
-                           <p className="font-semibold mb-4">
-                               From:{" "}
-                               <span className="font-normal text-gray-500">
-                                   {" "}
-                                   {sourceChain.charAt(0).toUpperCase() + sourceChain.slice(1)}
-                               </span>
-                           </p>
-                           <p className="font-semibold mb-4">
-                               To:{" "}
-                               <span className="font-normal text-gray-500">
-                                   {sourceChain ? "Sepolia" : null}
-                               </span>
-                           </p>
-                           <p className="font-semibold mb-4">
-                               Message:{" "}
-                               <span className="font-normal text-gray-500">{value}</span>
-                           </p>
-                       </>
-                   ) : (
-                       <span className="text-red-500 ">waiting for response...</span>
-                   )} */}
+          <div style={{ height: "125px" }}>
+            {value ? (
+              <>
+                <p className="font-semibold mb-4">
+                  {`From: `}
+                  <span className="font-normal text-gray-500">
+                    {" "}
+                    {sourceChain.charAt(0).toUpperCase() + sourceChain.slice(1)}
+                  </span>
+                </p>
+                <p className="font-semibold mb-4">
+                  {`To: `}
+                  <span className="font-normal text-gray-500">{sourceChain ? "Sepolia" : null}</span>
+                </p>
+                <p className="font-semibold mb-4">
+                  {`Message: `}
+                  <span className="font-normal text-gray-500">{value}</span>
+                </p>
+              </>
+            ) : (
+              <span className="text-red-500 ">waiting for response...</span>
+            )}
+          </div>
+          <button
+            onClick={() => readDestinationChainVariables()}
+            className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-6 rounded-full"
+          >
+            Refresh
+          </button>
         </div>
+      </div>
+      <div className="mt-4">
+        {isSuccess ? (
+          <span>
+            Message sent successfully! Wait a couple of minutes before searching for the txn on{" "}
+            <a
+              href="https://testnet.axelarscan.io/gmp/search"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-500 hover:underline"
+            >
+              Axelarscan
+            </a>
+            .
+          </span>
+        ) : isPending ? (
+          <span className="text-yellow-500">Sending message...</span>
+        ) : null}
       </div>
     </main>
   );

@@ -24,7 +24,7 @@ Quickstart your Filecoin dApp using this open source dev stack.
 4. Install the dependencies:
 
    ```bash
-   npm install
+   yarn install
    ```
 
 5. Navigate to the hardhat directory:
@@ -46,7 +46,7 @@ Quickstart your Filecoin dApp using this open source dev stack.
 
    Uncomment the network you want to deploy to in the `SendMessage.deploy` function. You can find other gateway and gas service addresses [here](https://docs.axelar.dev/resources/testnet).
 
-8. Compile and Deploy the smart contracts:
+8. Compile and deploy the smart contracts:
 
    ```bash
    npx hardhat run scripts/deploy.ts --network <network>
@@ -58,16 +58,8 @@ Quickstart your Filecoin dApp using this open source dev stack.
 
 10. Send a message to the destination chain:
 
-   ```bash
-   npx hardhat run scripts/sendMessage.ts --network calibration
-   ```
-
-   Ensure you update the contract addresses in `sendMessage.ts`. After a couple of minutes, check [Axelarscan](https://testnet.axelarscan.io/gmp/search) - you should see a transaction from Filecoin Calibration to Ethereum Sepolia.
+   Run `yarn start` in the root directory and open up localhost:3000. Input a message, click send, and confirm the transaction in your wallet. After a couple of minutes, check [Axelarscan](https://testnet.axelarscan.io/gmp/search) - you should see a transaction from Filecoin Calibration to Ethereum Sepolia.
 
 11. Read the message received on the destination chain:
 
-   ```bash
-   npx hardhat run scripts/readMessage.ts
-   ```
-
-   This should print the message received in the console.
+    Once the txn status is Executed on Axelarscan, click refresh. You should see the message you sent appear on the destination chain!
