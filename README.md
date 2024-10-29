@@ -42,17 +42,21 @@ Quickstart your Filecoin dApp using this open source dev stack.
      ```
      Replace `<Your Wallet Private Key>` with your wallet private key.
 
-7. Compile and Deploy the smart contracts:
+7. Update `deploy.ts` under the `scripts` directory:
+
+   Uncomment the network you want to deploy to in the `SendMessage.deploy` function. You can find other gateway and gas service addresses [here](https://docs.axelar.dev/resources/testnet).
+
+8. Compile and Deploy the smart contracts:
 
    ```bash
    npx hardhat run scripts/deploy.ts --network <network>
    ```
 
-   Replace `<network>` with the desired network (e.g. `calibration` and `sepolia` in this case). Copy the contract address once the deployment is complete.
-   
-   > Ensure you update the Axelar gateway and gas service address for Filecoin Calibration and Ethereum Sepolia respectively in `deploy.ts` file under the `scripts` directory and deploy them seperately. You  can find the gateway and gas service address [here](https://docs.axelar.dev/resources/testnet).
+   Replace `<network>` with the desired network (e.g. `calibration` and `sepolia` in this case). Make sure you have enough tFIL and Sepolia ETH in your wallet! Copy the contract address once the deployment is complete.
 
-8. Send a message to the destination chain:
+9. Paste the 2 contract addresses into `packages/nextjs/app/axelar/page.tsx`:
+
+10. Send a message to the destination chain:
 
    ```bash
    npx hardhat run scripts/sendMessage.ts --network calibration
@@ -60,7 +64,7 @@ Quickstart your Filecoin dApp using this open source dev stack.
 
    Ensure you update the contract addresses in `sendMessage.ts`. After a couple of minutes, check [Axelarscan](https://testnet.axelarscan.io/gmp/search) - you should see a transaction from Filecoin Calibration to Ethereum Sepolia.
 
-9. Read the message received on the destination chain:
+11. Read the message received on the destination chain:
 
    ```bash
    npx hardhat run scripts/readMessage.ts

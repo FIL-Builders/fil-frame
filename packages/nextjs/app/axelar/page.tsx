@@ -1,15 +1,28 @@
 "use client";
 
 import React, { useState } from "react";
+import { abi } from "../../../hardhat/artifacts/contracts/SendMessage.sol/SendMessage.json";
+import { ethers } from "ethers";
+import { useWriteContract } from "wagmi";
 
 // import { ToastContainer, toast } from "react-toastify";
 
+const FIL_CONTRACT_ADDRESS = "0xfF70C3ae45022AE728b62c90d0c14D526560e9Cf";
+const ETH_CONTRACT_ADDRESS = "0xE714E764886047B55c41A9E7c4233f09347f01ad";
+
 const AxelarPage: React.FC = () => {
   const [message, setMessage] = useState("");
+  const { data: hash, writeContract } = useWriteContract();
 
   const handleSendMessage = () => {
-    // write(); // Initiating the contract call
-    console.log("asdf");
+    writeContract({
+      address: FIL_CONTRACT_ADDRESS,
+      abi,
+      functionName: "sendMessage",
+      args: ["ethereum-sepolia", ETH_CONTRACT_ADDRESS, message],
+      value: ethers.parseEther("1"),
+    });
+    console.log(hash);
     // toast.info("Sending message...", {
     //   position: "top-right",
     //   autoClose: 5000,
