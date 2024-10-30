@@ -27,39 +27,31 @@ Quickstart your Filecoin dApp using this open source dev stack.
    yarn install
    ```
 
-5. Navigate to the hardhat directory:
+5. Set up the environment variables to deploy the smart contracts:
 
-   ```bash
-   cd packages/hardhat
-   ```
-
-6. Set up the environment variables to deploy the smart contracts:
-
-   - Create a `.env` file in the hardhat directory.
+   - Create a `.env` file in the `packages/hardhat` directory.
    - Define the following variables in the `.env` file:
      ```apache
       PRIVATE_KEY=<Your Wallet Private Key>
      ```
      Replace `<Your Wallet Private Key>` with your wallet private key.
 
-7. Update `deploy.ts` under the `scripts` directory:
+6. Update `00_deploy_your_contract.ts` under the `deploy` directory:
 
-   Uncomment the network you want to deploy to in the `SendMessage.deploy` function. You can find other gateway and gas service addresses [here](https://docs.axelar.dev/resources/testnet).
+   Uncomment the network you want to deploy to (lines 31 - 37). You can find other gateway and gas service addresses [here](https://docs.axelar.dev/resources/testnet).
 
-8. Compile and deploy the smart contracts:
+7. Deploy the smart contracts:
 
    ```bash
-   npx hardhat run scripts/deploy.ts --network <network>
+   yarn deploy --network <network>
    ```
 
-   Replace `<network>` with the desired network (e.g. `calibration` and `sepolia` in this case). Make sure you have enough tFIL and Sepolia ETH in your wallet! Copy the contract address once the deployment is complete.
+   Replace `<network>` with the desired network (e.g. `calibration` and `sepolia` in this case). Make sure you have enough tFIL and Sepolia ETH in your wallet!
 
-9. Paste the 2 contract addresses into `packages/nextjs/app/axelar/page.tsx`:
-
-10. Send a message to the destination chain:
+8. Send a message to the destination chain:
 
    Run `yarn start` in the root directory and open up localhost:3000. Input a message, click send, and confirm the transaction in your wallet. After a couple of minutes, check [Axelarscan](https://testnet.axelarscan.io/gmp/search) - you should see a transaction from Filecoin Calibration to Ethereum Sepolia.
 
-11. Read the message received on the destination chain:
+9. Read the message received on the destination chain:
 
     Once the txn status is Executed on Axelarscan, click refresh. You should see the message you sent appear on the destination chain!

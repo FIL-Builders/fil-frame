@@ -75,7 +75,6 @@ const AxelarPage: React.FC = () => {
         <div className="border border-gray-300 rounded-lg p-8 m-2 ">
           <h2 className="text-2xl font-bold mb-4">Send Message 📓 </h2>
           <textarea
-            type="text"
             placeholder="Message"
             className="border border-gray-300 rounded-lg p-2 mb-4 w-full"
             style={{ height: "100px" }}
