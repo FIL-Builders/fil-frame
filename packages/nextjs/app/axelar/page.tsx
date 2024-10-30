@@ -1,12 +1,13 @@
 "use client";
 
 import React, { useEffect, useState } from "react";
-import { abi } from "../../../hardhat/artifacts/contracts/SendMessage.sol/SendMessage.json";
+import deployedContracts from "../../contracts/deployedContracts";
 import { ethers } from "ethers";
 import { useWriteContract } from "wagmi";
 
-const FIL_CONTRACT_ADDRESS = "<INSERT FIL CONTRACT ADDRESS HERE>";
-const ETH_CONTRACT_ADDRESS = "<INSERT ETH CONTRACT ADDRESS HERE>";
+const FIL_CONTRACT_ADDRESS = deployedContracts[314159].SendMessage.address;
+const ETH_CONTRACT_ADDRESS = deployedContracts[11155111].SendMessage.address;
+const ABI = deployedContracts[11155111].SendMessage.abi;
 
 const AxelarPage: React.FC = () => {
   const [message, setMessage] = useState("");
@@ -18,7 +19,7 @@ const AxelarPage: React.FC = () => {
   const handleSendMessage = () => {
     writeContract({
       address: FIL_CONTRACT_ADDRESS,
-      abi,
+      abi: ABI,
       functionName: "sendMessage",
       args: ["ethereum-sepolia", ETH_CONTRACT_ADDRESS, message],
       value: ethers.parseEther("1"),
@@ -28,7 +29,7 @@ const AxelarPage: React.FC = () => {
   async function readDestinationChainVariables() {
     try {
       const provider = new ethers.JsonRpcProvider("https://rpc.sepolia.org");
-      const contract = new ethers.Contract(ETH_CONTRACT_ADDRESS, abi, provider);
+      const contract = new ethers.Contract(ETH_CONTRACT_ADDRESS, ABI, provider);
       const value = await contract.value();
       const sourceChain = await contract.sourceChain();
 
