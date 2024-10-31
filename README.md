@@ -1,5 +1,11 @@
 # fil-frame
-Quickstart your Filecoin dApp using this open source dev stack.
+Quickstart your Filecoin dApp using this open source dev stack. 
+
+Tutorial video: https://youtu.be/dzg7ygwAp1Q
+
+Axelarscan (testnet): https://testnet.axelarscan.io/gmp/search?sourceChain=filecoin-2
+
+Filecoin Calibration faucet: https://faucet.calibnet.chainsafe-fil.io/
 
 # Getting Started
 
