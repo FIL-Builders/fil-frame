@@ -50,7 +50,7 @@ Quickstart your Filecoin dApp using this open source dev stack.
 
 8. Send a message to the destination chain:
 
-   Run `yarn start` in the root directory and open up localhost:3000. Input a message, click send, and confirm the transaction in your wallet. After a couple of minutes, check [Axelarscan](https://testnet.axelarscan.io/gmp/search) - you should see a transaction from Filecoin Calibration to Ethereum Sepolia.
+   Run `yarn start` in the root directory and open up localhost:3000. Input a message, click send, and confirm the transaction in your wallet. After 20 minutes, check [Axelarscan](https://testnet.axelarscan.io/gmp/search) - you should see a transaction from Filecoin Calibration to Ethereum Sepolia confirmed.
 
 9. Read the message received on the destination chain:
 
