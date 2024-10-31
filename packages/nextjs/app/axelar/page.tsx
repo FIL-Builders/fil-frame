@@ -22,7 +22,7 @@ const AxelarPage: React.FC = () => {
       abi: ABI,
       functionName: "sendMessage",
       args: ["ethereum-sepolia", ETH_CONTRACT_ADDRESS, message],
-      value: ethers.parseEther("1"),
+      value: ethers.parseEther("5"),
     });
   };
 
