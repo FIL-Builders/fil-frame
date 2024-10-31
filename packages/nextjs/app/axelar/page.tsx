@@ -124,7 +124,7 @@ const AxelarPage: React.FC = () => {
       <div className="mt-4">
         {isSuccess ? (
           <span>
-            Message sent successfully! Wait a couple of minutes before searching for the txn on{" "}
+            Message sent successfully! Wait around 20 minutes before searching for the txn on{" "}
             <a
               href="https://testnet.axelarscan.io/gmp/search"
               target="_blank"
