@@ -93,18 +93,18 @@ const AxelarPage: React.FC = () => {
           <div style={{ height: "125px" }}>
             {value ? (
               <>
-                <p className="font-semibold mb-4">
+                <p className="font-semibold mb-1">
                   {`From: `}
                   <span className="font-normal text-gray-500">
                     {" "}
                     {sourceChain.charAt(0).toUpperCase() + sourceChain.slice(1)}
                   </span>
                 </p>
-                <p className="font-semibold mb-4">
+                <p className="font-semibold my-0">
                   {`To: `}
                   <span className="font-normal text-gray-500">{sourceChain ? "Sepolia" : null}</span>
                 </p>
-                <p className="font-semibold mb-4">
+                <p className="font-semibold my-0 mt-1">
                   {`Message: `}
                   <span className="font-normal text-gray-500">{value}</span>
                 </p>
