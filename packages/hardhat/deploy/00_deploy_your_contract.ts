@@ -2,12 +2,12 @@ import { DeployFunction } from "hardhat-deploy/types";
 import { HardhatRuntimeEnvironment } from "hardhat/types";
 
 /**
- * Deploys a contract named "YourContract" using the deployer account and
+ * Deploys a contract named "SendMessage" using the deployer account and
  * constructor arguments set to the deployer address
  *
  * @param hre HardhatRuntimeEnvironment object.
  */
-const deployYourContract: DeployFunction = async function (
+const deploySendMessage: DeployFunction = async function (
   hre: HardhatRuntimeEnvironment
 ) {
   /*
@@ -22,28 +22,34 @@ const deployYourContract: DeployFunction = async function (
   */
   const [deployerSigner] = await hre.ethers.getSigners();
   const deployer = await deployerSigner.getAddress();
-
+  console.log("Deployer address:", deployer);
   const { deploy } = hre.deployments;
 
-  const YourContract = await deploy("YourContract", {
+  const SendMessage = await deploy("SendMessage", {
     from: deployer,
-    // Contract constructor arguments
-    args: [deployer],
+    args: [
+    // 1. Uncomment to deploy on Filecoin Calibration
+    // "0x999117D44220F33e0441fbAb2A5aDB8FF485c54D",
+    // "0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6"
+
+    // 2. Uncomment to deploy on Ethereum Sepolia
+    // "0xe432150cce91c13a887f7D836923d5597adD8E31",
+    // "0xbE406F0189A0B4cf3A05C286473D23791Dd44Cc6"
+    ],
     log: true,
     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
     // automatically mining the contract deployment transaction. There is no effect on live networks.
     autoMine: true,
   });
 
-  console.log("🚀 YourContract deployed at: ", YourContract.address);
-  const YourContractAddress = YourContract.address;
+  console.log("🚀 SendMessage deployed at: ", SendMessage.address);
+  const SendMessageAddress = SendMessage.address;
 
   // Get the deployed contract to interact with it after deploying.
-  const yourContract = await hre.ethers.getContractAt(
-    "YourContract",
-    YourContractAddress
+  const sendMessage = await hre.ethers.getContractAt(
+    "SendMessage",
+    SendMessageAddress
   );
-  console.log("👋 Initial greeting:", await yourContract.greeting());
 
   // Check if the --verify flag is present
   const shouldVerify = process.env.VERIFY === "true";
@@ -61,19 +67,19 @@ const deployYourContract: DeployFunction = async function (
     if (filecoinNetworks.includes(hre.network.name)) {
       // Verify the contract on the filfox explorer
       await hre.run("verifyContract", {
-        contractName: "YourContract",
+        contractName: "SendMessage",
       });
     } else {
       await hre.run("verify:verify", {
-        address: YourContractAddress,
+        address: SendMessageAddress,
         constructorArguments: [deployer],
       });
     }
   }
 };
 
-export default deployYourContract;
+export default deploySendMessage;
 
 // Tags are useful if you have multiple deploy files and only want to run one of them.
-// e.g. yarn deploy --tags YourContract
-deployYourContract.tags = ["YourContract"];
+// e.g. yarn deploy --tags SendMessage
+deploySendMessage.tags = ["SendMessage"];
