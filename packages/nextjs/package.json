@@ -15,6 +15,8 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.1.5",
+    "@lighthouse-web3/kavach": "^0.1.9",
+    "@lighthouse-web3/sdk": "^0.3.7",
     "@rainbow-me/rainbowkit": "2.1.6",
     "@tanstack/react-query": "^5.28.6",
     "@uniswap/sdk-core": "^4.0.1",
@@ -30,6 +32,7 @@
     "react-copy-to-clipboard": "^5.1.0",
     "react-dom": "^18.3.1",
     "react-hot-toast": "^2.4.0",
+    "react-json-view-lite": "^2.0.1",
     "use-debounce": "^8.0.4",
     "usehooks-ts": "^2.13.0",
     "viem": "2.21.7",
