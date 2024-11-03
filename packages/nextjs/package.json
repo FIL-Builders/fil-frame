@@ -8,7 +8,7 @@
     "build": "next build",
     "serve": "next start",
     "lint": "next lint",
-    "format": "prettier --write . '!(node_modules|.next|contracts)/**/*'",
+    "script": "ts-node -O '{\"module\":\"commonjs\"}' scripts/index.js",
     "check-types": "tsc --noEmit --incremental",
     "vercel": "vercel",
     "vercel:yolo": "vercel --build-env NEXT_PUBLIC_IGNORE_BUILD_ERROR=true"
@@ -23,6 +23,7 @@
     "blo": "^1.0.1",
     "burner-connector": "^0.0.8",
     "daisyui": "4.12.10",
+    "ipfs-car": "^1.2.0",
     "next": "^14.2.11",
     "next-nprogress-bar": "^2.3.13",
     "next-themes": "^0.3.0",
@@ -35,6 +36,7 @@
     "usehooks-ts": "^2.13.0",
     "viem": "2.21.7",
     "wagmi": "2.12.11",
+    "web3.storage": "^4.5.5",
     "zustand": "^4.1.2"
   },
   "devDependencies": {
