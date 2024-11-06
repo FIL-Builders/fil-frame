@@ -1,8 +1,8 @@
-# FIL-Frame
+# FIL-Frame  🚀
 
 Welcome to FIL-Frame, a starter repository designed to help developers quickly get started with building decentralized applications (dApps) on the Filecoin network. This repository provides various integration options, including an example template using Lighthouse.
 
-## Table of Contents
+## Table of Contents 📚
 
 - Overview
 - Getting Started
@@ -22,7 +22,7 @@ Welcome to FIL-Frame, a starter repository designed to help developers quickly g
 - Contribution guidelines
 - License
 
-## Overview
+## Overview 🌐
 
 FIL-Frame is a monorepo that includes two main packages:
 
@@ -32,9 +32,9 @@ FIL-Frame is a monorepo that includes two main packages:
 
 This repository is designed to be a quickstart for developers new to the Filecoin ecosystem, providing various integration options to suit different needs.
 
-## Getting Started
+## Getting Started 🚀
 
-### Prerequisites
+### Prerequisites 📋
 
 Before you begin, ensure you have the following installed:
 
@@ -48,7 +48,7 @@ You can install them by following the instructions on these pages:
 - [Yarn](https://yarnpkg.com/getting-started/install)
 - [Hardhat](https://hardhat.org/hardhat-runner/docs/getting-started#installation)
 
-### Installation
+### Installation 💻
 
 1. Clone the repository
 
@@ -57,7 +57,7 @@ git clone https://github.com/your-repo/fil-frame.git
 cd fil-frame 
 ```
 
-1. Install dependencies
+2. Install dependencies
 
 ```bash
 yarn install
@@ -69,7 +69,7 @@ or
 npm install
 ```
 
-### Configuration
+### Configuration ⚙️
 
 1. Copy the sample environment files, and fill in the required values:
 
@@ -80,11 +80,11 @@ cp packages/nextjs/.env.example packages/nextjs/.env.local
 
 2. Update the environment variables in the `.env` files with your own values.
 
-## Using the CLI
+## Using the CLI 🛠️
 
 The `create-filecoin-app` CLI tool helps you quickly set up a Filecoin-ready repository. It offers two modes: interactive mode and flag mode.
 
-### Interactive Mode
+### Interactive Mode 🧩
 
 To use the interactive mode, simply run:
 
@@ -94,7 +94,7 @@ npx create-filecoin-app
 
 You will be prompted to answer a series of questions to configure your new project. This includes your project name, selecting your preferred storage onramp option (Lighthouse, or Storacha), and even selecting your preferred package manager (Yarn, or NPM).
 
-### Flag Mode
+### Flag Mode 🚩
 
 If you prefer to skip the prompts, you can use the flag mode to specify your options directly. For example, to initialise a project named `my-app`, with lighthouse as the storage onramp:
 
@@ -109,14 +109,14 @@ The flags available currently include:
 - `--lighthouse`: this initializes a project using lighthouse as the storage onramp
 - `--storacha`: this initializes a project using storacha as the storage onramp
 
-### Storage Onramp Options
+### Storage Onramp Options 📦
 
 - **Lighthouse**: Decentralized storage solution for NFTs and other data.
 - **Storacha**: Another decentralized storage option, formerly known as web3.storage.
 
 After running the CLI, your new project will be set up and ready for development with your chosen storage onramp.
 
-## Usage
+## Usage 🛠️
 
 ### Deploying Smart Contracts
 
@@ -151,7 +151,7 @@ npm run dev
 The application will be available at
 [`https://localhost:3000`](https://localhost:3000)
 
-## Integration Options
+## Integration Options 🔌
 
 ### Lighthouse
 
@@ -165,7 +165,7 @@ To use this integration:
 `yarn dev` or `npm run dev`
 3. Use the provided integration to upload files to Lighthouse
 
-## Project Structure
+## Project Structure 🗂️
 
 ```
 my-app/
@@ -194,10 +194,10 @@ my-app/
 └── ...
 ```
 
-## Contributing
+## Contributing 🤝
 
 We welcome contributions!
 
-## License
+## License 📄
 
 This project is licensed under the MIT license. See the [LICENSE](./LICENSE) file for details.
