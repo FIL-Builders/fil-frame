@@ -1,4 +1,29 @@
 import * as chains from "viem/chains";
+export const akaveFuji = {
+  id: 78963,
+  name: "Akave Fuji",
+  nativeCurrency: {
+    decimals: 18,
+    name: "AKAVE",
+    symbol: "AKVF",
+  },
+  rpcUrls: {
+    default: {
+      http: ["https://node1-asia.ava.akave.ai/ext/bc/tLqcnkJkZ1DgyLyWmborZK9d7NmMj6YCzCFmf9d9oQEd2fHon/rpc"],
+    },
+    public: {
+      http: ["https://node1-asia.ava.akave.ai/ext/bc/tLqcnkJkZ1DgyLyWmborZK9d7NmMj6YCzCFmf9d9oQEd2fHon/rpc"],
+    },
+  },
+  blockExplorers: {
+    default: {
+      name: "Akave Testnet Explorer",
+      url: "http://explorer.akave.ai",
+    },
+  },
+  testnet: false,
+} as const satisfies chains.Chain;
+
 
 export type ScaffoldConfig = {
   targetNetworks: readonly chains.Chain[];
@@ -8,10 +33,11 @@ export type ScaffoldConfig = {
   onlyLocalBurnerWallet: boolean;
 };
 
+
 const scaffoldConfig = {
   // The networks on which your DApp is live
   // Note: The network is calibration by default due to Filecoin-specific libraries being used (e.g. deal client)
-  targetNetworks: [chains.filecoinCalibration],
+  targetNetworks: [akaveFuji],
 
   // The interval at which your front-end polls the RPC servers for new data
   // it has no effect if you only target the local network (default is 4000)
