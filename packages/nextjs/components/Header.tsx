@@ -5,7 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LogoLandscape from "./svg/LogoLandscape";
-import { Bars3Icon, BugAntIcon } from "@heroicons/react/24/outline";
+import { ArchiveBoxIcon, Bars3Icon, BugAntIcon, FolderIcon } from "@heroicons/react/24/outline";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/fil-frame";
 import { useOutsideClick } from "~~/hooks/fil-frame";
 
@@ -19,6 +19,11 @@ export const menuLinks: HeaderMenuLink[] = [
   {
     label: "Home",
     href: "/",
+  },
+  {
+    label: "Buckets",
+    href: "/buckets",
+    icon: <FolderIcon className="h-4 w-4" />,
   },
   {
     label: "Debug Contracts",

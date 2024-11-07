@@ -109,6 +109,26 @@ The flags available currently include:
 - `--lighthouse`: this initializes a project using lighthouse as the storage onramp
 - `--storacha`: this initializes a project using storacha as the storage onramp
 
+### Akave Notes
+
+1. The user flow
+   1. `npx create-filecoin-app` or `npx create-filecoin-app --akave` **mention required docker daemon running**
+   2. Choose port for backend hosting: Default `8000`.
+   3. Enter private key (We can also create one if that would create better devx) <br/>
+      Internally this command runs
+      ```
+        docker pull akave/akavelink:latest
+
+        docker run -d \
+        -p <backend-port>:3000 \
+        -e NODE_ADDRESS="public_node_address" \
+        -e PRIVATE_KEY="your_private_key" \
+        akave/akavelink:latest
+      ```
+   4. Do they want a working frontend `Y/N`
+   5. If `Y`: Ask for port defaults to `3000`
+   6. **Option 1**: Use `npm start` for running frontend separately <br/> **Option 2**: Use `docker compose up` that runs backend + frontend in one command.
+
 ### Storage Onramp Options 📦
 
 - **Lighthouse**: Decentralized storage solution for NFTs and other data.

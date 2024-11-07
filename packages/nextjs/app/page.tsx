@@ -13,41 +13,35 @@ const Home: NextPage = () => {
   return (
     <>
       <div className="flex items-center flex-col flex-grow pt-10">
-        <div className="px-5">
+        <div className="md:px-32">
           <h1 className="text-center">
             <span className="block text-2xl mb-2">Welcome to</span>
-            <span className="block text-4xl font-bold">FIL-Frame</span>
+            <span className="block text-4xl font-bold">AKAVE | FIL-Frame</span>
           </h1>
           <p className="text-center text-lg">
-            Convert your file to a CAR file using the below component, which is connected to <Link href="https://docs.filecoin.io/smart-contracts/developing-contracts/client-contract-tutorial#preparing-a-file-for-storage" className="link">Data Depot</Link>.
+            Experience seamless Web3 data management with Akave's S3-compatible gateway. Upload, store, and manage your data with 
+            enterprise-grade reliability and Web2-like simplicity.
           </p>
           <p className="text-center text-lg">
-            Once you have a CAR file, you can create a storage deal after deploying the deal client via. <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">yarn deploy</code>
+            Leverage our advanced erasure coding and data sampling technology to ensure guaranteed data availability both on-chain 
+            and off-chain, while maintaining cost efficiency.
           </p>
           <p className="text-center text-lg">
-            Edit the landing page of your application by editing{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              packages/nextjs/app/page.tsx
-            </code>
+            Get started by uploading your files below and experience the power of decentralized storage with familiar S3-compatible 
+            interfaces and developer-friendly SDKs.
           </p>
-          <p className="text-center text-lg">
-            Edit your smart contract in{" "}
-            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
-              packages/hardhat/contracts
-            </code>
-          </p>
-          <div>
+          {/* <div>
             <UploadForm />
-          </div>
-          <div className="flex justify-center items-center space-x-2 flex-col sm:flex-row">
+          </div> */}
+          {/* <div className="flex justify-center items-center space-x-2 flex-col sm:flex-row">
             <p className="my-2 font-medium">Connected Address:</p>
             <Address address={connectedAddress} />
-          </div>
+          </div> */}
         </div>
 
-        <div className="flex-grow bg-base-300 w-full mt-16 px-8 py-12">
+        <div className="flex-grow w-full mt-16 px-8 py-12">
           <div className="flex justify-center items-center gap-12 flex-col sm:flex-row">
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl shadow-custom-black-box">
+            <div className="flex flex-col bg-white text-black px-10 py-10 text-center items-center max-w-xs rounded-3xl shadow-custom-black-box">
               <BugAntIcon className="h-8 w-8 fill-secondary" />
               <p>
                 Tinker with your smart contract using the{" "}
@@ -57,7 +51,7 @@ const Home: NextPage = () => {
                 tab.
               </p>
             </div>
-            <div className="flex flex-col bg-base-100 px-10 py-10 text-center items-center max-w-xs rounded-3xl shadow-custom-black-box">
+            <div className="flex flex-col bg-white text-black px-10 py-10 text-center items-center max-w-xs rounded-3xl shadow-custom-black-box">
               <MagnifyingGlassIcon className="h-8 w-8 fill-secondary" />
               <p>
                 Explore your local transactions with the{" "}
