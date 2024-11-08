@@ -21,7 +21,7 @@ export const akaveFuji = {
       url: "http://explorer.akave.ai",
     },
   },
-  testnet: false,
+  testnet: true,
 } as const satisfies chains.Chain;
 
 

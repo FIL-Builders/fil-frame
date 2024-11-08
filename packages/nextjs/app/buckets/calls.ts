@@ -69,9 +69,10 @@ export const createBucket = async (bucketName: string): Promise<boolean> => {
 export const uploadFile = async (
   bucketName: string, 
   file: File
-): Promise<boolean> => {
+): Promise<{ success: boolean; transactionHash: string }> => {
   try {
     const formData = new FormData();
+    // @ts-ignore
     formData.append("file", file);
 
     const response = await fetch(`/api/akave/bucket/${bucketName}/files`, {
@@ -79,9 +80,10 @@ export const uploadFile = async (
       body: formData,
     });
     const result = await response.json();
-    return result.success;
+    console.log(result);
+    return { success: result.success, transactionHash: result.data.transactionHash };
   } catch (error) {
     console.error("Error uploading file:", error);
-    return false;
+    return { success: false, transactionHash: "" };
   }
 }; 
