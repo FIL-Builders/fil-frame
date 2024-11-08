@@ -121,14 +121,14 @@ contract DealClient {
     }
 
     function makeDealProposal(DealRequest calldata deal) public returns (bytes32) {
-        require(msg.sender == owner);
+        // require(msg.sender == owner);
 
-        if (
-            pieceStatus[deal.piece_cid] == Status.DealPublished ||
-            pieceStatus[deal.piece_cid] == Status.DealActivated
-        ) {
-            revert("deal with this pieceCid already published");
-        }
+        // if (
+        //     pieceStatus[deal.piece_cid] == Status.DealPublished ||
+        //     pieceStatus[deal.piece_cid] == Status.DealActivated
+        // ) {
+        //     revert("deal with this pieceCid already published");
+        // }
 
         uint256 index = dealRequests.length;
         dealRequests.push(deal);

@@ -2,8 +2,6 @@
 import lighthouse from "@lighthouse-web3/sdk";
 import fs from "fs";
 import path from "path";
-
-const LIGHTHOUSE_API_KEY = process.env.LIGHTHOUSE_API_KEY!;
 const dataDepotUrl = "https://data-depot.lighthouse.storage";
 
 const deleteFile = async (filePath: string): Promise<void> => {
@@ -27,6 +25,7 @@ interface FileParam {
 
 export const uploadToLighthouseDataDepot = async (
   file: File,
+  apiKey: string,
 ): Promise<{
   carLink: string;
   carSize: number;
@@ -43,7 +42,7 @@ export const uploadToLighthouseDataDepot = async (
     const buffer = Buffer.from(await file.arrayBuffer());
     await fs.promises.writeFile(filePath, buffer);
 
-    const authToken = await lighthouse.dataDepotAuth(LIGHTHOUSE_API_KEY);
+    const authToken = await lighthouse.dataDepotAuth(apiKey);
     let response = await lighthouse.viewCarFiles(1, authToken.data.access_token);
     let fileParams: FileParam[] = response.data.filter((item: any) => item.fileName === file.name);
 
