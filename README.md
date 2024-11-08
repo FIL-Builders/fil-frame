@@ -9,15 +9,12 @@ Welcome to FIL-Frame, a starter repository designed to help developers quickly g
   - Prerequisites
   - Installation
   - Configuration
-- Using the CLI
 - Usage
   - Deploying smart contracts
   - Running the frontend
 - Storage Onramp Options
-  - Lighthouse integration
-  - Storacha integration
-- Deal Client Options
-  - Akave
+  - Lighthouse
+  - Storacha
 - Project Structure
 - Contribution guidelines
 - License
@@ -37,18 +34,13 @@ This repository is designed to be a quickstart for developers new to the Filecoi
 ### Prerequisites 📋
 
 Before you begin, ensure you have the following installed:
-
-- Node.js
-- Yarn
-- Hardhat
-
-You can install them by following the instructions on these pages:
-
-- [Node.js](https://nodejs.org/en/download/package-manager)
+- [Node.js](https://nodejs.org/en/download/package-manager) (v20.9.0)
 - [Yarn](https://yarnpkg.com/getting-started/install)
 - [Hardhat](https://hardhat.org/hardhat-runner/docs/getting-started#installation)
 
 ### Installation 💻
+
+### From source code
 
 1. Clone the repository
 
@@ -69,22 +61,10 @@ or
 npm install
 ```
 
-### Configuration ⚙️
-
-1. Copy the sample environment files, and fill in the required values:
-
-```bash
-cp packages/hardhat/.env.example packages/hardhat/.env
-cp packages/nextjs/.env.example packages/nextjs/.env.local
-```
-
-2. Update the environment variables in the `.env` files with your own values.
-
-## Using the CLI 🛠️
-
+### Using the CLI 
 The `create-filecoin-app` CLI tool helps you quickly set up a Filecoin-ready repository. It offers two modes: interactive mode and flag mode.
 
-### Interactive Mode 🧩
+#### Interactive Mode 🧩
 
 To use the interactive mode, simply run:
 
@@ -94,7 +74,7 @@ npx create-filecoin-app
 
 You will be prompted to answer a series of questions to configure your new project. This includes your project name, selecting your preferred storage onramp option (Lighthouse, or Storacha), and even selecting your preferred package manager (Yarn, or NPM).
 
-### Flag Mode 🚩
+#### Flag Mode 🚩
 
 If you prefer to skip the prompts, you can use the flag mode to specify your options directly. For example, to initialise a project named `my-app`, with lighthouse as the storage onramp:
 
@@ -109,12 +89,23 @@ The flags available currently include:
 - `--lighthouse`: this initializes a project using lighthouse as the storage onramp
 - `--storacha`: this initializes a project using storacha as the storage onramp
 
-### Storage Onramp Options 📦
+#### Storage Onramp Options 📦
 
 - **Lighthouse**: Decentralized storage solution for NFTs and other data.
 - **Storacha**: Another decentralized storage option, formerly known as web3.storage.
 
 After running the CLI, your new project will be set up and ready for development with your chosen storage onramp.
+
+### Configuration ⚙️
+
+1. Copy the sample environment files, and fill in the required values:
+
+```bash
+cp packages/hardhat/.env.example packages/hardhat/.env
+cp packages/nextjs/.env.example packages/nextjs/.env.local
+```
+
+2. Update the environment variables in the `.env` files with your own values.
 
 ## Usage 🛠️
 
@@ -151,7 +142,7 @@ npm run dev
 The application will be available at
 [`https://localhost:3000`](https://localhost:3000)
 
-## Integration Options 🔌
+## Storage Onramp Options 🔌
 
 ### Lighthouse
 
@@ -164,6 +155,9 @@ To use this integration:
 2. Run the following command:
 `yarn dev` or `npm run dev`
 3. Use the provided integration to upload files to Lighthouse
+
+### Storacha
+*Comming soon.*
 
 ## Project Structure 🗂️
 
