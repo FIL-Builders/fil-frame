@@ -23,13 +23,13 @@ export const menuLinks: HeaderMenuLink[] = [
   {
     label: "Buckets",
     href: "/buckets",
-    icon: <FolderIcon className="h-4 w-4" />,
+    icon: <Image src="/akave-black.svg" alt="akave-logo" width={24} height={24} />,
   },
-  {
-    label: "Debug Contracts",
-    href: "/debug",
-    icon: <BugAntIcon className="h-4 w-4" />,
-  },
+  // {
+  //   label: "Debug Contracts",
+  //   href: "/debug",
+  //   icon: <BugAntIcon className="h-4 w-4" />,
+  // },
 ];
 
 export const HeaderMenuLinks = () => {
