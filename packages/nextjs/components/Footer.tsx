@@ -5,7 +5,6 @@ import { hardhat } from "viem/chains";
 import { CurrencyDollarIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
 import { HeartIcon } from "@heroicons/react/24/outline";
 import { SwitchTheme } from "~~/components/SwitchTheme";
-import { BuidlGuidlLogo } from "~~/components/assets/BuidlGuidlLogo";
 import { Faucet } from "~~/components/fil-frame";
 import { useTargetNetwork } from "~~/hooks/fil-frame/useTargetNetwork";
 import { useGlobalState } from "~~/services/store/store";
@@ -48,7 +47,7 @@ export const Footer = () => {
         <ul className="menu menu-horizontal w-full">
           <div className="flex justify-center items-center gap-2 text-sm w-full">
             <div className="text-center">
-              <a href="https://github.com/fil-frame/se-2" target="_blank" rel="noreferrer" className="link">
+              <a href="https://github.com/FIL-Builders/fil-frame" target="_blank" rel="noreferrer" className="link">
                 Fork me
               </a>
             </div>
