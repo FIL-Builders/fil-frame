@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import UploadForm from "../components/UploadForm";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { BugAntIcon, MagnifyingGlassIcon } from "@heroicons/react/24/outline";
@@ -19,10 +18,20 @@ const Home: NextPage = () => {
             <span className="block text-4xl font-bold">FIL-Frame</span>
           </h1>
           <p className="text-center text-lg">
-            Convert your file to a CAR file using the below component, which is connected to <Link href="https://docs.filecoin.io/smart-contracts/developing-contracts/client-contract-tutorial#preparing-a-file-for-storage" className="link">Data Depot</Link>.
+            Convert your file to a CAR file using the below component, which is connected to{" "}
+            <Link
+              href="https://docs.filecoin.io/smart-contracts/developing-contracts/client-contract-tutorial#preparing-a-file-for-storage"
+              className="link"
+            >
+              Data Depot
+            </Link>
+            .
           </p>
           <p className="text-center text-lg">
-            Once you have a CAR file, you can create a storage deal after deploying the deal client via. <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">yarn deploy</code>
+            Once you have a CAR file, you can create a storage deal after deploying the deal client via.{" "}
+            <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
+              yarn deploy
+            </code>
           </p>
           <p className="text-center text-lg">
             Edit the landing page of your application by editing{" "}
