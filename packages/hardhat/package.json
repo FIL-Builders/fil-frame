@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "@axelar-network/axelar-gmp-sdk-solidity": "3.3.0",
+    "@nomicfoundation/hardhat-foundry": "^1.0.2-dev.0",
     "dotenv": "^16.0.3",
     "envfile": "^6.18.0",
     "qrcode": "^1.5.1",
