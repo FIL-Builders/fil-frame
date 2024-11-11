@@ -1,115 +1,273 @@
-# fil-frame (Storacha)
+# Fil-Frame (Storacha)
 
-Quickstart your Filecoin dApp using this open source dev stack.
+Quickstart your Filecoin dApp using this open-source development stack.
 
-Get started with Storacha Delegations [docs](https://web3.storage/docs/how-to/upload/#bring-your-own-delegations)
+Get started with Storacha Delegations by visiting the [documentation](https://web3.storage/docs/how-to/upload/#bring-your-own-delegations).
 
-# w3cli Quickstart Guide
+## Complete Workflow to Set Up Your Environment for web3.storage
 
-This guide will help you quickly set up and use the `w3cli` tool to manage your Filecoin dApp and create a Space for organizing your stored data.
+This guide will walk you through setting up the `w3cli` tool, creating an account, generating a Space, obtaining the necessary keys and proofs, and configuring your environment variables. By the end of this guide, you'll be able to integrate your app with web3.storage and delegate upload access to users.
+
+---
 
 ## Table of Contents
 
-1. [Using the CLI](#using-the-cli)
-2. [How to Create a Space](#how-to-create-a-space)
-3. [Setting Up Environment Variables](#setting-up-environment-variables)
+1. [Install the CLI](#1-install-the-cli)
+2. [Create an Account](#2-create-an-account)
+3. [Create a Space](#3-create-a-space)
+4. [Set Up Environment Variables](#4-set-up-environment-variables)
+   - [Obtain Your Agent Private Key and DID](#obtain-your-agent-private-key-and-did)
+   - [Create a UCAN Delegation](#create-a-ucan-delegation)
+5. [Update Your Environment Variables](#5-update-your-environment-variables)
+6. [Run Your App](#6-run-your-app)
+7. [Conclusion](#7-conclusion)
 
-## Using the CLI
+---
 
-The easiest way to create an account is by using `w3cli`.
+## 1. Install the CLI
 
-### Step-by-Step Guide
+First, you'll need to install the `w3cli` command-line interface to interact with web3.storage.
 
-1. **Install the CLI**: Open your command line interface and install the CLI from npm by running the following command:
+```bash
+npm install -g @web3-storage/w3cli
+```
 
-   ```bash
-   npm install -g @web3-storage/w3cli
-   ```
+_Make sure you have [Node.js and npm](https://nodejs.org/) installed on your system before running this command._
 
-2. **Login with Your Email**: Use the command line to log in with your email address. Replace `alice@example.com` with your actual email:
+---
 
-   ```bash
-   w3 login alice@example.com
-   ```
+## 2. Create an Account
 
-   This command will send an email to your inbox with a link for validation.
+Follow these steps to create a web3.storage account using the CLI:
 
-3. **Validate Your Email**: Check your email inbox for the validation link. Click on the link to proceed.
+### a. Log In with Your Email
 
-4. **Enter Payment Information**: After clicking the validation link, you'll be redirected to a webpage where you can enter your payment information and select a plan. You can choose from various plans, including our Free tier.
+Replace `your-email@example.com` with your actual email address:
 
-5. **Account Creation Complete**: Once you've completed the above steps, your account will be successfully created.
+```bash
+w3 login your-email@example.com
+```
 
-## How to Create a Space
+- This command will send a validation email to your inbox.
 
-In this how-to guide, you'll learn how to create a web3.storage Space to organize stored data. For an overview of the various ways web3.storage can be integrated with your application, check out Architecture Options.
+### b. Validate Your Email
 
-A Space acts as a namespace for your uploads. It is created locally, offline, and associated with a cryptographic key pair (identified by the did:key of the public key). You can register this Space with your web3.storage account to take responsibility for the uploads in the space. Once you do this, you don't need to worry about keeping track of the Space's private key, because your web3.storage account has been authorized to use the Space.
+- Check your email inbox for a message from web3.storage.
+- Click on the validation link provided in the email.
 
-### Using the CLI
+### c. Enter Payment Information
 
-1. **Initiate Space Creation**: Run the following command to create a new Space:
+- After validation, you'll be redirected to a webpage.
+- Enter your payment information if prompted.
+- Choose a plan that suits you; a **Free tier** is available.
 
-   ```bash
-   w3 space create
-   ```
+### d. Account Creation Complete
 
-2. **Name Your Space**: The CLI will ask, "What would you like to call this space?". Provide a name that will help you distinguish it from other spaces, then press the enter key. If you're unsure, you can try naming it "my first space".
+- Your account is now successfully created and ready to use!
 
-3. **Save the Secret Recovery Key**: The CLI will display a message: "🔑 You need to save the following secret recovery key somewhere safe!…". Press the enter key to reveal the recovery phrase.
+---
 
-4. **Backup the Recovery Phrase**: Save the recovery phrase somewhere safe. This is crucial if you want to recover control of the space in case you lose access to the computer you used to create the space. Even if you don't need this level of recovery, you will need to store this phrase and be able to repeat it in the next step.
+## 3. Create a Space
 
-5. **Confirm Backup**: Type the recovery phrase so `w3cli` knows you have backed it up, then press the enter key.
+A **Space** acts as a namespace for your uploads. It is created locally and associated with a cryptographic key pair. Follow these steps to create one:
 
-## Setting Up Environment Variables
+### a. Initiate Space Creation
 
-To interact with the `w3cli` and manage your Filecoin dApp, you'll need to set up some environment variables. Follow these steps to obtain and configure your `KEY` and `PROOF`.
+Run the following command:
+
+```bash
+w3 space create
+```
+
+### b. Name Your Space
+
+- When prompted:
+
+  ```
+  What would you like to call this space?
+  ```
+
+- Type a name that helps you identify the space (e.g., `MyFirstSpace`) and press **Enter**.
+
+### c. Save the Secret Recovery Phrase
+
+- You'll see a message:
+
+  ```
+  🔑 You need to save the following secret recovery key somewhere safe!
+  ```
+
+- Press **Enter** to reveal the recovery phrase.
+
+### d. Backup the Recovery Phrase
+
+- **Copy the recovery phrase** exactly as shown.
+- **Store it securely**, such as in a password manager.
+- This phrase is crucial for recovering access to your space if needed.
+
+### e. Confirm Backup
+
+- The CLI will ask you to type the recovery phrase to confirm you've saved it.
+- Carefully **type the recovery phrase** and press **Enter**.
+
+### f. Copy the Space DID
+
+- After confirmation, the CLI will display your **Space DID** (Decentralized Identifier), which looks like:
+
+  ```
+  did:key:xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+  ```
+
+- **Copy this Space DID** and keep it for later use.
+
+---
+
+## 4. Set Up Environment Variables
+
+To allow your app to interact with web3.storage, you'll need to obtain your agent's private key and create a delegation proof. These will be stored in environment variables.
 
 ### Obtain Your Agent Private Key and DID
 
-1. **Create a Key**: Run the following command to generate your agent's private key and DID:
+#### a. Create a Key
 
-   ```bash
-   w3 key create
-   ```
+Run the following command to generate your agent's private key and DID:
 
-   - **Important**: Store the private key (starting with "Mg...") in an environment variable named `KEY`.
+```bash
+w3 key create
+```
+
+- The output will display:
+
+  - **Agent DID**: A decentralized identifier for your agent.
+  - **Private Key**: A base64-encoded private key string.
+
+- **Important**: Copy both the **Agent DID** and the **Private Key** and store them securely.
 
 ### Create a UCAN Delegation
 
-2. **Set the Space**: Before creating a delegation, ensure you have set the Space you intend to delegate access to by using:
+A **UCAN (User Controlled Authorization Network)** delegation allows you to delegate permissions from one agent to another.
 
-   ```bash
-   w3 space use ${yourSpaceDID}
-   ```
+#### a. Use Your Space
 
-3. **Create a Delegation**: Use the following command to create a UCAN delegation from the `w3cli` agent to the agent you generated above. Replace `<did_from_ucan-key_command_above>` with the DID obtained from the previous step:
+Set the CLI to use the Space you created earlier:
 
-   ```bash
-   w3 delegation create <did_from_ucan-key_command_above> --base64
-   ```
-
-   - **Important**: Store the output in an environment variable named `PROOF`.
-
-   - **Optional**: If you want to limit permissions being passed to the Agent, you can specify permissions to give, e.g., `--can space/blob/add --can space/index/add --can filecoin/offer --can upload/add` limits to just being able to upload.
-
-### Update Your Environment Variables
-
-```shell
-cp .env.example .env.local
+```bash
+w3 space use <your-space-did>
 ```
 
-Make sure to update your environment variables in your system or project configuration to include `KEY` and `PROOF`. This will ensure secure and efficient interaction with your Filecoin dApp using the `w3cli`.
+- Replace `<your-space-did>` with the Space DID you copied earlier.
 
-By following these steps, you will have successfully set up your `w3cli`, created a Space, and configured the necessary environment variables to allow your app to upload files for the users by delegating them upload access!
+#### b. Create a Delegation
 
-### Run the app
+Run the following command to create a delegation from your Space to your agent:
 
-1. ```shell
-   yarn install
-   ```
+```bash
+w3 delegation create <agent-did> --base64
+```
 
-2. ```shell
-   yarn dev
-   ```
+- Replace `<agent-did>` with the Agent DID obtained from the `w3 key create` command.
+- The `--base64` flag outputs the delegation proof in base64 format.
+
+**Optional**: Limit the permissions by adding `--can` flags. For example:
+
+```bash
+w3 delegation create <agent-did> --base64 --can space/info --can upload/add
+```
+
+- This limits the delegation to specific actions like viewing space info and adding uploads.
+
+#### c. Copy the Delegation Proof
+
+- The command outputs a base64-encoded **Delegation Proof**.
+- **Copy this proof** and store it securely.
+
+---
+
+## 5. Update Your Environment Variables
+
+Now that you have your **Private Key** and **Delegation Proof**, you need to set them as environment variables for your app.
+
+### a. Create an Environment File
+
+- In your project directory, copy the example environment file:
+
+  ```bash
+  cp .env.example .env.local
+  ```
+
+### b. Edit the Environment File
+
+- Open `.env.local` in a text editor.
+- Set the following variables:
+
+  ```env
+  KEY=your-private-key
+  PROOF=your-delegation-proof
+  ```
+
+- Replace `your-private-key` with the base64-encoded Private Key you saved earlier.
+- Replace `your-delegation-proof` with the base64-encoded Delegation Proof.
+
+### c. Save the File
+
+- Make sure to **save** the `.env.local` file after editing.
+
+---
+
+## 6. Run Your App
+
+With the environment variables set, you can now run your app.
+
+### a. Install Dependencies
+
+```bash
+yarn install
+```
+
+_Or if you're using npm:_
+
+```bash
+npm install
+```
+
+### b. Start the Development Server
+
+```bash
+yarn dev
+```
+
+_Or with npm:_
+
+```bash
+npm run dev
+```
+
+Your app should now be running and able to interact with web3.storage using the configured keys and proofs.
+
+---
+
+## 7. Conclusion
+
+You've successfully:
+
+- Installed the `w3cli` tool.
+- Created a web3.storage account.
+- Generated a Space and obtained its DID.
+- Created an agent with its own Private Key and DID.
+- Delegated permissions from your Space to your agent.
+- Set up environment variables with your `KEY` and `PROOF`.
+- Ran your app with the necessary configurations.
+
+**Important Reminders**:
+
+- **Keep your Private Key and Delegation Proof secure**. Do not share them publicly or commit them to version control systems.
+- **Use `.env.local` or similar files** to store sensitive information and ensure they are ignored by your version control system (e.g., via `.gitignore`).
+
+---
+
+### Need Help?
+
+- **Documentation**: Refer to the [web3.storage documentation](https://web3.storage/docs/) for more detailed guides and API references.
+- **Support**: If you encounter issues, consider reaching out to the web3.storage support team or community forums.
+
+**Happy building with web3.storage!**
