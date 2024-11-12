@@ -39,7 +39,8 @@ jobs:
         run: |
           yarn chain &
           sleep 15
-          rm -rf packages/hardhat/deployments/localhost
+          cd packages/hardhat
+          yarn hardhat clean
           yarn deploy
 
       - name: Run nextjs lint
