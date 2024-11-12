@@ -36,7 +36,11 @@ jobs:
         run: yarn install --immutable
 
       - name: Run hardhat node, deploy contracts (& generate contracts typescript output)
-        run: yarn chain & yarn deploy
+        run: |
+          yarn chain &
+          sleep 15
+          rm -rf packages/hardhat/deployments/localhost
+          yarn deploy
 
       - name: Run nextjs lint
         run: yarn next:lint --max-warnings=0
