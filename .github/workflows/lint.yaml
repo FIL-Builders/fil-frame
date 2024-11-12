@@ -41,7 +41,12 @@ jobs:
           sleep 15
           cd packages/hardhat
           yarn hardhat clean
-          yarn deploy
+          for i in {1..3}; do
+            yarn deploy && break || {
+              echo "Deployment failed, attempt $i of 3. Retrying..."
+              sleep 5
+            }
+          done
 
       - name: Run nextjs lint
         run: yarn next:lint --max-warnings=0
