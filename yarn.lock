@@ -1456,10 +1456,10 @@
     debug "^4.1.1"
     lodash.isequal "^4.5.0"
 
-"@nomicfoundation/hardhat-foundry@^1.1.2":
-  version "1.1.2"
-  resolved "https://registry.npmjs.org/@nomicfoundation/hardhat-foundry/-/hardhat-foundry-1.1.2.tgz"
-  integrity sha512-f5Vhj3m2qvKGpr6NAINYwNgILDsai8dVCsFb1rAVLkJxOmD2pAtfCmOH5SBVr9yUI5B1z9rbTwPBJVrqnb+PXQ==
+"@nomicfoundation/hardhat-foundry@^1.0.2-dev.0":
+  version "1.0.2-dev.0"
+  resolved "https://registry.yarnpkg.com/@nomicfoundation/hardhat-foundry/-/hardhat-foundry-1.0.2-dev.0.tgz#4bb00cc1b69792719956142e5625c9db24ae99c4"
+  integrity sha512-KcxvErYIwErDRAV0VLbo7djX98GKiWxuIyr8AAUfhC74C0ixw03n6L4Tc2pjy+uP3aOUkkgdwlDCtgBLUR4jbw==
   dependencies:
     chalk "^2.4.2"
 
