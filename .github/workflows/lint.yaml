@@ -49,7 +49,7 @@ jobs:
           done
 
       - name: Run nextjs lint
-        run: yarn lint --max-warnings=0
+        run: yarn next:lint --max-warnings=0
 
       - name: Check typings on nextjs
         run: yarn next:check-types
