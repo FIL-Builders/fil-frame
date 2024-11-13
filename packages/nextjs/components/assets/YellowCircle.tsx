@@ -1,4 +1,4 @@
-export default function YellowCircle(props) {
+export default function YellowCircle(props: any) {
   return (
     <svg
       {...props}
