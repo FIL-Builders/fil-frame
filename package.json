@@ -20,6 +20,7 @@
     "format": "yarn workspace @fil-frame/hardhat prettier --write ./*.ts ./deploy/**/*.ts ./scripts/**/*.ts ./test/**/*.ts",
     "verify": "yarn workspace @fil-frame/hardhat etherscan-verify",
     "hardhat-verify": "yarn workspace @fil-frame/hardhat verify",
+    "hardhat:lint": "yarn workspace @fil-frame/hardhat lint",
     "deploy": "yarn workspace @fil-frame/hardhat deploy",
     "deploy:verify": "yarn workspace @fil-frame/hardhat deploy:verify",
     "chain": "yarn workspace @fil-frame/hardhat chain",
