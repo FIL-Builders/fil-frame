@@ -179,8 +179,8 @@ w3 delegation create <agent-did> --base64 --can space/info --can upload/add
 #### c. Copy the Delegation Proof
 
 - The command outputs a base64-encoded **Delegation Proof**.
-- **Copy this proof** and store it securely **don't include the % symbol at the end of the proof(output)**.
-
+- **Copy this proof** and store it securely.
+- Delete the **"%"** at the end of proof
 
 ---
 
