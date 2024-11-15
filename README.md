@@ -1,5 +1,8 @@
 # FIL-Frame
 
+![Fil-Frame](fil-frame.gif)
+*Fil-Frame setup in action.*
+
 Welcome to FIL-Frame, a starter repository designed to help developers quickly get started with building decentralized applications (dApps) on the Filecoin network. This repository provides various integration options, including an example template using Lighthouse.
 
 ## Table of Contents
@@ -60,13 +63,7 @@ These features make FIL-Frame a powerful and versatile tool for developers enter
 
 ### Prerequisites
 
-Before you begin, ensure you have the following installed:
-
-- Node.js
-- Yarn
-- Hardhat
-
-You can install them by following the instructions on these pages:
+Ensure you have the following installed:
 
 - [Node.js](https://nodejs.org/en/download/package-manager)
 - [Yarn](https://yarnpkg.com/getting-started/install)
@@ -195,6 +192,9 @@ npm run dev
 
 The application will be available at
 [`https://localhost:3000`](https://localhost:3000)
+
+![Your setup should look like this](lighthouse-filframe.gif)
+*Fil-Frame, with the Lighthouse integration.*
 
 ## Storage Onramp Options
 
