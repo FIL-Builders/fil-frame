@@ -74,6 +74,8 @@ Ensure you have the following installed:
 
 ### From source code
 
+### From source code
+
 1. Clone the repository
 
 ```bash
