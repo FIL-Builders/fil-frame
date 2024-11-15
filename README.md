@@ -12,12 +12,12 @@ Welcome to FIL-Frame, a starter repository designed to help developers quickly g
     - [Prerequisites](#prerequisites)
     - [Installation](#installation)
     - [From source code](#from-source-code)
-    - [Configuration ⚙️](#configuration-️)
-  - [Using the CLI 🛠️](#using-the-cli-️)
+    - [Configuration](#configuration)
+  - [Using the CLI](#using-the-cli)
       - [Interactive Mode](#interactive-mode)
       - [Flag Mode](#flag-mode)
       - [Storage Onramp Options](#storage-onramp-options)
-    - [Configuration](#configuration)
+    - [Configuration](#configuration-1)
   - [Usage](#usage)
     - [Deploying Smart Contracts](#deploying-smart-contracts)
     - [Running the Frontend](#running-the-frontend)
@@ -103,7 +103,7 @@ or
 npm install
 ```
 
-### Configuration ⚙️
+### Configuration
 
 1. Copy the sample environment files, and fill in the required values:
 
@@ -114,7 +114,7 @@ cp packages/nextjs/.env.example packages/nextjs/.env.local
 
 2. Update the environment variables in the `.env` files with your own values.
 
-## Using the CLI 🛠️
+## Using the CLI
 
 The `create-filecoin-app` CLI tool helps you quickly set up a Filecoin-ready repository. It offers two modes: interactive mode and flag mode.
 
