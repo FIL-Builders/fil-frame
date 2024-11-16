@@ -15,6 +15,7 @@ Welcome to FIL-Frame, a starter repository designed to help developers quickly g
 - Storage Onramp Options
   - Lighthouse
   - Storacha
+  - Akave
 - Project Structure
 - Contribution guidelines
 - License
@@ -88,11 +89,13 @@ The flags available currently include:
 
 - `--lighthouse`: this initializes a project using lighthouse as the storage onramp
 - `--storacha`: this initializes a project using storacha as the storage onramp
+- `--akave`: this initializes a project using akave as the storage onramp
 
 #### Storage Onramp Options 📦
 
 - **Lighthouse**: Decentralized storage solution for NFTs and other data.
-- **Storacha**: Another decentralized storage option, formerly known as web3.storage.
+- **Storacha**: Decentralized hot storage network - the dazzling revitalization of Web3.Storage.
+- **Akave**: L2 storage chain powering on-chain data lakes for scalable, secure, and cost-effective data management.
 
 After running the CLI, your new project will be set up and ready for development with your chosen storage onramp.
 
@@ -150,13 +153,17 @@ The repository includes an template which makes use of Lighthouse for decentrali
 
 To use this integration:
 
-1. Ensure you have the Lighthouse API key set in your `.env.local` file:
+1. Login to [Lighthouse](https://files.lighthouse.storage/) and generage an lighthouse API key.
+2. Ensure you add the Lighthouse API key set in your `.env.local` file:
 `LIGHTHOUSE_API_KEY=your_lighthouse_api_key`
-2. Run the following command:
+3. then you can started the fil-frame app with command:
 `yarn dev` or `npm run dev`
-3. Use the provided integration to upload files to Lighthouse
+4. Use the provided integration to upload files to Lighthouse
 
 ### Storacha
+*Comming soon.*
+
+### Akave
 *Comming soon.*
 
 ## Project Structure 🗂️
