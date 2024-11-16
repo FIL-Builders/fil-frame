@@ -164,7 +164,21 @@ To use this integration:
 *Comming soon.*
 
 ### Akave
-*Comming soon.*
+To use fil-frame with Akave integration, you need to follow the instructions to setup the env to use Akave to store data for your projects.
+- Make sure you install and run docker in your machine.
+- Pull the **akavelink** docker image using `docker pull akave/akavelink:latest`.
+- Run the docker container to spin up a Akave local api endpoint that can be used for bucket and file operations. Learn more on [Akave docs](https://hackathon-docs.akave.ai/js-docker-example-code).
+  ```
+  docker run -d \
+    -p 8000:3000 \
+    -e NODE_ADDRESS="connect.akave.ai:5500" \
+    -e PRIVATE_KEY="your_wallet_private_key" \
+    akave/akavelink:latest
+  ```
+- In case you're using a different port for your api make sure you update `AKAVE_BACKEND_URL` in your .env file.
+
+To learn more how to use Akave to create bucket and upload  on front-end, visit [Akave docs](https://hackathon-docs.akave.ai/js-docker-example-code#bucket-operations).
+
 
 ## Project Structure 🗂️
 
