@@ -35,18 +35,11 @@ jobs:
       - name: Install dependencies
         run: yarn install --immutable
 
-      - name: Run hardhat node, deploy contracts (& generate contracts typescript output)
+      - name: Compile contracts
         run: |
-          yarn chain &
-          sleep 15
           cd packages/hardhat
           yarn hardhat clean
-          for i in {1..3}; do
-            yarn deploy && break || {
-              echo "Deployment failed, attempt $i of 3. Retrying..."
-              sleep 5
-            }
-          done
+          yarn compile
 
       - name: Run nextjs lint
         run: yarn next:lint
