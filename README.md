@@ -1,5 +1,11 @@
 # FIL-Frame  🚀
 
+Tutorial video: https://youtu.be/dzg7ygwAp1Q
+
+Axelarscan (testnet): https://testnet.axelarscan.io/gmp/search?sourceChain=filecoin-2
+
+Filecoin Calibration faucet: https://faucet.calibnet.chainsafe-fil.io/
+
 Welcome to FIL-Frame, a starter repository designed to help developers quickly get started with building decentralized applications (dApps) on the Filecoin network. This repository provides various integration options, including an example template using Lighthouse.
 
 ## Table of Contents 📚
