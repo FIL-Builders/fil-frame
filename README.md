@@ -1,13 +1,46 @@
-# fil-frame
-Quickstart your Filecoin dApp using this open source dev stack. 
+# FIL-Frame  🚀
 
-Tutorial video: https://youtu.be/dzg7ygwAp1Q
+Welcome to FIL-Frame, a starter repository designed to help developers quickly get started with building decentralized applications (dApps) on the Filecoin network. This repository provides various integration options, including an example template using Lighthouse.
 
-Axelarscan (testnet): https://testnet.axelarscan.io/gmp/search?sourceChain=filecoin-2
+## Table of Contents 📚
 
-Filecoin Calibration faucet: https://faucet.calibnet.chainsafe-fil.io/
+- Overview
+- Getting Started
+  - Prerequisites
+  - Installation
+  - Configuration
+- Usage
+  - Deploying smart contracts
+  - Running the frontend
+- Storage Onramp Options
+  - Lighthouse
+  - Storacha
+- Project Structure
+- Contribution guidelines
+- License
 
-# Getting Started
+## Overview 🌐
+
+FIL-Frame is a monorepo that includes two main packages:
+
+`hardhat`: Manages the blockchain-related aspects, including smart contract development, deployment, and testing.
+
+`nextjs`: Handles the frontend and API aspects of the project using Next.js.
+
+This repository is designed to be a quickstart for developers new to the Filecoin ecosystem, providing various integration options to suit different needs.
+
+## Getting Started 🚀
+
+### Prerequisites 📋
+
+Before you begin, ensure you have the following installed:
+- [Node.js](https://nodejs.org/en/download/package-manager) (v20.9.0)
+- [Yarn](https://yarnpkg.com/getting-started/install)
+- [Hardhat](https://hardhat.org/hardhat-runner/docs/getting-started#installation)
+
+### Installation 💻
+
+### From source code
 
 1. Clone the repository:
 
