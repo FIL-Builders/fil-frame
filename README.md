@@ -5,7 +5,7 @@
 
 Welcome to FIL-Frame, a starter repository designed to help developers quickly get started with building decentralized applications (dApps) on the Filecoin network. This repository provides various integration options, including an example template using Lighthouse.
 
-## Table of Contents
+## Table of Contents 📚
 
 - [FIL-Frame](#fil-frame)
   - [Table of Contents](#table-of-contents)
@@ -31,7 +31,7 @@ Welcome to FIL-Frame, a starter repository designed to help developers quickly g
   - [Contributing](#contributing)
   - [License](#license)
 
-## Overview
+## Overview 🌐
 
 FIL-Frame is a monorepo that includes two main packages:
 
@@ -141,11 +141,13 @@ The flags available currently include:
 
 - `--lighthouse`: this initializes a project using lighthouse as the storage onramp
 - `--storacha`: this initializes a project using storacha as the storage onramp
+- `--akave`: this initializes a project using akave as the storage onramp
 
 #### Storage Onramp Options
 
 - **Lighthouse**: Decentralized storage solution for NFTs and other data.
-- **Storacha**: Another decentralized storage option, formerly known as web3.storage.
+- **Storacha**: Decentralized hot storage network - the dazzling revitalization of Web3.Storage.
+- **Akave**: L2 storage chain powering on-chain data lakes for scalable, secure, and cost-effective data management.
 
 After running the CLI, your new project will be set up and ready for development with your chosen storage onramp.
 
@@ -206,16 +208,34 @@ The repository includes a template which makes use of Lighthouse for decentraliz
 
 To use this integration:
 
-1. Ensure you have the Lighthouse API key set in your `.env.local` file:
+1. Login to [Lighthouse](https://files.lighthouse.storage/) and generage an lighthouse API key.
+2. Ensure you add the Lighthouse API key set in your `.env.local` file:
 `LIGHTHOUSE_API_KEY=your_lighthouse_api_key`
-2. Run the following command:
+3. then you can started the fil-frame app with command:
 `yarn dev` or `npm run dev`
-3. Use the provided integration to upload files to Lighthouse
+4. Use the provided integration to upload files to Lighthouse
 
 ### Storacha
 *Coming soon.*
 
-## Project Structure
+### Akave
+To use fil-frame with Akave integration, you need to follow the instructions to setup the env to use Akave to store data for your projects.
+- Make sure you install and run docker in your machine.
+- Pull the **akavelink** docker image using `docker pull akave/akavelink:latest`.
+- Run the docker container to spin up a Akave local api endpoint that can be used for bucket and file operations. Learn more on [Akave docs](https://hackathon-docs.akave.ai/js-docker-example-code).
+  ```
+  docker run -d \
+    -p 8000:3000 \
+    -e NODE_ADDRESS="connect.akave.ai:5500" \
+    -e PRIVATE_KEY="your_wallet_private_key" \
+    akave/akavelink:latest
+  ```
+- In case you're using a different port for your api make sure you update `AKAVE_BACKEND_URL` in your .env file.
+
+To learn more how to use Akave to create bucket and upload  on front-end, visit [Akave docs](https://hackathon-docs.akave.ai/js-docker-example-code#bucket-operations).
+
+
+## Project Structure 🗂️
 
 ```
 my-app/
