@@ -1,4 +1,4 @@
-export default function RedPopBox(props) {
+export default function RedPopBox(props: any) {
     return (
       <svg
         {...props}

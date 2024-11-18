@@ -183,6 +183,7 @@ const DealForm = ({
     const endEpoch = dealInputs.start_epoch + months * 43200;
     handleInputChange({
       ...e,
+      // @ts-ignore: number to string conversion
       target: { ...e.target, name: "end_epoch", value: endEpoch },
     });
   };

@@ -1,6 +1,7 @@
-import { accessControlConditions } from "../lighthouse/types";
 import { generate, recoverKey, recoverShards, saveShards } from "@lighthouse-web3/kavach";
 import lighthouse from "@lighthouse-web3/sdk";
+
+type accessControlConditions = any;
 
 export const uploadFilesEncrypted = async (
   files: File[],
