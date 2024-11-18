@@ -1,24 +1,35 @@
-# FIL-Frame  🚀
+# FIL-Frame
+
+![Fil-Frame](fil-frame.gif)
+*Fil-Frame setup in action.*
 
 Welcome to FIL-Frame, a starter repository designed to help developers quickly get started with building decentralized applications (dApps) on the Filecoin network. This repository provides various integration options, including an example template using Lighthouse.
 
 ## Table of Contents 📚
 
-- Overview
-- Getting Started
-  - Prerequisites
-  - Installation
-  - Configuration
-- Usage
-  - Deploying smart contracts
-  - Running the frontend
-- Storage Onramp Options
-  - Lighthouse
-  - Storacha
-  - Akave
-- Project Structure
-- Contribution guidelines
-- License
+- [FIL-Frame](#fil-frame)
+  - [Table of Contents](#table-of-contents)
+  - [Overview](#overview)
+  - [Unique Features](#unique-features)
+  - [Getting Started](#getting-started)
+    - [Prerequisites](#prerequisites)
+    - [Installation](#installation)
+    - [From source code](#from-source-code)
+    - [Configuration](#configuration)
+  - [Using the CLI](#using-the-cli)
+      - [Interactive Mode](#interactive-mode)
+      - [Flag Mode](#flag-mode)
+      - [Storage Onramp Options](#storage-onramp-options)
+    - [Configuration](#configuration-1)
+  - [Usage](#usage)
+    - [Deploying Smart Contracts](#deploying-smart-contracts)
+    - [Running the Frontend](#running-the-frontend)
+  - [Storage Onramp Options](#storage-onramp-options-1)
+    - [Lighthouse](#lighthouse)
+    - [Storacha](#storacha)
+  - [Project Structure](#project-structure)
+  - [Contributing](#contributing)
+  - [License](#license)
 
 ## Overview 🌐
 
@@ -30,27 +41,56 @@ FIL-Frame is a monorepo that includes two main packages:
 
 This repository is designed to be a quickstart for developers new to the Filecoin ecosystem, providing various integration options to suit different needs.
 
-## Getting Started 🚀
+## Unique Features
 
-### Prerequisites 📋
+FIL-Frame unlocks several unique features that make it an ideal starting point for developers looking to build decentralized applications (dApps) on the Filecoin network:
 
-Before you begin, ensure you have the following installed:
-- [Node.js](https://nodejs.org/en/download/package-manager) (v20.9.0)
+- On-Chain File Storage Deals: FIL-Frame enables developers to create and manage file storage deals directly on the blockchain (FVM) via smart contracts. This ensures transparency, security, and immutability for storage transactions.
+
+- Seamless Integration with FVM: The repository provides built-in support for Filecoin's EVM compatible network, allowing developers to easily interact with the Filecoin network and leverage its decentralized storage capabilities, using tooling they're already familiar with.
+
+- Multiple Storage Onramp Options: FIL-Frame offers various storage onramp options, including Lighthouse, Storacha and Akave, giving developers the flexibility to choose the solution that best fits their needs.
+
+- Comprehensive Smart Contract Management: With Hardhat integration, developers can efficiently develop, deploy, and test smart contracts, easing the workflow for developers.
+
+- User-Friendly Frontend: The Next.js frontend provides a modern and responsive interface for interacting with the blockchain, making it easier for users to engage with the dApp.
+
+These features make FIL-Frame a powerful and versatile tool for developers entering the Filecoin ecosystem, providing all the necessary components to build robust and scalable decentralized applications.
+
+
+
+## Getting Started
+
+### Prerequisites
+
+Ensure you have the following installed:
+
+- [Node.js](https://nodejs.org/en/download/package-manager)
 - [Yarn](https://yarnpkg.com/getting-started/install)
 - [Hardhat](https://hardhat.org/hardhat-runner/docs/getting-started#installation)
+- [Foundry](https://getfoundry.sh/)
 
-### Installation 💻
+### Installation
+
+### From source code
 
 ### From source code
 
 1. Clone the repository
 
 ```bash
-git clone https://github.com/FIL-Builders/fil-frame.git
+git clone https://github.com/FIL-Builders/fil-frame
 cd fil-frame 
 ```
 
-2. Install dependencies
+2. (Optional) Switch to a different starter kit branch
+Available branches include:
+
+`lighthouse-nfts`: Integration with Lighthouse for decentralized storage.
+`storacha-nfts`: Integration with Storacha for decentralized storage.
+`akave-integration`: Integration with Akave for decentralized storage.
+
+3. Install dependencies
 
 ```bash
 yarn install
@@ -62,10 +102,22 @@ or
 npm install
 ```
 
-### Using the CLI 
+### Configuration
+
+1. Copy the sample environment files, and fill in the required values:
+
+```bash
+cp packages/hardhat/.env.example packages/hardhat/.env
+cp packages/nextjs/.env.example packages/nextjs/.env.local
+```
+
+2. Update the environment variables in the `.env` files with your own values.
+
+## Using the CLI
+
 The `create-filecoin-app` CLI tool helps you quickly set up a Filecoin-ready repository. It offers two modes: interactive mode and flag mode.
 
-#### Interactive Mode 🧩
+#### Interactive Mode
 
 To use the interactive mode, simply run:
 
@@ -73,9 +125,9 @@ To use the interactive mode, simply run:
 npx create-filecoin-app
 ```
 
-You will be prompted to answer a series of questions to configure your new project. This includes your project name, selecting your preferred storage onramp option (Lighthouse, or Storacha), and even selecting your preferred package manager (Yarn, or NPM).
+You will be prompted to answer a series of questions to configure your new project. This includes your project name, and selecting your preferred storage onramp option (Lighthouse, or Storacha).
 
-#### Flag Mode 🚩
+#### Flag Mode
 
 If you prefer to skip the prompts, you can use the flag mode to specify your options directly. For example, to initialise a project named `my-app`, with lighthouse as the storage onramp:
 
@@ -91,7 +143,7 @@ The flags available currently include:
 - `--storacha`: this initializes a project using storacha as the storage onramp
 - `--akave`: this initializes a project using akave as the storage onramp
 
-#### Storage Onramp Options 📦
+#### Storage Onramp Options
 
 - **Lighthouse**: Decentralized storage solution for NFTs and other data.
 - **Storacha**: Decentralized hot storage network - the dazzling revitalization of Web3.Storage.
@@ -99,7 +151,7 @@ The flags available currently include:
 
 After running the CLI, your new project will be set up and ready for development with your chosen storage onramp.
 
-### Configuration ⚙️
+### Configuration
 
 1. Copy the sample environment files, and fill in the required values:
 
@@ -108,9 +160,9 @@ cp packages/hardhat/.env.example packages/hardhat/.env
 cp packages/nextjs/.env.example packages/nextjs/.env.local
 ```
 
-2. Update the environment variables in the `.env` files with your own values.
+2. Update the environment variables in the `.env` files with your own values. (Note that the `NEXT_PUBLIC_ALCHEMY_API_KEY` value is optional)
 
-## Usage 🛠️
+## Usage
 
 ### Deploying Smart Contracts
 
@@ -145,11 +197,14 @@ npm run dev
 The application will be available at
 [`https://localhost:3000`](https://localhost:3000)
 
-## Storage Onramp Options 🔌
+![Your setup should look like this](lighthouse-filframe.gif)
+*Fil-Frame, with the Lighthouse integration.*
+
+## Storage Onramp Options
 
 ### Lighthouse
 
-The repository includes an template which makes use of Lighthouse for decentralized storage, and is available in the `lighthouse-nfts` branch.
+The repository includes a template which makes use of Lighthouse for decentralized storage, and is available in the `lighthouse-nfts` branch.
 
 To use this integration:
 
@@ -161,7 +216,7 @@ To use this integration:
 4. Use the provided integration to upload files to Lighthouse
 
 ### Storacha
-*Comming soon.*
+*Coming soon.*
 
 ### Akave
 To use fil-frame with Akave integration, you need to follow the instructions to setup the env to use Akave to store data for your projects.
@@ -209,10 +264,10 @@ my-app/
 └── ...
 ```
 
-## Contributing 🤝
+## Contributing
 
 We welcome contributions!
 
-## License 📄
+## License
 
 This project is licensed under the MIT license. See the [LICENSE](./LICENSE) file for details.
