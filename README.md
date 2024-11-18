@@ -16,8 +16,7 @@ Welcome to FIL-Frame, a starter repository designed to help developers quickly g
 - Storage Onramp Options
   - Lighthouse integration
   - Storacha integration
-- Deal Client Options
-  - Akave
+  - Akave integration
 - Project Structure
 - Contribution guidelines
 - License
@@ -92,7 +91,7 @@ To use the interactive mode, simply run:
 npx create-filecoin-app
 ```
 
-You will be prompted to answer a series of questions to configure your new project. This includes your project name, selecting your preferred storage onramp option (Lighthouse, or Storacha), and even selecting your preferred package manager (Yarn, or NPM).
+You will be prompted to answer a series of questions to configure your new project. This includes your project name, selecting your preferred storage onramp option (Lighthouse, Akave, or Storacha), and even selecting your preferred package manager (Yarn, or NPM).
 
 ### Flag Mode 🚩
 
@@ -108,6 +107,7 @@ The flags available currently include:
 
 - `--lighthouse`: this initializes a project using lighthouse as the storage onramp
 - `--storacha`: this initializes a project using storacha as the storage onramp
+- `--akave`: this initializes a project using akave as the storage onramp
 
 ### Akave Notes
 
@@ -133,6 +133,7 @@ The flags available currently include:
 
 - **Lighthouse**: Decentralized storage solution for NFTs and other data.
 - **Storacha**: Another decentralized storage option, formerly known as web3.storage.
+- **Akave**: Another decentralized storage option, designed to be compatible with AWS S3.
 
 After running the CLI, your new project will be set up and ready for development with your chosen storage onramp.
 
@@ -184,6 +185,18 @@ To use this integration:
 2. Run the following command:
 `yarn dev` or `npm run dev`
 3. Use the provided integration to upload files to Lighthouse
+
+### Akave
+
+The repository also includes an template which makes use of Akave for decentralized storage, and is available in the `akave-integration` branch.
+
+To use this integration:
+
+1. Ensure you have the Akave backend URL set in your `.env.local` file:
+`AKAVE_BACKEND_URL=http://localhost:8000` # Default port for Akave backend
+2. Run the following command:
+`yarn dev` or `npm run dev`
+3. Use the provided integration to upload files to Akave
 
 ## Project Structure 🗂️
 
