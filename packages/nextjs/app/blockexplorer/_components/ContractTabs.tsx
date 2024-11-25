@@ -32,7 +32,7 @@ export const ContractTabs = ({ address, contractData }: PageProps) => {
 
   useEffect(() => {
     const checkIsContract = async () => {
-      const contractCode = await publicClient.getBytecode({ address: address });
+      const contractCode = await publicClient.getBytecode({ address: address as `0x${string}` });
       setIsContract(contractCode !== undefined && contractCode !== "0x");
     };
 
@@ -85,8 +85,8 @@ export const ContractTabs = ({ address, contractData }: PageProps) => {
       {activeTab === "code" && contractData && (
         <AddressCodeTab bytecode={contractData.bytecode} assembly={contractData.assembly} />
       )}
-      {activeTab === "storage" && <AddressStorageTab address={address} />}
-      {activeTab === "logs" && <AddressLogsTab address={address} />}
+      {activeTab === "storage" && <AddressStorageTab address={address as `0x${string}`} />}
+      {activeTab === "logs" && <AddressLogsTab address={address as `0x${string}`} />}
     </>
   );
 };
