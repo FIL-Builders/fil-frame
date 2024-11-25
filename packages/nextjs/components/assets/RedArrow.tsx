@@ -1,4 +1,4 @@
-export default function RedArrow(props) {
+export default function RedArrow(props: any) {
   return (
     <svg
       {...props}

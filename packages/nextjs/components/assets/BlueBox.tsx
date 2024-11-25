@@ -1,4 +1,4 @@
-export default function BlueBox(props) {
+export default function BlueBox(props: any) {
   return (
     <svg
       {...props}

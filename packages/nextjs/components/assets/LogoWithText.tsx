@@ -1,4 +1,4 @@
-export default function LogoWithText(props) {
+export default function LogoWithText(props: any) {
   return (
     <svg
       {...props}
