@@ -27,11 +27,19 @@ jobs:
           node-version: ${{ matrix.node }}
           cache: yarn
 
+      - name: Install Foundry
+        uses: foundry-rs/foundry-toolchain@v1
+        with:
+          version: nightly
+
       - name: Install dependencies
         run: yarn install --immutable
 
-      - name: Run hardhat node, deploy contracts (& generate contracts typescript output)
-        run: yarn chain & yarn deploy
+      - name: Compile contracts
+        run: |
+          cd packages/hardhat
+          yarn hardhat clean
+          yarn compile
 
       - name: Run nextjs lint
         run: yarn next:lint
