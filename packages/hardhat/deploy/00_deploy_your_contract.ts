@@ -45,12 +45,6 @@ const deploySendMessage: DeployFunction = async function (
   console.log("🚀 SendMessage deployed at: ", SendMessage.address);
   const SendMessageAddress = SendMessage.address;
 
-  // Get the deployed contract to interact with it after deploying.
-  const sendMessage = await hre.ethers.getContractAt(
-    "SendMessage",
-    SendMessageAddress
-  );
-
   // Check if the --verify flag is present
   const shouldVerify = process.env.VERIFY === "true";
 
