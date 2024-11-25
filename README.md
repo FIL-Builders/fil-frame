@@ -1,5 +1,4 @@
 # FIL-Frame  🚀
-# This is a test to make sure CI/CD is working
 
 Tutorial video: https://youtu.be/dzg7ygwAp1Q
 
