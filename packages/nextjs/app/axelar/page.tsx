@@ -5,9 +5,9 @@ import deployedContracts from "../../contracts/deployedContracts";
 import { ethers } from "ethers";
 import { useWriteContract } from "wagmi";
 
-const FIL_CONTRACT_ADDRESS = deployedContracts[314159].SendMessage.address;
-const ETH_CONTRACT_ADDRESS = deployedContracts[11155111].SendMessage.address;
-const ABI = deployedContracts[11155111].SendMessage.abi;
+const FIL_CONTRACT_ADDRESS = (deployedContracts as any)[314159].SendMessage.address;
+const ETH_CONTRACT_ADDRESS = (deployedContracts as any)[11155111].SendMessage.address;
+const ABI = (deployedContracts as any)[11155111].SendMessage.abi;
 
 const AxelarPage: React.FC = () => {
   const [message, setMessage] = useState("");
