@@ -1,4 +1,4 @@
-export default function LogoLandscape(props) {
+export default function LogoLandscape(props: any) {
   return (
     <svg
       {...props}
