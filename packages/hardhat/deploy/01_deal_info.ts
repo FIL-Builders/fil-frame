@@ -20,11 +20,6 @@ const deployDealInfo: DeployFunction = async function (
     with a random private key in the .env file (then used on hardhat.config.ts)
     You can run the `yarn account` command to check your balance in every network.
   */
-
-  // Wait 30 seconds to ensure DealClient deployment is complete
-  console.log("⏳ Waiting for 30 seconds to ensure transaction is processed...");
-  await new Promise(resolve => setTimeout(resolve, 30000));
-
   const [deployerSigner] = await hre.ethers.getSigners();
   const deployer = await deployerSigner.getAddress();
 
