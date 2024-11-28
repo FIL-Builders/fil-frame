@@ -43,12 +43,6 @@ const deployDealClient: DeployFunction = async function (
   const shouldVerify = process.env.VERIFY === "true";
 
   if (shouldVerify) {
-    // Timeout for 10 Seconds to wait for the contract to be indexed on explorer
-    console.log(
-      "⏳ Waiting for 10 seconds for the contract to be indexed on the explorer..."
-    );
-    await new Promise((resolve) => setTimeout(resolve, 10000));
-
     console.log("🕵️‍♂️ Verifying the contract on the explorer...");
 
     const filecoinNetworks = ["calibration", "filecoin"];
