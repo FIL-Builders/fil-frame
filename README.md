@@ -199,8 +199,31 @@ To use this integration:
 4. Use the provided integration to upload files to Lighthouse
 
 ### Storacha
-*Coming soon.*
 
+The repository includes a template which makes use of Storacha for uploading files and directories to IPFS.
+
+To use this integration:
+
+1. Switch to the `storacha-nfts` branch:
+   - To switch the active branch to the `storacha-nfts` branch, run:
+  
+  ```bash
+  git checkout storacha-nfts
+  ```
+
+2. Deploy Your NFT Contract:
+   - Follow the instructions in the [Hardhat README](packages/hardhat/README.md) (in the storacha-nfts branch) to deploy your NFT contract on the Calibration network.
+
+3. Set Up Your Application:
+   - Navigate to the [Next.js README](packages/nextjs/README.md) to set up your application for uploading files and directories using Storacha.
+
+4. Using Storacha Functionalities:
+   - If you only need the functionalities to upload files to Storacha, complete the setup in the [Next.js README](packages/nextjs/README.md).
+   - Copy the `app/api` folder from [packages/nextjs/app/api](packages/nextjs/app/api).
+   - Include the Storacha hooks from [packages/nextjs/hooks/storacha](packages/nextjs/hooks/storacha).
+   - Integrate the frontend code for file inputs from [storachaUpload.tsx](packages/nextjs/app/storacha/_components/storachaUpload.tsx).
+
+* Ensure you have the necessary dependencies and configurations as outlined in the respective README files.
 
 ### Akave
 To use fil-frame with Akave integration, you need to follow the instructions to setup the env to use Akave to store data for your projects.
