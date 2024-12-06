@@ -8,7 +8,7 @@ Welcome to FIL-Frame, a starter repository designed to help developers quickly g
 ## Table of Contents 📚
 
 - [FIL-Frame](#fil-frame)
-  - [Table of Contents](#table-of-contents)
+  - [Table of Contents 📚](#table-of-contents-)
   - [Overview](#overview)
   - [Unique Features](#unique-features)
   - [Getting Started](#getting-started)
@@ -27,11 +27,12 @@ Welcome to FIL-Frame, a starter repository designed to help developers quickly g
   - [Storage Onramp Options](#storage-onramp-options-1)
     - [Lighthouse](#lighthouse)
     - [Storacha](#storacha)
+    - [Akave](#akave)
   - [Project Structure](#project-structure)
   - [Contributing](#contributing)
   - [License](#license)
 
-## Overview 🌐
+## Overview
 
 FIL-Frame is a monorepo that includes two main packages:
 
@@ -74,8 +75,6 @@ Ensure you have the following installed:
 
 ### From source code
 
-### From source code
-
 1. Clone the repository
 
 ```bash
@@ -83,23 +82,20 @@ git clone https://github.com/FIL-Builders/fil-frame
 cd fil-frame 
 ```
 
-2. (Optional) Switch to a different starter kit branch
+2. (Optional) Switch to a different starter kit branch.
+ 
 Available branches include:
 
 `lighthouse-nfts`: Integration with Lighthouse for decentralized storage.
+
 `storacha-nfts`: Integration with Storacha for decentralized storage.
+
 `akave-integration`: Integration with Akave for decentralized storage.
 
 3. Install dependencies
 
 ```bash
 yarn install
-```
-
-or
-
-```bash
-npm install
 ```
 
 ### Configuration
@@ -125,7 +121,7 @@ To use the interactive mode, simply run:
 npx create-filecoin-app
 ```
 
-You will be prompted to answer a series of questions to configure your new project. This includes your project name, and selecting your preferred storage onramp option (Lighthouse, or Storacha).
+You will be prompted to answer a series of questions to configure your new project. This includes your project name, and selecting your preferred storage onramp option (Lighthouse, Storacha, or Akave).
 
 #### Flag Mode
 
@@ -173,25 +169,12 @@ yarn compile
 yarn deploy
 ```
 
-or
-
-```bash
-npm compile
-npm deploy
-```
-
 ### Running the Frontend
 
 To start the Next.js frontend:
 
 ```bash
 yarn dev
-```
-
-or
-
-```bash
-npm run dev
 ```
 
 The application will be available at
@@ -212,11 +195,12 @@ To use this integration:
 2. Ensure you add the Lighthouse API key set in your `.env.local` file:
 `LIGHTHOUSE_API_KEY=your_lighthouse_api_key`
 3. then you can started the fil-frame app with command:
-`yarn dev` or `npm run dev`
+`yarn dev`
 4. Use the provided integration to upload files to Lighthouse
 
 ### Storacha
 *Coming soon.*
+
 
 ### Akave
 To use fil-frame with Akave integration, you need to follow the instructions to setup the env to use Akave to store data for your projects.
@@ -235,7 +219,7 @@ To use fil-frame with Akave integration, you need to follow the instructions to 
 To learn more how to use Akave to create bucket and upload  on front-end, visit [Akave docs](https://hackathon-docs.akave.ai/js-docker-example-code#bucket-operations).
 
 
-## Project Structure 🗂️
+## Project Structure
 
 ```
 my-app/
