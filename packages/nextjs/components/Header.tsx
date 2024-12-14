@@ -9,7 +9,7 @@ import { Bars3Icon, BugAntIcon } from "@heroicons/react/24/outline";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/fil-frame";
 import { useOutsideClick } from "~~/hooks/fil-frame";
 
-const LighthouseIcon = () => (
+const LitIcon = () => (
   <Image alt="Lighthouse logo" src="/icons/lit-logo.svg" width={20} height={20} className="size-5 rounded-xl" />
 );
 
@@ -27,7 +27,7 @@ export const menuLinks: HeaderMenuLink[] = [
   {
     label: "Lit x Lighthouse",
     href: "/lit_lighthouse",
-    icon: <LighthouseIcon />,
+    icon: <LitIcon />,
   },
   {
     label: "Debug Contracts",
