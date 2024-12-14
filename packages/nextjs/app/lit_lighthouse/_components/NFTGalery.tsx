@@ -5,16 +5,17 @@ import { Abi, Address } from "viem";
 import { useAccount, usePublicClient } from "wagmi";
 import { useDecryptFile } from "~~/hooks/lighthouse/useDecrypt";
 import { getIpfsGatewayUri } from "~~/hooks/lighthouse/utils";
+import { chainIdToLitNetwork } from "~~/hooks/lit/types";
 import { notification } from "~~/utils/fil-frame";
 import { useAllContracts } from "~~/utils/fil-frame/contractsData";
 
 export const NFTGallery = () => {
   const contractsData = useAllContracts();
-  const lighthouseNFT = contractsData["LighthouseNFT"];
-  const lighthouseNFTAddress = lighthouseNFT.address;
-  const lighthouseNFTAbi = lighthouseNFT.abi;
+  const litEncryptedNFT = contractsData["LitEncryptedNFT"];
+  const litEncryptedNFTAddress = litEncryptedNFT.address;
+  const litEncryptedNFTAbi = litEncryptedNFT.abi;
   const publicClient = usePublicClient();
-  const { tokensData, tokenIdsArray } = useFetchTokensData(lighthouseNFTAddress, lighthouseNFTAbi, publicClient);
+  const { tokensData, tokenIdsArray } = useFetchTokensData(litEncryptedNFTAddress, litEncryptedNFTAbi, publicClient);
 
   return (
     <div className="grid md:grid-cols-1 lg:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-4 gap-4 w-full">
@@ -23,8 +24,8 @@ export const NFTGallery = () => {
           key={tokenId}
           tokenId={tokenId}
           tokenData={tokensData?.get(tokenId)}
-          lighthouseNFTAddress={lighthouseNFTAddress}
-          lighthouseNFTAbi={lighthouseNFTAbi}
+          litEncryptedNFTAddress={litEncryptedNFTAddress}
+          litEncryptedNFTAbi={litEncryptedNFTAbi}
         />
       ))}
     </div>
@@ -36,13 +37,13 @@ export default NFTGallery;
 const NFTItem = ({
   tokenId,
   tokenData,
-  lighthouseNFTAddress,
-  lighthouseNFTAbi,
+  litEncryptedNFTAddress,
+  litEncryptedNFTAbi,
 }: {
   tokenId: number;
   tokenData?: { isOpen: boolean; cid: string };
-  lighthouseNFTAddress: Address;
-  lighthouseNFTAbi: Abi;
+  litEncryptedNFTAddress: Address;
+  litEncryptedNFTAbi: Abi;
 }) => {
   const [image, setImage] = useState<File | null>(null);
   const [accessChecked, setAccessChecked] = useState(false);
@@ -50,27 +51,28 @@ const NFTItem = ({
   const { mutateAsync: hasAccess } = useGetHasAccess();
   const { mutateAsync: decrypt } = useDecryptFile();
 
-  const { address } = useAccount();
+  const { address, chainId } = useAccount();
 
   useEffect(() => {
     const checkAccess = async () => {
       if (tokenData && !tokenData.isOpen) {
         const access = (await hasAccess({
           tokenId: BigInt(tokenId),
-          nftContractAddress: lighthouseNFTAddress,
-          ntfContractAbi: lighthouseNFTAbi,
+          nftContractAddress: litEncryptedNFTAddress,
+          ntfContractAbi: litEncryptedNFTAbi,
         })) as boolean;
         setHasContentAccess(access);
         setAccessChecked(true);
       }
     };
     checkAccess();
-  }, [tokenData, hasAccess, tokenId, lighthouseNFTAddress,lighthouseNFTAbi, address]);
+  }, [tokenData, hasAccess, tokenId, litEncryptedNFTAddress, litEncryptedNFTAbi, address]);
 
   const handleDecrypt = async () => {
     if (tokenData && hasContentAccess) {
+      const chain = chainIdToLitNetwork[chainId as number];
       const notificationId = notification.loading("Decrypting NFT...");
-      const blob = (await decrypt({ cid: tokenData.cid })) as Blob;
+      const blob = (await decrypt({ cid: tokenData.cid, litChain: chain })) as Blob;
       const ImageFile = new File([blob], `NFT_${tokenId}.png`, { type: "image/png" });
       notification.remove(notificationId);
       notification.success("NFT decrypted successfully!");

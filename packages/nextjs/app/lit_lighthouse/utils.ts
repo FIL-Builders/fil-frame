@@ -1,14 +1,13 @@
 import { useMutation, useQuery } from "@tanstack/react-query";
 import { Abi, AbiFunction, Address } from "viem";
 import { useAccount, usePublicClient } from "wagmi";
-import { LighthouseChains } from "~~/hooks/lighthouse/utils";
 
 // Change the contract function name to match the contract function name in the contract ABI that you want to interact with
 export const mintPrivateFunction: AbiFunction = {
   inputs: [
     {
       internalType: "string",
-      name: "lighthouse_cid",
+      name: "file_cid",
       type: "string",
     },
     {
@@ -28,7 +27,7 @@ export const mintFunction: AbiFunction = {
   inputs: [
     {
       internalType: "string",
-      name: "lighthouse_cid",
+      name: "file_cid",
       type: "string",
     },
   ],
@@ -38,60 +37,38 @@ export const mintFunction: AbiFunction = {
   type: "function",
 };
 
-export const getConditions = (contractAddress: string, chainID: number, tokenId: number) => {
-  return {
-    conditions: [
-      {
-        id: 1,
-        chain: LighthouseChains[chainID as keyof typeof LighthouseChains]?.name,
-        method: "hasAccess",
-        standardContractType: "Custom",
-        contractAddress: `${contractAddress}`,
-        returnValueTest: {
-          comparator: "==",
-          value: "true",
-        },
-        parameters: [`${tokenId}`, ":userAddress"],
-        inputArrayType: ["uint256", "address"],
-        outputType: "bool",
-      },
-    ],
-    aggregator: "([1])",
-  };
-};
-
 // Custom hook to fetch token data using useQuery
-export const useFetchTokensData = (lighthouseNFTAddress: Address, lighthouseNFTAbi: any, publicClient: any) => {
+export const useFetchTokensData = (litEncryptedNFTAddress: Address, litEncryptedNFTAbi: any, publicClient: any) => {
   const { address } = useAccount();
 
   const { data: tokensData, isLoading } = useQuery({
-    queryKey: ["tokensData", lighthouseNFTAddress, address],
+    queryKey: ["tokensData", litEncryptedNFTAddress, address],
     queryFn: async () => {
-      if (!lighthouseNFTAddress || !publicClient) {
+      if (!litEncryptedNFTAddress || !publicClient) {
         return new Map<number, { isOpen: boolean; cid: string }>();
       }
 
       const totalNFTs = (await publicClient.readContract({
-        address: lighthouseNFTAddress,
+        address: litEncryptedNFTAddress,
         functionName: "getTotalSupply",
-        abi: lighthouseNFTAbi,
+        abi: litEncryptedNFTAbi,
       })) as number;
 
       const dataMap = new Map<number, { isOpen: boolean; cid: string }>();
       for (let tokenId = 1; tokenId <= totalNFTs; tokenId++) {
         try {
           const tokenUriData = (await publicClient.readContract({
-            address: lighthouseNFTAddress,
+            address: litEncryptedNFTAddress,
             functionName: "tokenURI",
             args: [BigInt(tokenId)],
-            abi: lighthouseNFTAbi,
+            abi: litEncryptedNFTAbi,
           })) as string;
 
           const isOpenToken = (await publicClient.readContract({
-            address: lighthouseNFTAddress,
+            address: litEncryptedNFTAddress,
             functionName: "isOpenToken",
             args: [BigInt(tokenId)],
-            abi: lighthouseNFTAbi,
+            abi: litEncryptedNFTAbi,
           })) as boolean;
 
           dataMap.set(tokenId, { isOpen: isOpenToken, cid: tokenUriData });

@@ -7,9 +7,7 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
  *
  * @param hre HardhatRuntimeEnvironment object.
  */
-const deployLighthouseNFT: DeployFunction = async function (
-  hre: HardhatRuntimeEnvironment
-) {
+const deployLitEncryptedNFT: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   /*
     On localhost, the deployer account is the one that comes with Hardhat, which is already funded.
 
@@ -25,7 +23,7 @@ const deployLighthouseNFT: DeployFunction = async function (
 
   const { deploy } = hre.deployments;
 
-  const LighthouseNFT = await deploy("LighthouseNFT", {
+  const LitEncryptedNFT = await deploy("LitEncryptedNFT", {
     from: deployer,
     // Contract constructor arguments
     args: [],
@@ -35,18 +33,16 @@ const deployLighthouseNFT: DeployFunction = async function (
     autoMine: true,
   });
 
-  console.log("🚀 LighthouseNFT deployed at: ", LighthouseNFT.address);
-  const LighthouseNFTAddress = LighthouseNFT.address;
+  console.log("🚀 LitEncryptedNFT deployed at: ", LitEncryptedNFT.address);
+  const LitEncryptedNFTAddress = LitEncryptedNFT.address;
 
   // Check if the --verify flag is present
   const shouldVerify = process.env.VERIFY === "true";
 
   if (shouldVerify) {
     // Timeout for 10 Seconds to wait for the contract to be indexed on explorer
-    console.log(
-      "⏳ Waiting for 15 seconds for the contract to be indexed on the explorer..."
-    );
-    await new Promise((resolve) => setTimeout(resolve, 15000));
+    console.log("⏳ Waiting for 15 seconds for the contract to be indexed on the explorer...");
+    await new Promise(resolve => setTimeout(resolve, 15000));
 
     console.log("🕵️‍♂️ Verifying the contract on the explorer...");
 
@@ -54,19 +50,19 @@ const deployLighthouseNFT: DeployFunction = async function (
     if (filecoinNetworks.includes(hre.network.name)) {
       // Verify the contract on the filfox explorer
       await hre.run("verify-contract", {
-        contractName: "LighthouseNFT",
+        contractName: "LitEncryptedNFT",
       });
     } else {
       await hre.run("verify:verify", {
-        address: LighthouseNFTAddress,
+        address: LitEncryptedNFTAddress,
         constructorArguments: [],
       });
     }
   }
 };
 
-export default deployLighthouseNFT;
+export default deployLitEncryptedNFT;
 
 // Tags are useful if you have multiple deploy files and only want to run one of them.
 // e.g. yarn deploy --tags DealClient
-deployLighthouseNFT.tags = ["LighthouseNFT"];
+deployLitEncryptedNFT.tags = ["LitEncryptedNFT"];

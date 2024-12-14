@@ -1,5 +1,4 @@
-import { accessControlConditions } from "~~/hooks/lighthouse/types";
-import { useLighthouseEncryptedFilesUpload, useLighthouseFilesUpload } from "~~/hooks/lighthouse/useUpload";
+import { useLighthouseFilesUpload, useUploadEncryptedFile } from "~~/hooks/lighthouse/useUpload";
 
 export const LighthouseFileUpload = ({
   handleGetCID,
@@ -77,19 +76,19 @@ export const LighthouseFolderUpload = ({
   );
 };
 
-export const LigthouseEnctyptedFileUpload = ({
+export const LigthouseLitEnctyptedFileUpload = ({
   handleGetCID,
   acceptMimeType,
-  accessControlConditions,
+  tokenId,
+  contractAddress,
 }: {
   handleGetCID: (cid: string) => void;
   acceptMimeType?: string;
-  accessControlConditions: {
-    conditions: accessControlConditions[];
-    aggregate: string;
-  };
+  tokenId: number;
+  chain: string;
+  contractAddress: string;
 }) => {
-  const uploadEncryptedFile = useLighthouseEncryptedFilesUpload({
+  const uploadEncryptedFile = useUploadEncryptedFile({
     onUploadSuccess: cid => {
       handleGetCID(cid);
     },
@@ -101,7 +100,11 @@ export const LigthouseEnctyptedFileUpload = ({
   const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
-      await uploadEncryptedFile([file], accessControlConditions);
+      await uploadEncryptedFile({
+        files: [file],
+        tokenId,
+        contractAddress,
+      });
       event.target.value = "";
     }
   };
@@ -113,50 +116,6 @@ export const LigthouseEnctyptedFileUpload = ({
         onChange={handleUpload}
         // accept everything
         accept={acceptMimeType ?? "*"}
-        className="file-input border-base-300 border shadow-md shadow-secondary rounded-3xl"
-      />
-    </>
-  );
-};
-
-export const LighthouseEncryptedFolderUpload = ({
-  handleGetCID,
-  acceptMimeType,
-  accessControlConditions,
-}: {
-  handleGetCID: (cid: string) => void;
-  acceptMimeType?: string;
-  accessControlConditions: {
-    conditions: accessControlConditions[];
-    aggregate: string;
-  };
-}) => {
-  const uploadEncryptedFiles = useLighthouseEncryptedFilesUpload({
-    onUploadSuccess: cid => {
-      handleGetCID(cid);
-    },
-    onUploadError: error => {
-      console.error("Error uploading files:", error);
-    },
-  });
-
-  const handleUpload = async (event: React.ChangeEvent<HTMLInputElement>) => {
-    const fileList = event.target.files;
-    // Convert FileList to array of files
-    const files = Array.from(fileList || []);
-    if (files && files.length > 0) {
-      await uploadEncryptedFiles(files, accessControlConditions);
-      event.target.value = "";
-    }
-  };
-
-  return (
-    <>
-      <input
-        type="file"
-        multiple
-        accept={acceptMimeType ?? "*"}
-        onChange={handleUpload}
         className="file-input border-base-300 border shadow-md shadow-secondary rounded-3xl"
       />
     </>

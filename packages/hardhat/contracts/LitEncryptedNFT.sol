@@ -3,7 +3,7 @@ pragma solidity ^0.8.23;
 
 import {ERC721} from "@openzeppelin/contracts/token/ERC721/ERC721.sol";
 
-contract LighthouseNFT is ERC721 {
+contract LitEncryptedNFT is ERC721 {
     // Counter for the next token ID
     uint256 private _tokenIdCounter;
 
@@ -17,23 +17,23 @@ contract LighthouseNFT is ERC721 {
     mapping(uint256 => bool) private openAccessTokens;
 
     // Constructor to initialize the ERC721 token with a name and symbol
-    constructor() ERC721("LighthouseNFT", "LNFT") {}
+    constructor() ERC721("LitEncryptedNFT", "LNFT") {}
 
     // Function to mint a new token with open access
-    function mint(string memory lighthouse_cid) public {
+    function mint(string memory file_cid) public {
         _tokenIdCounter++; // Increment the token ID counter
         uint256 tokenId = _tokenIdCounter;
         _mint(msg.sender, tokenId); // Mint the token to the sender
-        _tokenURIs[tokenId] = lighthouse_cid; // Set the token URI
+        _tokenURIs[tokenId] = file_cid; // Set the token URI
         openAccessTokens[tokenId] = true; // Mark the token as open access
     }
 
     // Function to mint a new token with restricted access
-    function mintPrivate(string memory lighthouse_cid, address[] memory accessList) public {
+    function mintPrivate(string memory file_cid, address[] memory accessList) public {
         _tokenIdCounter++; // Increment the token ID counter
         uint256 tokenId = _tokenIdCounter;
         _mint(msg.sender, tokenId); // Mint the token to the sender
-        _tokenURIs[tokenId] = lighthouse_cid; // Set the token URI
+        _tokenURIs[tokenId] = file_cid; // Set the token URI
         tokenContentAccess[tokenId][msg.sender] = true; // Grant access to the sender
         // Grant access to the specified addresses
         for (uint i = 0; i < accessList.length; i++) {

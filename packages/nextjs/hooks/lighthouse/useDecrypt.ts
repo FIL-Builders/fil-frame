@@ -1,21 +1,23 @@
-import { decrypt } from ".";
-import { getUserJWT } from "./utils";
+import { Lit } from "../lit/utils";
+import { getIpfsGatewayUri } from "./utils";
+import { EncryptToJsonPayload } from "@lit-protocol/types";
 import { useMutation } from "@tanstack/react-query";
-import { useAccount, useWalletClient } from "wagmi";
+
+export const fetchIPFS = async (cid: string) => {
+  const res = await fetch(getIpfsGatewayUri(cid));
+  const data = await res.json();
+  return data;
+};
 
 export const useDecryptFile = () => {
-  const { data: walletClient } = useWalletClient();
-  const { address } = useAccount();
   return useMutation({
-    mutationFn: async ({ cid }: { cid: string }) => {
-      if (!walletClient || !address) {
-        throw new Error("Wallet client not found");
-      }
-      const jwt = await getUserJWT(address, walletClient);
-      if (!jwt) {
-        throw new Error("Error signing in to Lighthouse");
-      }
-      return decrypt(cid, address, jwt);
+    mutationFn: async ({ cid, litChain }: { cid: string; litChain: string }) => {
+      const lit = new Lit(litChain);
+
+      const data = (await fetchIPFS(cid)) as EncryptToJsonPayload;
+
+      const blob = await lit.decrypt(data);
+      return blob?.decryptedString;
     },
   });
 };

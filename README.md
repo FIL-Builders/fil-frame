@@ -4,7 +4,7 @@ Kickstart your Filecoin dApp using this open-source development stack. This bran
 
 - uploading files and directories to IPFS.
 - uploading encrypted files and directories to IPFS.
-- Interact with the LighthouseNFT to see the usage of these features
+- Interact with the LitEncryptedNFT to see the usage of these features
 
 ## Features
 

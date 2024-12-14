@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { useEffect } from "react";
 import { Abi, AbiFunction } from "abitype";
 import { Address, TransactionReceipt } from "viem";
@@ -40,13 +40,18 @@ export const WriteContractFunctionForm = ({
   inheritedFrom,
   functionPropsWithIndexAndValue = [],
 }: WriteContractFunctionProps) => {
-  const setFormValue = (functionName: string, inputIndex: number, value: any) => {
-    const key = getFunctionInputKey(functionName, abiFunction.inputs[inputIndex], inputIndex);
-    setForm(prevForm => ({
-      ...prevForm,
-      [key]: value,
-    }));
-  };
+  const [form, setForm] = useState<Record<string, any>>(() => getInitialFormState(abiFunction));
+
+  const setFormValue = useCallback(
+    (functionName: string, inputIndex: number, value: any) => {
+      const key = getFunctionInputKey(functionName, abiFunction.inputs[inputIndex], inputIndex);
+      setForm(prevForm => ({
+        ...prevForm,
+        [key]: value,
+      }));
+    },
+    [abiFunction.inputs],
+  );
 
   useEffect(() => {
     functionPropsWithIndexAndValue.forEach(({ value, index }) => {
@@ -54,7 +59,6 @@ export const WriteContractFunctionForm = ({
     });
   }, [functionPropsWithIndexAndValue, abiFunction.name, setFormValue]);
 
-  const [form, setForm] = useState<Record<string, any>>(() => getInitialFormState(abiFunction));
   const [txValue, setTxValue] = useState<string>("");
   const { chain } = useAccount();
   const writeTxn = useTransactor();

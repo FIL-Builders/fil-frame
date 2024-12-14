@@ -9,7 +9,7 @@ import { useDeployedContractInfo, useNetworkColor } from "~~/hooks/fil-frame";
 import { useTargetNetwork } from "~~/hooks/fil-frame/useTargetNetwork";
 import { ContractName } from "~~/utils/fil-frame/contract";
 
-type LighthouseNFTUIProps = {
+type LitEncryptedNFTUIProps = {
   contractName: ContractName;
   className?: string;
 };
@@ -17,7 +17,7 @@ type LighthouseNFTUIProps = {
 /**
  * UI component to interface with deployed contracts.
  **/
-export const LighthouseNFTUI = ({ contractName, className = "" }: LighthouseNFTUIProps) => {
+export const LitEncryptedNFTUI = ({ contractName, className = "" }: LitEncryptedNFTUIProps) => {
   const [refreshDisplayVariables] = useReducer(value => !value, false);
   const { targetNetwork } = useTargetNetwork();
   const { data: deployedContractData, isLoading: deployedContractLoading } = useDeployedContractInfo(contractName);

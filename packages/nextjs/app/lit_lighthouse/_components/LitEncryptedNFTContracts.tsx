@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { LighthouseNFTUI } from "./LighthouseNFTUI";
+import { LitEncryptedNFTUI } from "./LitEncryptedNFTUI";
 import { MintNFTForm } from "./MintNFTForm";
 import { MintPrivateNFTForm } from "./MintPrivateNFTForm";
 import { useLocalStorage } from "usehooks-ts";
@@ -11,7 +11,7 @@ import { useAllContracts } from "~~/utils/fil-frame/contractsData";
 
 const selectedContractStorageKey = "FilFrame2.selectedContract";
 
-export function LighthouseNFTContracts() {
+export function LitEncryptedNFTContracts() {
   const contractsData = useAllContracts();
   const contractNames = useMemo(() => Object.keys(contractsData) as ContractName[], [contractsData]);
 
@@ -85,7 +85,7 @@ export function LighthouseNFTContracts() {
             </div>
 
             {contractNames.map(contractName => (
-              <LighthouseNFTUI
+              <LitEncryptedNFTUI
                 key={contractName}
                 contractName={contractName}
                 className={contractName === selectedContract ? "" : "hidden"}

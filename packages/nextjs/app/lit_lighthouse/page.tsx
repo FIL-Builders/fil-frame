@@ -1,6 +1,6 @@
 "use client";
 
-import { LighthouseNFTContracts } from "./_components/LighthouseNFTContracts";
+import { LitEncryptedNFTContracts } from "./_components/LitEncryptedNFTContracts";
 import type { NextPage } from "next";
 import { useAccount } from "wagmi";
 import { Address } from "~~/components/fil-frame";
@@ -37,7 +37,7 @@ const Home: NextPage = () => {
           </p>
         </div>
       </div>
-      <LighthouseNFTContracts />
+      <LitEncryptedNFTContracts />
     </>
   );
 };
