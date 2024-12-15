@@ -4,17 +4,12 @@ pragma solidity ^0.8.23;
 import "@pythnetwork/pyth-sdk-solidity/IPyth.sol";
  
 contract PythContract {
-  IPyth pyth;
-  bytes32 ethUsdPriceId;
- 
-  constructor(address _pyth, bytes32 _ethUsdPriceId) {
-    pyth = IPyth(_pyth);
-    ethUsdPriceId = _ethUsdPriceId;
-  }
+  IPyth pyth = IPyth(0xA2aa501b19aff244D90cc15a4Cf739D2725B5729);
+  bytes32 filUsdPriceId = 0x150ac9b959aee0051e4091f0ef5216d941f590e1c5e7f91cf7635b5c11628c0e;
  
   function mint() public payable {
     PythStructs.Price memory price = pyth.getPriceNoOlderThan(
-      ethUsdPriceId,
+      filUsdPriceId,
       60
     );
  
