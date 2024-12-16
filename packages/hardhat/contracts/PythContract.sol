@@ -7,7 +7,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
  
 contract PythContract is ERC721URIStorage, Ownable {
   uint256 private mintedTicketCount;
-  IPyth pyth = IPyth(0xDd24F84d36BF92C65F92307595335bdFab5Bbd21);
+  IPyth pyth = IPyth(0xA2aa501b19aff244D90cc15a4Cf739D2725B5729);
   bytes32 filUsdPriceId = 0x150ac9b959aee0051e4091f0ef5216d941f590e1c5e7f91cf7635b5c11628c0e;
  
   constructor() ERC721("FIL-B NFT", "FILB") Ownable(msg.sender) {}

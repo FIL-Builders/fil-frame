@@ -76,8 +76,8 @@ const Home: NextPage = () => {
     }
     if (hash) {
       console.log("Transaction submitted! Hash:", hash);
-      const etherscanUrl = `https://sepolia.etherscan.io/tx/${hash}`;
-      console.log("View on Etherscan:", etherscanUrl);
+      const etherscanUrl = `https://calibration.filscan.io/en/message/${hash}/`;
+      console.log("View on Filscan:", etherscanUrl);
     }
   }, [isError, error, hash]);
 
