@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useCallback, useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import LogoLandscape from "./svg/LogoLandscape";
@@ -21,8 +20,8 @@ export const menuLinks: HeaderMenuLink[] = [
     href: "/",
   },
   {
-    label: "Deal Client",
-    href: "/dealClient",
+    label: "Pyth",
+    href: "/pyth",
   },
   {
     label: "Debug Contracts",

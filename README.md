@@ -170,15 +170,9 @@ To compile and deploy the smart contracts:
 
 ```bash
 yarn compile
-yarn deploy
+yarn deploy --network calibration
 ```
 
-or
-
-```bash
-npm compile
-npm deploy
-```
 
 ### Running the Frontend
 
