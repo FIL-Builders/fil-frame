@@ -1,18 +1,40 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
+import Image from "next/image";
 import deployedContracts from "../../contracts/deployedContracts";
 import { EvmPriceServiceConnection } from "@pythnetwork/pyth-evm-js";
 import { NextPage } from "next";
 import { parseEther } from "viem";
 import { useAccount } from "wagmi";
 import { useWalletClient, useWriteContract } from "wagmi";
+import { ArrowPathIcon } from "@heroicons/react/24/solid";
 
 const Home: NextPage = () => {
   const { address: connectedAddress } = useAccount();
   const { data: walletClient } = useWalletClient();
+  const [price, setPrice] = useState(0);
 
   const { writeContract, data: hash, isError, error } = useWriteContract();
+
+  const fetchFilPrice = async () => {
+    try {
+      const response = await fetch(
+        "https://hermes.pyth.network/v2/updates/price/latest?ids[]=0x150ac9b959aee0051e4091f0ef5216d941f590e1c5e7f91cf7635b5c11628c0e",
+      );
+      const data = await response.json();
+      const oneDollarInFil = 1 / (data.parsed[0].price.price * 10 ** data.parsed[0].price.expo);
+      const actualPrice = oneDollarInFil + oneDollarInFil * 0.01;
+      setPrice(Number(actualPrice.toFixed(4)));
+      console.log("Pyth Price Data:", data.parsed[0].price);
+    } catch (error) {
+      console.error("Error fetching Pyth data:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchFilPrice();
+  }, []);
 
   const handleUpdateAndMint = async () => {
     try {
@@ -62,17 +84,34 @@ const Home: NextPage = () => {
   }, [isError, error, hash]);
 
   return (
-    <>
-      <div>
-        <h1>Pyth</h1>
-        <button
-          onClick={handleUpdateAndMint}
-          className="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded"
-        >
-          Mint
-        </button>
+    <div className="flex justify-center min-h-screen bg-base-200">
+      <div className="card w-96 mt-10 bg-white shadow-xl" style={{ height: "560px" }}>
+        <figure className="px-10 pt-10">
+          <Image
+            src="/fil-b-nft.png"
+            alt="FIL-B NFT"
+            className="rounded-xl aspect-square object-cover"
+            width={500}
+            height={500}
+          />
+        </figure>
+        <div className="card-body">
+          <h2 className="card-title text-black">FIL-B NFT</h2>
+          <div className="flex justify-between items-center">
+            <span className="text-lg font-semibold text-black">~{price} FIL</span>
+            <ArrowPathIcon
+              onClick={fetchFilPrice}
+              className="h-5 w-5 text-black cursor-pointer hover:rotate-180 transition-transform"
+            />
+          </div>
+          <div className="card-actions justify-end mt-4">
+            <button onClick={handleUpdateAndMint} className="btn btn-primary w-full text-lg">
+              Mint
+            </button>
+          </div>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 
