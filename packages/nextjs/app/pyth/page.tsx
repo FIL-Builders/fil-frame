@@ -10,18 +10,18 @@ import { useAccount } from "wagmi";
 import { useWalletClient, useWriteContract } from "wagmi";
 import { ArrowPathIcon } from "@heroicons/react/24/solid";
 
+const FIL_PRICE_FEED_ID = "0x150ac9b959aee0051e4091f0ef5216d941f590e1c5e7f91cf7635b5c11628c0e";
+const PYTH_FIL_USD_ENDPOINT = `https://hermes.pyth.network/v2/updates/price/latest?ids[]=${FIL_PRICE_FEED_ID}`;
+
 const Home: NextPage = () => {
   const { address: connectedAddress } = useAccount();
   const { data: walletClient } = useWalletClient();
   const [price, setPrice] = useState(0);
-
   const { writeContract, data: hash, isError, error } = useWriteContract();
 
   const fetchFilPrice = async () => {
     try {
-      const response = await fetch(
-        "https://hermes.pyth.network/v2/updates/price/latest?ids[]=0x150ac9b959aee0051e4091f0ef5216d941f590e1c5e7f91cf7635b5c11628c0e",
-      );
+      const response = await fetch(PYTH_FIL_USD_ENDPOINT);
       const data = await response.json();
       const oneDollarInFil = 1 / (data.parsed[0].price.price * 10 ** data.parsed[0].price.expo);
       const actualPrice = oneDollarInFil + oneDollarInFil * 0.01;
@@ -44,13 +44,11 @@ const Home: NextPage = () => {
       }
 
       const connection = new EvmPriceServiceConnection("https://hermes.pyth.network");
-      const priceIds = ["0x150ac9b959aee0051e4091f0ef5216d941f590e1c5e7f91cf7635b5c11628c0e"];
+      const priceIds = [FIL_PRICE_FEED_ID];
       const priceFeedUpdateData = await connection.getPriceFeedsUpdateData(priceIds);
       console.log("Retrieved Pyth price update:", priceFeedUpdateData);
 
-      const response = await fetch(
-        "https://hermes.pyth.network/v2/updates/price/latest?ids[]=0x150ac9b959aee0051e4091f0ef5216d941f590e1c5e7f91cf7635b5c11628c0e",
-      );
+      const response = await fetch(PYTH_FIL_USD_ENDPOINT);
       const data = await response.json();
       console.log("Pyth Price Data:", data.parsed[0].price.price * 10 ** data.parsed[0].price.expo);
       console.log("Submitting transaction...");
