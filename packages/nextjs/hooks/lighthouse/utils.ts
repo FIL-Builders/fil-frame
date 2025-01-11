@@ -22,7 +22,6 @@ export const getIpfsCID = (ipfsCIDLink: string) => {
   return ipfsCIDLink.replace(LIGHTHOUSE_IPFS_GATEWAY, "");
 };
 
-
 export const getLighthouseAPIKey = (userAddress: string) => {
   let apiKey: string | null = null;
   try {
@@ -33,12 +32,12 @@ export const getLighthouseAPIKey = (userAddress: string) => {
 
 export const getUserAPIKey = async (address: Hex, walletClient: WalletClient) => {
   const addressLowerCase = address.toLowerCase();
-  let apiKey = getLighthouseAPIKey(address);
+  let apiKey = getLighthouseAPIKey(addressLowerCase);
   if (!apiKey) {
     try {
       let notificationId = notification.info("Sign in to Lighthouse to upload files");
       const verificationMessage = (
-        await axios.get(`https://api.lighthouse.storage/api/auth/get_message?publicKey=${addressLowerCase}`)
+        await axios.get(`https://api.lighthouse.storage/api/auth/get_message?publicKey=${address}`)
       ).data;
       notification.remove(notificationId);
       notificationId = notification.loading("Signing message...");
@@ -46,7 +45,7 @@ export const getUserAPIKey = async (address: Hex, walletClient: WalletClient) =>
         account: address,
         message: verificationMessage,
       });
-      const response = await lighthouse.getApiKey(addressLowerCase, signedMessage);
+      const response = await lighthouse.getApiKey(address, signedMessage);
       notification.success("Signed in to Lighthouse");
       notification.remove(notificationId);
       apiKey = response.data.apiKey;
