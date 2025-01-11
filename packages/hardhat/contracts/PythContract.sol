@@ -12,7 +12,7 @@ contract PythContract is ERC721URIStorage, Ownable {
  
   constructor() ERC721("FIL-B NFT", "FILB") Ownable(msg.sender) {}
 
-  function mint() public payable {
+  function mint(string memory cid) public payable {
     PythStructs.Price memory price = pyth.getPriceNoOlderThan(
       filUsdPriceId,
       60
@@ -27,10 +27,7 @@ contract PythContract is ERC721URIStorage, Ownable {
 
       _safeMint(msg.sender, newTicketId);
 
-      _setTokenURI(
-            newTicketId,
-            "ipfs://bafkreicj46qq62emsjp77c5u4iw2fwgmbrvd7vaig4jso4qg56mz3y4hfm"
-        );
+      _setTokenURI(newTicketId, cid);
 
       mintedTicketCount++;
     } else {
@@ -38,11 +35,11 @@ contract PythContract is ERC721URIStorage, Ownable {
     }
   }
  
-  function updateAndMint(bytes[] calldata pythPriceUpdate) external payable {
+  function updateAndMint(bytes[] calldata pythPriceUpdate, string memory cid) external payable {
     uint updateFee = pyth.getUpdateFee(pythPriceUpdate);
     pyth.updatePriceFeeds{ value: updateFee }(pythPriceUpdate);
  
-    mint();
+    mint(cid);
   }
  
   // Error raised if the payment is not sufficient
