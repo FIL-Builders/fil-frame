@@ -22,6 +22,8 @@ const deployerPrivateKey =
 const etherscanApiKey =
   process.env.ETHERSCAN_API_KEY || "DNXJA8RX2Q3VZ4URQIWP7Z68CJXQZSC6AW";
 
+const lava_api_key = process.env.LAVA_API_KEY || "b329de6dcc6f783cb22488dbd4735782";
+
 const config: HardhatUserConfig = {
   solidity: {
     version: "0.8.23",
@@ -45,24 +47,24 @@ const config: HardhatUserConfig = {
     // If the network you are looking for is not here you can add new network settings
     hardhat: {
       forking: {
-        url: `https://eth-mainnet.alchemyapi.io/v2/${providerApiKey}`,
+        url: `https://g.w.lavanet.xyz:443/gateway/eth/rpc-http/${lava_api_key}`,
         enabled: process.env.MAINNET_FORKING_ENABLED === "true",
       },
     },
     filecoin: {
-      url: "https://rpc.ankr.com/filecoin",
+      url: `https://g.w.lavanet.xyz:443/gateway/fvm/rpc-http/${lava_api_key}`,
       accounts: [deployerPrivateKey],
     },
     calibration: {
-      url: "https://rpc.ankr.com/filecoin_testnet",
+      url: `https://g.w.lavanet.xyz:443/gateway/fvmt/rpc-http/${lava_api_key}`,
       accounts: [deployerPrivateKey],
     },
     sepolia: {
-      url: `https://eth-sepolia.g.alchemy.com/v2/${providerApiKey}`,
+      url: `https://g.w.lavanet.xyz:443/gateway/sep1/rpc-http/${providerApiKey}`,
       accounts: [deployerPrivateKey],
     },
     arbitrumSepolia: {
-      url: `https://arb-sepolia.g.alchemy.com/v2/${providerApiKey}`,
+      url: `https://g.w.lavanet.xyz:443/gateway/arbs/rpc-http/${providerApiKey}`,
       accounts: [deployerPrivateKey],
     },
     optimismSepolia: {
