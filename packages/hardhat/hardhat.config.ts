@@ -22,7 +22,7 @@ const deployerPrivateKey =
 const etherscanApiKey =
   process.env.ETHERSCAN_API_KEY || "DNXJA8RX2Q3VZ4URQIWP7Z68CJXQZSC6AW";
 
-const lava_api_key = process.env.LAVA_API_KEY || "lava-api";
+const lava_api_key = process.env.LAVA_API_KEY || "b329de6dcc6f783cb22488dbd4735782";
 
 const config: HardhatUserConfig = {
   solidity: {
