@@ -102,7 +102,6 @@ const Home: NextPage = () => {
       const connection = new EvmPriceServiceConnection("https://hermes.pyth.network");
       const priceIds = [FIL_PRICE_FEED_ID];
       const priceFeedUpdateData = await connection.getPriceFeedsUpdateData(priceIds);
-      console.log("Retrieved Pyth price update:", priceFeedUpdateData);
 
       const response = await fetch(PYTH_FIL_USD_ENDPOINT);
       const data = await response.json();

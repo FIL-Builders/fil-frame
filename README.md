@@ -257,8 +257,8 @@ The pyth page will be available at
 ![image](https://github.com/user-attachments/assets/f9982d10-4e9a-4dc1-9a67-d8d3dcd421a8)
 
 - There are two options to mint nft giving users option to upload images for their NFT using lighthouse storage.
+- Get the tFIL token from [faucet](https://docs.filecoin.io/smart-contracts/developing-contracts/get-test-tokens).
 - Here is the walkthrough to mint an NFT:
-- Get the tFIL token from faucet.
 
 ![Your setup should look like this](fil-pyth.gif)
 
