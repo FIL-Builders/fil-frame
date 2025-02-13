@@ -34,7 +34,6 @@ const Home: NextPage = () => {
 
   const uploadFile = useLighthouseFilesUpload({
     onUploadSuccess: async (cid: string) => {
-      console.log("Image uploaded successfully", cid);
       setCid(cid);
       const metadata = {
         name: "FIL-B NFT",
@@ -56,7 +55,6 @@ const Home: NextPage = () => {
       const oneDollarInFil = 1 / (data.parsed[0].price.price * 10 ** data.parsed[0].price.expo);
       const actualPrice = oneDollarInFil + oneDollarInFil * 0.01;
       setPrice(Number(actualPrice.toFixed(4)));
-      console.log("Pyth Price Data:", data.parsed[0].price);
     } catch (error) {
       console.error("Error fetching Pyth data:", error);
     }
