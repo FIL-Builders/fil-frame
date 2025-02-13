@@ -189,7 +189,7 @@ npm run dev
 ```
 
 The application will be available at
-[`https://localhost:3000`](https://localhost:3000)
+[`https://localhost:3000`](http://localhost:3000)
 
 ![Your setup should look like this](lighthouse-filframe.gif)
 *Fil-Frame, with the Lighthouse integration.*
@@ -227,6 +227,43 @@ To use fil-frame with Akave integration, you need to follow the instructions to 
 - In case you're using a different port for your api make sure you update `AKAVE_BACKEND_URL` in your .env file.
 
 To learn more how to use Akave to create bucket and upload  on front-end, visit [Akave docs](https://hackathon-docs.akave.ai/js-docker-example-code#bucket-operations).
+
+### Pyth Oracle Page
+We created a pyth page to fetch filcoin price using pyth oracle and lighouse allowing users to mint an NFT for 1 dollar of FIL.
+Here is the walkthrough of setuping the project and minting an NFT:
+- Follow the the above instructions to setup the project locally.
+- Login to [Lighthouse](https://files.lighthouse.storage/) account and ensure you add the Lighthouse API key set in your `packages/nextjs/.env.local` file: `LIGHTHOUSE_API_KEY=your_lighthouse_api_key`.
+- To compile and deploy the smart contracts:
+
+```bash
+yarn compile
+yarn deploy --network calibration
+```
+- To start the Next.js frontend:
+
+```bash
+yarn dev
+```
+
+or
+
+```bash
+npm run dev
+```
+
+The pyth page will be available at
+[`https://localhost:3000/pyth`](http://localhost:3000/pyth)
+
+![image](https://github.com/user-attachments/assets/f9982d10-4e9a-4dc1-9a67-d8d3dcd421a8)
+
+- There are two options to mint nft giving users option to upload images for their NFT using lighthouse storage.
+- Here is the walkthrough to mint an NFT:
+- Get the tFIL token from faucet.
+
+![Your setup should look like this](fil-pyth.gif)
+
+- After confirmation from metamask, the nft will get minted.
+- You can verify the transaction from the [explorer](https://calibration.filscan.io/address/t410fwuiyijiwolu2xygfasqqjgjy2f5iool67azghra/)
 
 
 ## Project Structure 🗂️
