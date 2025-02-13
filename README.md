@@ -1,6 +1,7 @@
 # FIL-Frame
 
 ![Fil-Frame](fil-frame.gif)
+
 *Fil-Frame setup in action.*
 
 Welcome to FIL-Frame, a starter repository designed to help developers quickly get started with building decentralized applications (dApps) on the Filecoin network. This repository provides various integration options, including an example template using Lighthouse.
@@ -192,6 +193,7 @@ The application will be available at
 [`https://localhost:3000`](http://localhost:3000)
 
 ![Your setup should look like this](lighthouse-filframe.gif)
+
 *Fil-Frame, with the Lighthouse integration.*
 
 ## Storage Onramp Options
@@ -228,18 +230,19 @@ To use fil-frame with Akave integration, you need to follow the instructions to 
 
 To learn more how to use Akave to create bucket and upload  on front-end, visit [Akave docs](https://hackathon-docs.akave.ai/js-docker-example-code#bucket-operations).
 
-### Pyth Oracle Page
-We created a pyth page to fetch filcoin price using pyth oracle and lighouse allowing users to mint an NFT for 1 dollar of FIL.
-Here is the walkthrough of setuping the project and minting an NFT:
+## Pyth Oracle Page
+We created a pyth page to fetch filcoin price with the integration of pyth oracle and lighthouse, allowing users to mint a NFT for 1 dollar of FIL.
+
+Here is the walkthrough of setting up the project and minting a NFT:
 - Follow the the above [instructions](#installation) to setup the project locally.
 - Login to [Lighthouse](https://files.lighthouse.storage/) account and ensure you add the Lighthouse API key set in your `packages/nextjs/.env.local` file: `LIGHTHOUSE_API_KEY=your_lighthouse_api_key`.
-- To compile and deploy the smart contracts:
+### To compile and deploy the smart contracts:
 
 ```bash
 yarn compile
 yarn deploy --network calibration
 ```
-- To start the Next.js frontend:
+### To start the Next.js frontend:
 
 ```bash
 yarn dev
@@ -258,9 +261,11 @@ The pyth page will be available at
 
 - There are two options to mint nft giving users option to upload images for their NFT using lighthouse storage.
 - Get the tFIL token from [faucet](https://docs.filecoin.io/smart-contracts/developing-contracts/get-test-tokens).
-- Here is the walkthrough to mint an NFT:
+- Here is the walkthrough to mint a NFT for 1 dollar of FIL:
 
 ![Your setup should look like this](fil-pyth.gif)
+
+*Fil-Frame, with the Pyth Oracle and Lighthouse integration for minting NFT.*
 
 - After confirmation from metamask, the nft will get minted.
 - You can verify the transaction from the [explorer](https://calibration.filscan.io/address/t410fwuiyijiwolu2xygfasqqjgjy2f5iool67azghra/)
