@@ -231,7 +231,7 @@ To learn more how to use Akave to create bucket and upload  on front-end, visit 
 ### Pyth Oracle Page
 We created a pyth page to fetch filcoin price using pyth oracle and lighouse allowing users to mint an NFT for 1 dollar of FIL.
 Here is the walkthrough of setuping the project and minting an NFT:
-- Follow the the above instructions to setup the project locally.
+- Follow the the above [instructions](#installation) to setup the project locally.
 - Login to [Lighthouse](https://files.lighthouse.storage/) account and ensure you add the Lighthouse API key set in your `packages/nextjs/.env.local` file: `LIGHTHOUSE_API_KEY=your_lighthouse_api_key`.
 - To compile and deploy the smart contracts:
 
