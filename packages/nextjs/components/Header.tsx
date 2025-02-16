@@ -25,6 +25,10 @@ export const menuLinks: HeaderMenuLink[] = [
     href: "/dealClient",
   },
   {
+    label: 'Data Onramp PoC',
+    href: '/dataOnRamp',
+  },
+  {
     label: "Debug Contracts",
     href: "/debug",
     icon: <BugAntIcon className="h-4 w-4" />,
