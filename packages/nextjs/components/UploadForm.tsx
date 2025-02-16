@@ -40,7 +40,7 @@ const UploadForm = () => {
       } else {
         setError(data.error || "Upload failed.");
       }
-    } catch (err) {
+    } catch {
       setError("An error occurred.");
     } finally {
       setIsUploading(false);

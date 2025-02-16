@@ -9,6 +9,7 @@ import { useAllContracts } from "~~/utils/fil-frame/contractsData";
 
 export const FileDealForm = () => {
   const [dealParams, setDealParams] = useState<DealInfoData | null>(null);
+  console.log(setDealParams);
   const contractsData = useAllContracts();
   // Find the LighthouseNFT contract address
   const [DealClientAddress, Abi] = useMemo(() => {
