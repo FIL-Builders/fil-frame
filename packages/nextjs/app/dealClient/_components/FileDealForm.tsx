@@ -1,7 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import { makeDealFunction } from "./utils";
+import { makeDealFunction } from "../utils";
 import { GetFileDealParams } from "./Upload";
 import { WriteContractFunctionForm } from "./WriteContractFunctionForm";
 import { DealInfoData } from "~~/hooks/lighthouse/useUpload";

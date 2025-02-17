@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useEffect } from "react";
-import { DealInputs, createDealObject, getDefaultDealInputs } from "./utils";
+import { DealInputs, createDealObject, getDefaultDealInputs } from "../utils";
 import { Abi, AbiFunction } from "abitype";
 import { JsonView, allExpanded, darkStyles } from "react-json-view-lite";
 import "react-json-view-lite/dist/index.css";

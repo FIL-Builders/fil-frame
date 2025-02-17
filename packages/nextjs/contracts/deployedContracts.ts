@@ -5,25 +5,10 @@
 import { GenericContractsDeclaration } from "~~/utils/fil-frame/contract";
 
 const deployedContracts = {
-  31337: {
+  314159: {
     DealClient: {
-      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      address: "0xAD8460561a247Fcbe133Adf75d5C35ABFCf8487F",
       abi: [
-        {
-          inputs: [],
-          stateMutability: "nonpayable",
-          type: "constructor",
-        },
-        {
-          inputs: [],
-          name: "ActorNotFound",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "FailToCallActor",
-          type: "error",
-        },
         {
           inputs: [],
           name: "InvalidAddress",
@@ -32,83 +17,18 @@ const deployedContracts = {
         {
           inputs: [
             {
-              internalType: "uint64",
-              name: "",
-              type: "uint64",
-            },
-          ],
-          name: "InvalidCodec",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "InvalidResponseLength",
-          type: "error",
-        },
-        {
-          inputs: [],
-          name: "NegativeValueNotAllowed",
-          type: "error",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "balance",
-              type: "uint256",
-            },
-            {
               internalType: "uint256",
               name: "value",
               type: "uint256",
             },
-          ],
-          name: "NotEnoughBalance",
-          type: "error",
-        },
-        {
-          anonymous: false,
-          inputs: [
             {
-              indexed: true,
-              internalType: "bytes32",
-              name: "id",
-              type: "bytes32",
-            },
-            {
-              indexed: false,
-              internalType: "uint64",
-              name: "size",
-              type: "uint64",
-            },
-            {
-              indexed: true,
-              internalType: "bool",
-              name: "verified",
-              type: "bool",
-            },
-            {
-              indexed: false,
               internalType: "uint256",
-              name: "price",
+              name: "length",
               type: "uint256",
             },
           ],
-          name: "DealProposalCreate",
-          type: "event",
-        },
-        {
-          anonymous: false,
-          inputs: [
-            {
-              indexed: false,
-              internalType: "string",
-              name: "received",
-              type: "string",
-            },
-          ],
-          name: "ReceivedDataCap",
-          type: "event",
+          name: "StringsInsufficientHexLength",
+          type: "error",
         },
         {
           inputs: [],
@@ -176,339 +96,13 @@ const deployedContracts = {
           type: "function",
         },
         {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "value",
-              type: "uint256",
-            },
-          ],
-          name: "addBalance",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "bytes32",
-              name: "",
-              type: "bytes32",
-            },
-          ],
-          name: "dealRequestIdx",
-          outputs: [
-            {
-              internalType: "uint256",
-              name: "idx",
-              type: "uint256",
-            },
-            {
-              internalType: "bool",
-              name: "valid",
-              type: "bool",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "",
-              type: "uint256",
-            },
-          ],
-          name: "dealRequests",
-          outputs: [
-            {
-              internalType: "bytes",
-              name: "piece_cid",
-              type: "bytes",
-            },
-            {
-              internalType: "uint64",
-              name: "piece_size",
-              type: "uint64",
-            },
-            {
-              internalType: "bool",
-              name: "verified_deal",
-              type: "bool",
-            },
-            {
-              internalType: "string",
-              name: "label",
-              type: "string",
-            },
-            {
-              internalType: "int64",
-              name: "start_epoch",
-              type: "int64",
-            },
-            {
-              internalType: "int64",
-              name: "end_epoch",
-              type: "int64",
-            },
-            {
-              internalType: "uint256",
-              name: "storage_price_per_epoch",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "provider_collateral",
-              type: "uint256",
-            },
-            {
-              internalType: "uint256",
-              name: "client_collateral",
-              type: "uint256",
-            },
-            {
-              internalType: "uint64",
-              name: "extra_params_version",
-              type: "uint64",
-            },
-            {
-              components: [
-                {
-                  internalType: "string",
-                  name: "location_ref",
-                  type: "string",
-                },
-                {
-                  internalType: "uint64",
-                  name: "car_size",
-                  type: "uint64",
-                },
-                {
-                  internalType: "bool",
-                  name: "skip_ipni_announce",
-                  type: "bool",
-                },
-                {
-                  internalType: "bool",
-                  name: "remove_unsealed_copy",
-                  type: "bool",
-                },
-              ],
-              internalType: "struct ExtraParamsV1",
-              name: "extra_params",
-              type: "tuple",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
           inputs: [],
-          name: "dealsLength",
+          name: "bridgeContract",
           outputs: [
             {
-              internalType: "uint256",
+              internalType: "contract IBridgeContract",
               name: "",
-              type: "uint256",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "uint256",
-              name: "index",
-              type: "uint256",
-            },
-          ],
-          name: "getDealByIndex",
-          outputs: [
-            {
-              components: [
-                {
-                  internalType: "bytes",
-                  name: "piece_cid",
-                  type: "bytes",
-                },
-                {
-                  internalType: "uint64",
-                  name: "piece_size",
-                  type: "uint64",
-                },
-                {
-                  internalType: "bool",
-                  name: "verified_deal",
-                  type: "bool",
-                },
-                {
-                  internalType: "string",
-                  name: "label",
-                  type: "string",
-                },
-                {
-                  internalType: "int64",
-                  name: "start_epoch",
-                  type: "int64",
-                },
-                {
-                  internalType: "int64",
-                  name: "end_epoch",
-                  type: "int64",
-                },
-                {
-                  internalType: "uint256",
-                  name: "storage_price_per_epoch",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "provider_collateral",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "client_collateral",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint64",
-                  name: "extra_params_version",
-                  type: "uint64",
-                },
-                {
-                  components: [
-                    {
-                      internalType: "string",
-                      name: "location_ref",
-                      type: "string",
-                    },
-                    {
-                      internalType: "uint64",
-                      name: "car_size",
-                      type: "uint64",
-                    },
-                    {
-                      internalType: "bool",
-                      name: "skip_ipni_announce",
-                      type: "bool",
-                    },
-                    {
-                      internalType: "bool",
-                      name: "remove_unsealed_copy",
-                      type: "bool",
-                    },
-                  ],
-                  internalType: "struct ExtraParamsV1",
-                  name: "extra_params",
-                  type: "tuple",
-                },
-              ],
-              internalType: "struct DealRequest",
-              name: "",
-              type: "tuple",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "bytes32",
-              name: "proposalId",
-              type: "bytes32",
-            },
-          ],
-          name: "getDealProposal",
-          outputs: [
-            {
-              internalType: "bytes",
-              name: "",
-              type: "bytes",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "bytes32",
-              name: "proposalId",
-              type: "bytes32",
-            },
-          ],
-          name: "getExtraParams",
-          outputs: [
-            {
-              internalType: "bytes",
-              name: "extra_params",
-              type: "bytes",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "bytes",
-              name: "cid",
-              type: "bytes",
-            },
-          ],
-          name: "getProposalIdSet",
-          outputs: [
-            {
-              components: [
-                {
-                  internalType: "bytes32",
-                  name: "requestId",
-                  type: "bytes32",
-                },
-                {
-                  internalType: "bool",
-                  name: "valid",
-                  type: "bool",
-                },
-              ],
-              internalType: "struct RequestId",
-              name: "",
-              type: "tuple",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "bytes",
-              name: "cid",
-              type: "bytes",
-            },
-          ],
-          name: "getProviderSet",
-          outputs: [
-            {
-              components: [
-                {
-                  internalType: "bytes",
-                  name: "provider",
-                  type: "bytes",
-                },
-                {
-                  internalType: "bool",
-                  name: "valid",
-                  type: "bool",
-                },
-              ],
-              internalType: "struct ProviderSet",
-              name: "",
-              type: "tuple",
+              type: "address",
             },
           ],
           stateMutability: "view",
@@ -556,104 +150,136 @@ const deployedContracts = {
         {
           inputs: [
             {
-              components: [
-                {
-                  internalType: "bytes",
-                  name: "piece_cid",
-                  type: "bytes",
-                },
-                {
-                  internalType: "uint64",
-                  name: "piece_size",
-                  type: "uint64",
-                },
-                {
-                  internalType: "bool",
-                  name: "verified_deal",
-                  type: "bool",
-                },
-                {
-                  internalType: "string",
-                  name: "label",
-                  type: "string",
-                },
-                {
-                  internalType: "int64",
-                  name: "start_epoch",
-                  type: "int64",
-                },
-                {
-                  internalType: "int64",
-                  name: "end_epoch",
-                  type: "int64",
-                },
-                {
-                  internalType: "uint256",
-                  name: "storage_price_per_epoch",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "provider_collateral",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint256",
-                  name: "client_collateral",
-                  type: "uint256",
-                },
-                {
-                  internalType: "uint64",
-                  name: "extra_params_version",
-                  type: "uint64",
-                },
-                {
-                  components: [
-                    {
-                      internalType: "string",
-                      name: "location_ref",
-                      type: "string",
-                    },
-                    {
-                      internalType: "uint64",
-                      name: "car_size",
-                      type: "uint64",
-                    },
-                    {
-                      internalType: "bool",
-                      name: "skip_ipni_announce",
-                      type: "bool",
-                    },
-                    {
-                      internalType: "bool",
-                      name: "remove_unsealed_copy",
-                      type: "bool",
-                    },
-                  ],
-                  internalType: "struct ExtraParamsV1",
-                  name: "extra_params",
-                  type: "tuple",
-                },
-              ],
-              internalType: "struct DealRequest",
-              name: "deal",
-              type: "tuple",
+              internalType: "bytes",
+              name: "",
+              type: "bytes",
             },
           ],
-          name: "makeDealProposal",
+          name: "pieceDeals",
           outputs: [
             {
-              internalType: "bytes32",
+              internalType: "uint64",
               name: "",
-              type: "bytes32",
+              type: "uint64",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "bytes",
+              name: "",
+              type: "bytes",
+            },
+          ],
+          name: "pieceStatus",
+          outputs: [
+            {
+              internalType: "enum DealClient.Status",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_bridgeContract",
+              type: "address",
+            },
+          ],
+          name: "setBridgeContract",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    DealClientAxl: {
+      address: "0xF8DAEa71A4C39d717703017D3c1AE88623eb0658",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "_gateway",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "_gasReceiver",
+              type: "address",
             },
           ],
           stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [],
+          name: "InvalidAddress",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "InvalidAddress",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "NotApprovedByGateway",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "length",
+              type: "uint256",
+            },
+          ],
+          name: "StringsInsufficientHexLength",
+          type: "error",
+        },
+        {
+          inputs: [],
+          name: "AUTHENTICATE_MESSAGE_METHOD_NUM",
+          outputs: [
+            {
+              internalType: "uint64",
+              name: "",
+              type: "uint64",
+            },
+          ],
+          stateMutability: "view",
           type: "function",
         },
         {
           inputs: [],
-          name: "owner",
+          name: "AXELAR_GAS_FEE",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "DATACAP_ACTOR_ETH_ADDRESS",
           outputs: [
             {
               internalType: "address",
@@ -662,6 +288,203 @@ const deployedContracts = {
             },
           ],
           stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "DATACAP_RECEIVER_HOOK_METHOD_NUM",
+          outputs: [
+            {
+              internalType: "uint64",
+              name: "",
+              type: "uint64",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "MARKET_ACTOR_ETH_ADDRESS",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "MARKET_NOTIFY_DEAL_METHOD_NUM",
+          outputs: [
+            {
+              internalType: "uint64",
+              name: "",
+              type: "uint64",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "bytes",
+              name: "providerAddrData",
+              type: "bytes",
+            },
+          ],
+          name: "addGasFunds",
+          outputs: [],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "chainIdToSrcChain",
+          outputs: [
+            {
+              internalType: "string",
+              name: "chainName",
+              type: "string",
+            },
+            {
+              internalType: "address",
+              name: "oracleContractAddress",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "bytes",
+              name: "commp",
+              type: "bytes",
+            },
+            {
+              internalType: "bytes",
+              name: "providerAddrData",
+              type: "bytes",
+            },
+            {
+              internalType: "uint256",
+              name: "gasFunds",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "chainId",
+              type: "uint256",
+            },
+          ],
+          name: "debug_call",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "bytes32",
+              name: "commandId",
+              type: "bytes32",
+            },
+            {
+              internalType: "string",
+              name: "sourceChain",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "sourceAddress",
+              type: "string",
+            },
+            {
+              internalType: "bytes",
+              name: "payload",
+              type: "bytes",
+            },
+          ],
+          name: "execute",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "gasService",
+          outputs: [
+            {
+              internalType: "contract IAxelarGasService",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "gateway",
+          outputs: [
+            {
+              internalType: "contract IAxelarGateway",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint64",
+              name: "method",
+              type: "uint64",
+            },
+            {
+              internalType: "uint64",
+              name: "",
+              type: "uint64",
+            },
+            {
+              internalType: "bytes",
+              name: "params",
+              type: "bytes",
+            },
+          ],
+          name: "handle_filecoin_method",
+          outputs: [
+            {
+              internalType: "uint32",
+              name: "",
+              type: "uint32",
+            },
+            {
+              internalType: "uint64",
+              name: "",
+              type: "uint64",
+            },
+            {
+              internalType: "bytes",
+              name: "",
+              type: "bytes",
+            },
+          ],
+          stateMutability: "nonpayable",
           type: "function",
         },
         {
@@ -691,58 +514,10 @@ const deployedContracts = {
               type: "bytes",
             },
           ],
-          name: "pieceProviders",
-          outputs: [
-            {
-              internalType: "bytes",
-              name: "provider",
-              type: "bytes",
-            },
-            {
-              internalType: "bool",
-              name: "valid",
-              type: "bool",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "bytes",
-              name: "",
-              type: "bytes",
-            },
-          ],
-          name: "pieceRequests",
-          outputs: [
-            {
-              internalType: "bytes32",
-              name: "requestId",
-              type: "bytes32",
-            },
-            {
-              internalType: "bool",
-              name: "valid",
-              type: "bool",
-            },
-          ],
-          stateMutability: "view",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "bytes",
-              name: "",
-              type: "bytes",
-            },
-          ],
           name: "pieceStatus",
           outputs: [
             {
-              internalType: "enum DealClient.Status",
+              internalType: "enum DealClientAxl.Status",
               name: "",
               type: "uint8",
             },
@@ -754,29 +529,11 @@ const deployedContracts = {
           inputs: [
             {
               internalType: "bytes",
-              name: "pieceCid",
+              name: "",
               type: "bytes",
             },
           ],
-          name: "updateActivationStatus",
-          outputs: [],
-          stateMutability: "nonpayable",
-          type: "function",
-        },
-        {
-          inputs: [
-            {
-              internalType: "address",
-              name: "client",
-              type: "address",
-            },
-            {
-              internalType: "uint256",
-              name: "value",
-              type: "uint256",
-            },
-          ],
-          name: "withdrawBalance",
+          name: "providerGasFunds",
           outputs: [
             {
               internalType: "uint256",
@@ -784,6 +541,29 @@ const deployedContracts = {
               type: "uint256",
             },
           ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint256[]",
+              name: "srcChainIds",
+              type: "uint256[]",
+            },
+            {
+              internalType: "string[]",
+              name: "srcChainNames",
+              type: "string[]",
+            },
+            {
+              internalType: "address[]",
+              name: "srcOracleAddresses",
+              type: "address[]",
+            },
+          ],
+          name: "setSourceChains",
+          outputs: [],
           stateMutability: "nonpayable",
           type: "function",
         },
@@ -791,7 +571,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     DealInfo: {
-      address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      address: "0x0FC5E1de65f582d00bE117Dd9F87223f09eDB6fE",
       abi: [
         {
           inputs: [],
@@ -1260,6 +1040,802 @@ const deployedContracts = {
               internalType: "struct CommonTypes.BigInt",
               name: "",
               type: "tuple",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    ForwardingProofMockBridge: {
+      address: "0x184c5a0f24f68059Dd33F770928c7Fc73c789664",
+      abi: [
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "_sourceChain_",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "sourceAddress_",
+              type: "string",
+            },
+            {
+              internalType: "bytes",
+              name: "payload_",
+              type: "bytes",
+            },
+          ],
+          name: "_execute",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "receiver",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "senderHex",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "string",
+              name: "senderHex_",
+              type: "string",
+            },
+            {
+              internalType: "address",
+              name: "receiver_",
+              type: "address",
+            },
+          ],
+          name: "setSenderReceiver",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    Nickle: {
+      address: "0xff7Bea1bB5B839064217270C63A1FFD4D24561ae",
+      abi: [
+        {
+          inputs: [],
+          stateMutability: "nonpayable",
+          type: "constructor",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "allowance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientAllowance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "balance",
+              type: "uint256",
+            },
+            {
+              internalType: "uint256",
+              name: "needed",
+              type: "uint256",
+            },
+          ],
+          name: "ERC20InsufficientBalance",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "approver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidApprover",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "receiver",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidReceiver",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "sender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSender",
+          type: "error",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "ERC20InvalidSpender",
+          type: "error",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Approval",
+          type: "event",
+        },
+        {
+          anonymous: false,
+          inputs: [
+            {
+              indexed: true,
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              indexed: true,
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              indexed: false,
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "Transfer",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "owner",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+          ],
+          name: "allowance",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "spender",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "approve",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "account",
+              type: "address",
+            },
+          ],
+          name: "balanceOf",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "decimals",
+          outputs: [
+            {
+              internalType: "uint8",
+              name: "",
+              type: "uint8",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "name",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "symbol",
+          outputs: [
+            {
+              internalType: "string",
+              name: "",
+              type: "string",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "totalSupply",
+          outputs: [
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transfer",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "from",
+              type: "address",
+            },
+            {
+              internalType: "address",
+              name: "to",
+              type: "address",
+            },
+            {
+              internalType: "uint256",
+              name: "value",
+              type: "uint256",
+            },
+          ],
+          name: "transferFrom",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+      ],
+      inheritedFunctions: {},
+    },
+    OnRampContract: {
+      address: "0x77A297a19fc48a9B70c74C388d3a419e13aBCd0e",
+      abi: [
+        {
+          anonymous: false,
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "bytes",
+                  name: "commP",
+                  type: "bytes",
+                },
+                {
+                  internalType: "uint64",
+                  name: "size",
+                  type: "uint64",
+                },
+                {
+                  internalType: "string",
+                  name: "cid",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "location",
+                  type: "string",
+                },
+                {
+                  internalType: "uint256",
+                  name: "amount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "contract IERC20",
+                  name: "token",
+                  type: "address",
+                },
+              ],
+              indexed: false,
+              internalType: "struct OnRampContract.Offer",
+              name: "offer",
+              type: "tuple",
+            },
+            {
+              indexed: false,
+              internalType: "uint64",
+              name: "id",
+              type: "uint64",
+            },
+          ],
+          name: "DataReady",
+          type: "event",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint64",
+              name: "",
+              type: "uint64",
+            },
+          ],
+          name: "aggregationPayout",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint64",
+              name: "",
+              type: "uint64",
+            },
+            {
+              internalType: "uint256",
+              name: "",
+              type: "uint256",
+            },
+          ],
+          name: "aggregations",
+          outputs: [
+            {
+              internalType: "uint64",
+              name: "",
+              type: "uint64",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "bytes",
+              name: "",
+              type: "bytes",
+            },
+          ],
+          name: "commPToAggregateID",
+          outputs: [
+            {
+              internalType: "uint64",
+              name: "",
+              type: "uint64",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "bytes",
+              name: "aggregate",
+              type: "bytes",
+            },
+            {
+              internalType: "uint64[]",
+              name: "claimedIDs",
+              type: "uint64[]",
+            },
+            {
+              components: [
+                {
+                  internalType: "uint64",
+                  name: "index",
+                  type: "uint64",
+                },
+                {
+                  internalType: "bytes32[]",
+                  name: "path",
+                  type: "bytes32[]",
+                },
+              ],
+              internalType: "struct PODSIVerifier.ProofData[]",
+              name: "inclusionProofs",
+              type: "tuple[]",
+            },
+            {
+              internalType: "address",
+              name: "payoutAddr",
+              type: "address",
+            },
+          ],
+          name: "commitAggregate",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [],
+          name: "dataProofOracle",
+          outputs: [
+            {
+              internalType: "address",
+              name: "",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "bytes",
+                  name: "commP",
+                  type: "bytes",
+                },
+                {
+                  internalType: "uint64",
+                  name: "size",
+                  type: "uint64",
+                },
+                {
+                  internalType: "string",
+                  name: "cid",
+                  type: "string",
+                },
+                {
+                  internalType: "string",
+                  name: "location",
+                  type: "string",
+                },
+                {
+                  internalType: "uint256",
+                  name: "amount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "contract IERC20",
+                  name: "token",
+                  type: "address",
+                },
+              ],
+              internalType: "struct OnRampContract.Offer",
+              name: "offer",
+              type: "tuple",
+            },
+          ],
+          name: "offerData",
+          outputs: [
+            {
+              internalType: "uint64",
+              name: "",
+              type: "uint64",
+            },
+          ],
+          stateMutability: "payable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint64",
+              name: "",
+              type: "uint64",
+            },
+          ],
+          name: "offers",
+          outputs: [
+            {
+              internalType: "bytes",
+              name: "commP",
+              type: "bytes",
+            },
+            {
+              internalType: "uint64",
+              name: "size",
+              type: "uint64",
+            },
+            {
+              internalType: "string",
+              name: "cid",
+              type: "string",
+            },
+            {
+              internalType: "string",
+              name: "location",
+              type: "string",
+            },
+            {
+              internalType: "uint256",
+              name: "amount",
+              type: "uint256",
+            },
+            {
+              internalType: "contract IERC20",
+              name: "token",
+              type: "address",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "bytes",
+                  name: "commP",
+                  type: "bytes",
+                },
+                {
+                  internalType: "int64",
+                  name: "duration",
+                  type: "int64",
+                },
+                {
+                  internalType: "uint64",
+                  name: "FILID",
+                  type: "uint64",
+                },
+                {
+                  internalType: "uint256",
+                  name: "status",
+                  type: "uint256",
+                },
+              ],
+              internalType: "struct DataAttestation",
+              name: "attestation",
+              type: "tuple",
+            },
+          ],
+          name: "proveDataStored",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint64",
+              name: "",
+              type: "uint64",
+            },
+          ],
+          name: "provenAggregations",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "view",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "address",
+              name: "oracle_",
+              type: "address",
+            },
+          ],
+          name: "setOracle",
+          outputs: [],
+          stateMutability: "nonpayable",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              components: [
+                {
+                  internalType: "uint64",
+                  name: "index",
+                  type: "uint64",
+                },
+                {
+                  internalType: "bytes32[]",
+                  name: "path",
+                  type: "bytes32[]",
+                },
+              ],
+              internalType: "struct PODSIVerifier.ProofData",
+              name: "proof",
+              type: "tuple",
+            },
+            {
+              internalType: "bytes32",
+              name: "root",
+              type: "bytes32",
+            },
+            {
+              internalType: "bytes32",
+              name: "leaf",
+              type: "bytes32",
+            },
+          ],
+          name: "verify",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
+            },
+          ],
+          stateMutability: "pure",
+          type: "function",
+        },
+        {
+          inputs: [
+            {
+              internalType: "uint64",
+              name: "aggID",
+              type: "uint64",
+            },
+            {
+              internalType: "uint256",
+              name: "idx",
+              type: "uint256",
+            },
+            {
+              internalType: "uint64",
+              name: "offerID",
+              type: "uint64",
+            },
+          ],
+          name: "verifyDataStored",
+          outputs: [
+            {
+              internalType: "bool",
+              name: "",
+              type: "bool",
             },
           ],
           stateMutability: "view",
