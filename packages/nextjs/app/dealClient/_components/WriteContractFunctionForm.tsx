@@ -2,7 +2,7 @@
 
 import { useMemo, useState } from "react";
 import { useEffect } from "react";
-import { DealInputs, createDealObject, getDefaultDealInputs } from "../utils";
+import { DealInputs, createDealObject, getDefaultDealInputs } from "./utils";
 import { Abi, AbiFunction } from "abitype";
 import { JsonView, allExpanded, darkStyles } from "react-json-view-lite";
 import "react-json-view-lite/dist/index.css";
@@ -15,8 +15,8 @@ import {
   getInitialFormState,
   getParsedContractFunctionArgs,
   transformAbiFunction,
-} from "~~/app/debug/_components/contract";
-import { InheritanceTooltip } from "~~/app/debug/_components/contract/InheritanceTooltip";
+} from "./contract";
+import { InheritanceTooltip } from "./contract/InheritanceTooltip";
 import { IntegerInput } from "~~/components/fil-frame";
 import { useTransactor } from "~~/hooks/fil-frame";
 import { useTargetNetwork } from "~~/hooks/fil-frame/useTargetNetwork";

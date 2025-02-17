@@ -11,6 +11,7 @@ import { useAllContracts } from "~~/utils/fil-frame/contractsData";
 const selectedContractStorageKey = "FilFrame2.selectedContract";
 
 export function DealClientContracts() {
+  // TODO (xBalbinus): Change this to use the new contracts
   const contractsData = useAllContracts();
   const contractNames = useMemo(
     () => Object.keys(contractsData).filter(contractName => contractName === "DealClient") as ContractName[],
