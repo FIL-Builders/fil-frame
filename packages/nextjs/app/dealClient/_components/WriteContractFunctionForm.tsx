@@ -15,8 +15,8 @@ import {
   getInitialFormState,
   getParsedContractFunctionArgs,
   transformAbiFunction,
-} from "./contract";
-import { InheritanceTooltip } from "./contract/InheritanceTooltip";
+} from "~~/components/contract";
+import { InheritanceTooltip } from "~~/components/contract/InheritanceTooltip";
 import { IntegerInput } from "~~/components/fil-frame";
 import { useTransactor } from "~~/hooks/fil-frame";
 import { useTargetNetwork } from "~~/hooks/fil-frame/useTargetNetwork";
