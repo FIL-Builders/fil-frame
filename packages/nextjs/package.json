@@ -40,7 +40,13 @@
     "wagmi": "2.12.11",
     "web3.storage": "^4.5.5",
     "zustand": "^4.1.2",
-    "cids": "^1.1.9"
+    "cids": "^1.1.9",
+    "ipfs-unixfs-importer": "^15.3.1",
+    "@ipld/car": "^5.3.3",
+    "@noble/hashes": "^1.6.1",
+    "buffer": "^6.0.3",
+    "ethers": "5.7.2",
+    "multiformats": "^13.3.1"
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.1.1",
