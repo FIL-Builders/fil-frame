@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useMemo } from "react";
-import { DealClientUI } from "./DealClientUI";
 import { FileDealForm } from "./FileDealForm";
 import { useLocalStorage } from "usehooks-ts";
 import { BarsArrowUpIcon } from "@heroicons/react/20/solid";
@@ -66,13 +65,13 @@ export function DealClientContracts() {
               <FileDealForm />
             </div>
 
-            {contractNames.map(contractName => (
+            {/* {contractNames.map(contractName => (
               <DealClientUI
                 key={contractName}
                 contractName={contractName}
                 className={contractName === selectedContract ? "" : "hidden"}
               />
-            ))}
+            ))} */}
           </div>
         </>
       )}
