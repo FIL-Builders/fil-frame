@@ -5,9 +5,9 @@
 import { GenericContractsDeclaration } from "~~/utils/fil-frame/contract";
 
 const deployedContracts = {
-  31337: {
+  314159: {
     DealClient: {
-      address: "0x5FbDB2315678afecb367f032d93F642f64180aa3",
+      address: "0x6c18ef28448cccebdf76d177cce5b35663ebe4cf",
       abi: [
         {
           inputs: [],
@@ -791,7 +791,7 @@ const deployedContracts = {
       inheritedFunctions: {},
     },
     DealInfo: {
-      address: "0xe7f1725E7734CE288F8367e1Bb143E90bb3F0512",
+      address: "0x11701C32127DAc70a2934b7a459396eAD9a6199C",
       abi: [
         {
           inputs: [],

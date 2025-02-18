@@ -13,7 +13,7 @@ const isJsonString = (str: string) => {
   try {
     JSON.parse(str);
     return true;
-  } catch (e) {
+  } catch {
     return false;
   }
 };
@@ -23,7 +23,7 @@ const isBigInt = (str: string) => {
   try {
     BigInt(str);
     return true;
-  } catch (e) {
+  } catch {
     return false;
   }
 };

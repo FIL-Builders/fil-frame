@@ -21,7 +21,7 @@ const Home: NextPage = () => {
             <Address address={connectedAddress} />
           </div>
           <p className="text-center text-lg">
-            Get started with deploying the DealClien contractt.
+            Get started with deploying the DealClient contract.
             <br />
             First, go to{" "}
             <code className="italic bg-base-300 text-base font-bold max-w-full break-words break-all inline-block">
