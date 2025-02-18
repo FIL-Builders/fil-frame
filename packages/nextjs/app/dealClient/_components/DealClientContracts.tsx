@@ -64,14 +64,6 @@ export function DealClientContracts() {
             <div className="flex w-full max-w-7xl px-6">
               <FileDealForm />
             </div>
-
-            {/* {contractNames.map(contractName => (
-              <DealClientUI
-                key={contractName}
-                contractName={contractName}
-                className={contractName === selectedContract ? "" : "hidden"}
-              />
-            ))} */}
           </div>
         </>
       )}
