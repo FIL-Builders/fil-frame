@@ -1,6 +1,7 @@
 # FIL-Frame
 
 ![Fil-Frame](fil-frame.gif)
+
 *Fil-Frame setup in action.*
 
 Welcome to FIL-Frame, a starter repository designed to help developers quickly get started with building decentralized applications (dApps) on the Filecoin network. This repository provides various integration options, including an example template using Lighthouse.
@@ -178,9 +179,10 @@ yarn dev
 ```
 
 The application will be available at
-[`https://localhost:3000`](https://localhost:3000)
+[`http://localhost:3000/`](http://localhost:3000/)
 
 ![Your setup should look like this](lighthouse-filframe.gif)
+
 *Fil-Frame, with the Lighthouse integration.*
 
 ## Storage Onramp Options
@@ -241,6 +243,44 @@ To use fil-frame with Akave integration, you need to follow the instructions to 
 
 To learn more how to use Akave to create bucket and upload  on front-end, visit [Akave docs](https://hackathon-docs.akave.ai/js-docker-example-code#bucket-operations).
 
+## Filecoin DealClient Onramp Contract Page
+
+This MVP is built using [fil-frame](https://github.com/FIL-Builders/fil-frame), and it demonstrates how to onboard data to Filecoin via a onchain data onramp contracts integreate with Pinata deal engine to process storage on Filecoin.
+
+Here is the walkthrough of setting up the project and perform data prep and upload the files:
+- Follow the the above [instructions](#installation) to setup the project locally.
+- Login to [Pinata](https://pinata.cloud/) account and ensure you add the Pinata JWT key set in your `packages/nextjs/.env.local` file: `NEXT_PUBLIC_PINATA_API_KEY=your_pinata_jwt_key`.
+  
+### To compile and deploy the smart contracts:
+
+```bash
+yarn compile
+yarn deploy --network calibration
+```
+### To start the Next.js frontend:
+
+```bash
+yarn dev
+```
+
+or
+
+```bash
+npm run dev
+```
+The deal client page will be available at
+[`http://localhost:3000/dealClient`](http://localhost:3000/dealClient)
+
+![image](https://github.com/user-attachments/assets/29c069ac-549a-4a70-86b5-bd8d991fe3b4)
+
+
+![Your setup should look like this](fil-dealClient.gif)
+
+*Fil-Frame, Filecoin DealClient Onramp Contract Integration using Pinata.*
+
+- After confirmation from metamask, the transaction hash will get displayed on the screen.
+- You can verify the transaction from the [explorer](https://calibration.filscan.io/)
+- You can see your upload file by opening the ipfsUrl generated in the console tab.
 
 ## Project Structure
 
