@@ -274,12 +274,15 @@ The deal client page will be available at
 
 ![image](https://github.com/user-attachments/assets/29c069ac-549a-4a70-86b5-bd8d991fe3b4)
 
-
+- Select a file that you want to upload.
+- After file selection, it will get uploaded to ipfs.
+- Click on the submit button to confirm the transaction from your wallet.
+  
 ![Your setup should look like this](fil-dealClient.gif)
 
 *Fil-Frame, Filecoin DealClient Onramp Contract Integration using Pinata.*
 
-- After confirmation from metamask, the transaction hash will get displayed on the screen.
+- After confirmation from your wallet, the transaction hash will get generated on your screen.
 - You can verify the transaction from the [explorer](https://calibration.filscan.io/)
 - You can see your upload file by opening the ipfsUrl generated in the console tab.
 
