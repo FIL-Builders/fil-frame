@@ -246,7 +246,7 @@ To learn more how to use Akave to create bucket and upload  on front-end, visit 
 
 ## Filecoin DealClient Onramp Contract Page
 
-This MVP is built using [fil-frame](https://github.com/FIL-Builders/fil-frame), and it demonstrates how to onboard data to Filecoin via a onchain data onramp contracts integreate with Pinata deal engine to process storage on Filecoin.
+This project is built using [fil-frame](https://github.com/FIL-Builders/fil-frame), and it demonstrates how to onboard data to Filecoin via a onchain data onramp contracts integrates with Pinata to process storage on Filecoin.
 
 Here is the walkthrough of setting up the project and perform data prep and upload the files:
 - Follow the the above [instructions](#installation) to setup the project locally.
