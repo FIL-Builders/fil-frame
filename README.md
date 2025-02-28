@@ -1,6 +1,6 @@
 # FIL-Frame
 
-![Fil-Frame](fil-frame.gif)
+![Fil-Frame](./demos/fil-frame.gif)
 
 *Fil-Frame setup in action.*
 
@@ -182,7 +182,7 @@ yarn dev
 The application will be available at
 [`http://localhost:3000/`](http://localhost:3000/)
 
-![Your setup should look like this](lighthouse-filframe.gif)
+![Your setup should look like this](./demos/lighthouse-filframe.gif)
 
 *Fil-Frame, with the Lighthouse integration.*
 
@@ -278,7 +278,7 @@ The deal client page will be available at
 - After file selection, it will get uploaded to ipfs.
 - Click on the submit button to confirm the transaction from your wallet.
   
-![Your setup should look like this](fil-dealClient.gif)
+![Your setup should look like this](./demos/fil-dealClient.gif)
 
 *Fil-Frame, Filecoin DealClient Onramp Contract Integration using Pinata.*
 
