@@ -20,6 +20,7 @@ Welcome to FIL-Frame, a starter repository designed to help developers quickly g
   - [Using the CLI](#using-the-cli)
       - [Interactive Mode](#interactive-mode)
       - [Flag Mode](#flag-mode)
+      - [Flag Options](#flag-options)
       - [Storage Onramp Options](#storage-onramp-options)
     - [Configuration](#configuration-1)
   - [Usage](#usage)
@@ -86,13 +87,21 @@ cd fil-frame
 
 2. (Optional) Switch to a different starter kit branch.
  
-Available branches include:
+Other available branches include:
 
 `lighthouse-nfts`: Integration with Lighthouse for decentralized storage.
 
 `storacha-nfts`: Integration with Storacha for decentralized storage.
 
 `akave-integration`: Integration with Akave for decentralized storage.
+
+`axelar-integration`: An example integration with Akave.
+
+`lit-x-lighthouse`: An example integration that makes use of both lit and lighthouse.
+
+`lava-integration`
+
+`pyth-integration`
 
 3. Install dependencies
 
@@ -123,29 +132,38 @@ To use the interactive mode, simply run:
 npx create-filecoin-app
 ```
 
-You will be prompted to answer a series of questions to configure your new project. This includes your project name, and selecting your preferred storage onramp option (Lighthouse, Storacha, or Akave).
+You will be prompted to answer a series of questions to configure your new project. This includes your project name, selecting your preferred integrations (Lighthouse, Storacha, Akave, Pyth, Axelar, Lit + Lighthouse, and the Deal Client), and choosing whether to install project packages (using yarn).
 
 #### Flag Mode
 
 If you prefer to skip the prompts, you can use the flag mode to specify your options directly. For example, to initialise a project named `my-app`, with lighthouse as the storage onramp:
 
 ```bash
-npx create-filecoin-app my-app --lighthouse
+npx create-filecoin-app my-app --provider lighthouse
 ```
 
 This command initializes a new repository named `my-app` with Lighthouse as the storage onramp.
 
-The flags available currently include:
+#### Flag Options
+- Storage Provider (--provider): This contains 7 options currently:
 
-- `--lighthouse`: this initializes a project using lighthouse as the storage onramp
-- `--storacha`: this initializes a project using storacha as the storage onramp
-- `--akave`: this initializes a project using akave as the storage onramp
+  - `lighthouse`: this initializes a project using lighthouse as the storage onramp
+  - `storacha`: this initializes a project using storacha as the storage onramp
+  - `akave`: this initializes a project using akave as the storage onramp
+  - `lit+lighthouse`: this initializes a project using both lit and lighthouse as integrations
+  - `axelar`
+  - `pyth`
+  - `lava`
+- Skip package installation (--skip-install)
 
 #### Storage Onramp Options
 
 - **Lighthouse**: Decentralized storage solution for NFTs and other data.
 - **Storacha**: Decentralized hot storage network - the dazzling revitalization of Web3.Storage.
 - **Akave**: L2 storage chain powering on-chain data lakes for scalable, secure, and cost-effective data management.
+- **Axelar**
+- **Pyth**
+- **Lava**
 
 After running the CLI, your new project will be set up and ready for development with your chosen storage onramp.
 
