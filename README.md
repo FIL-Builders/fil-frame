@@ -12,17 +12,15 @@ Welcome to FIL-Frame, a starter repository designed to help developers quickly g
   - [Table of Contents 📚](#table-of-contents-)
   - [Overview](#overview)
   - [Unique Features](#unique-features)
-  - [Getting Started](#getting-started)
+  - [Installation](#installation)
     - [Prerequisites](#prerequisites)
-    - [Installation](#installation)
-    - [From source code](#from-source-code)
-    - [Configuration](#configuration)
-  - [Using the CLI](#using-the-cli)
+    - [Option 1 - From source code](#option-1---from-source-code)
+    - [Option 2 - Using the CLI](#option-2---using-the-cli)
       - [Interactive Mode](#interactive-mode)
       - [Flag Mode](#flag-mode)
       - [Flag Options](#flag-options)
       - [Storage Onramp Options](#storage-onramp-options)
-    - [Configuration](#configuration-1)
+  - [Configuration](#configuration-1)
   - [Usage](#usage)
     - [Deploying Smart Contracts](#deploying-smart-contracts)
     - [Running the Frontend](#running-the-frontend)
@@ -49,21 +47,19 @@ This repository is designed to be a quickstart for developers new to the Filecoi
 
 FIL-Frame unlocks several unique features that make it an ideal starting point for developers looking to build decentralized applications (dApps) on the Filecoin network:
 
-- On-Chain File Storage Deals: FIL-Frame enables developers to create and manage file storage deals directly on the blockchain (FVM) via smart contracts. This ensures transparency, security, and immutability for storage transactions.
+- **On-Chain File Storage Deals**: FIL-Frame enables developers to create and manage file storage deals directly on the blockchain (FVM) via smart contracts. This ensures transparency, security, and immutability for storage transactions.
 
-- Seamless Integration with FVM: The repository provides built-in support for Filecoin's EVM compatible network, allowing developers to easily interact with the Filecoin network and leverage its decentralized storage capabilities, using tooling they're already familiar with.
+- **Seamless Integration with FVM**: The repository provides built-in support for Filecoin's EVM compatible network, allowing developers to easily interact with the Filecoin network and leverage its decentralized storage capabilities, using tooling they're already familiar with.
 
-- Multiple Storage Onramp Options: FIL-Frame offers various storage onramp options, including Lighthouse, Storacha and Akave, giving developers the flexibility to choose the solution that best fits their needs.
+- **Multiple Storage Onramp Options**: FIL-Frame offers various storage onramp options, including Lighthouse, Storacha and Akave, giving developers the flexibility to choose the solution that best fits their needs.
 
-- Comprehensive Smart Contract Management: With Hardhat integration, developers can efficiently develop, deploy, and test smart contracts, easing the workflow for developers.
+- **Comprehensive Smart Contract Management**: With Hardhat integration, developers can efficiently develop, deploy, and test smart contracts, easing the workflow for developers.
 
-- User-Friendly Frontend: The Next.js frontend provides a modern and responsive interface for interacting with the blockchain, making it easier for users to engage with the dApp.
+- **User-Friendly Frontend**: The Next.js frontend provides a modern and responsive interface for interacting with the blockchain, making it easier for users to engage with the dApp.
 
 These features make FIL-Frame a powerful and versatile tool for developers entering the Filecoin ecosystem, providing all the necessary components to build robust and scalable decentralized applications.
 
-
-
-## Getting Started
+## Installation
 
 ### Prerequisites
 
@@ -71,37 +67,30 @@ Ensure you have the following installed:
 
 - [Node.js](https://nodejs.org/en/download/package-manager)
 - [Yarn](https://yarnpkg.com/getting-started/install)
-- [Hardhat](https://hardhat.org/hardhat-runner/docs/getting-started#installation)
 - [Foundry](https://getfoundry.sh/)
 
-### Installation
+Note: Hardhat will be installed automatically as part of the project dependencies during the installation process.
 
-### From source code
+### Option 1 - From source code
 
 1. Clone the repository
 
 ```bash
 git clone https://github.com/FIL-Builders/fil-frame
-cd fil-frame 
+cd fil-frame
 ```
 
 2. (Optional) Switch to a different starter kit branch.
- 
-Other available branches include:
 
-`lighthouse-nfts`: Integration with Lighthouse for decentralized storage.
+Available branches include:
 
-`storacha-nfts`: Integration with Storacha for decentralized storage.
-
-`akave-integration`: Integration with Akave for decentralized storage.
-
-`axelar-integration`: An example integration with Akave.
-
-`lit-x-lighthouse`: An example integration that makes use of both lit and lighthouse.
-
-`lava-integration`
-
-`pyth-integration`
+- `lighthouse-nfts`: Integration with Lighthouse for decentralized storage
+- `storacha-nfts`: Integration with Storacha for decentralized storage
+- `akave-integration`: Integration with Akave for decentralized storage
+- `axelar-integration`: An example integration with Akave
+- `lit-x-lighthouse`: An example integration that makes use of both lit and lighthouse
+- `lava-integration`
+- `pyth-integration`
 
 3. Install dependencies
 
@@ -109,18 +98,7 @@ Other available branches include:
 yarn install
 ```
 
-### Configuration
-
-1. Copy the sample environment files, and fill in the required values:
-
-```bash
-cp packages/hardhat/.env.example packages/hardhat/.env
-cp packages/nextjs/.env.example packages/nextjs/.env.local
-```
-
-2. Update the environment variables in the `.env` files with your own values.
-
-## Using the CLI
+### Option 2 - Using the CLI
 
 The `create-filecoin-app` CLI tool helps you quickly set up a Filecoin-ready repository. It offers two modes: interactive mode and flag mode.
 
@@ -167,9 +145,9 @@ This command initializes a new repository named `my-app` with Lighthouse as the 
 
 After running the CLI, your new project will be set up and ready for development with your chosen storage onramp.
 
-### Configuration
+## Configuration
 
-1. Copy the sample environment files, and fill in the required values:
+1. Copy the sample environment files:
 
 ```bash
 cp packages/hardhat/.env.example packages/hardhat/.env
@@ -177,6 +155,20 @@ cp packages/nextjs/.env.example packages/nextjs/.env.local
 ```
 
 2. Update the environment variables in the `.env` files with your own values. (Note that the `NEXT_PUBLIC_ALCHEMY_API_KEY` value is optional)
+
+### Configuration Instructions
+
+To set up the required environment variables:
+
+1. API Keys:
+- For `NEXT_PUBLIC_ALCHEMY_API_KEY`, sign up on a platform like [Alchemy](https://www.alchemy.com/) and create a new project. Retrieve the API key from the project dashboard. Refer to the platform's documentation for detailed setup instructions.
+
+2. Wallet Keys:
+- You can generate private keys using your prefered wallet provider (e.g. [MetaMask](https://metamask.io/), [WalletConnect](https://walletconnect.network/)...).
+- To export a private key in MetaMask, go to Settings > Security & Privacy, and follow the steps to export it (you will need your wallet password).
+
+After obtaining the necessary values, add them securely to the `.env` files as specified. Always keep private keys confidential and use secure management tools for production environments to avoid exposing sensitive data.
+
 
 ## Usage
 
@@ -200,9 +192,6 @@ yarn dev
 The application will be available at
 [`http://localhost:3000/`](http://localhost:3000/)
 
-![Your setup should look like this](./demos/lighthouse-filframe.gif)
-
-*Fil-Frame, with the Lighthouse integration.*
 
 ## Storage Onramp Options
 
@@ -227,7 +216,7 @@ To use this integration:
 
 1. Switch to the `storacha-nfts` branch:
    - To switch the active branch to the `storacha-nfts` branch, run:
-  
+
   ```bash
   git checkout storacha-nfts
   ```
@@ -269,7 +258,7 @@ This project is built using [fil-frame](https://github.com/FIL-Builders/fil-fram
 Here is the walkthrough of setting up the project and perform data prep and upload the files:
 - Follow the the above [instructions](#installation) to setup the project locally.
 - Login to [Pinata](https://pinata.cloud/) account and ensure you add the Pinata JWT key set in your `packages/nextjs/.env.local` file: `NEXT_PUBLIC_PINATA_API_KEY=your_pinata_jwt_key`.
-  
+
 ### To compile and deploy the smart contracts:
 
 ```bash
@@ -295,7 +284,7 @@ The deal client page will be available at
 - Select a file that you want to upload.
 - After file selection, it will get uploaded to ipfs.
 - Click on the submit button to confirm the transaction from your wallet.
-  
+
 ![Your setup should look like this](./demos/fil-dealClient.gif)
 
 *Fil-Frame, Filecoin DealClient Onramp Contract Integration using Pinata.*
@@ -326,7 +315,7 @@ my-app/
 │       │── .env.example
 │       │── package.json
 │       └── ...
-│   
+│
 ├── LICENSE
 ├── package.json
 ├── README.md
