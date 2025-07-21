@@ -21,38 +21,10 @@ export const useUploadFile = () => {
     },
   });
 };
-export const _useUploadEncryptedFile = () => {
-  const { data: walletClient } = useWalletClient();
-  const { address } = useAccount();
-  return useMutation({
-    mutationFn: async ({
-      files,
-      tokenId,
-      contractAddress,
-    }: {
-      files: File[];
-      tokenId: number;
-      contractAddress: string;
-    }) => {
-      if (!walletClient || !address) {
-        throw new Error("Wallet client not found");
-      }
-      const chainId = walletClient?.chain.id;
-      const chain = chainIdToLitNetwork[chainId];
-      const apiKey = await getUserAPIKey(address, walletClient);
-      return await UploadFileEncrypted({
-        file: files[0],
-        tokenId: tokenId,
-        address: contractAddress as Hex,
-        chain: chain,
-        apiKey,
-      });
-    },
-  });
-};
 
 export const useUploadEncryptedFile = (options?: UploadOptions) => {
-  const mutation = _useUploadEncryptedFile();
+  const { data: walletClient } = useWalletClient();
+  const { address } = useAccount();
   const uploadEncryptedFile = async ({
     files,
     tokenId,
@@ -63,9 +35,21 @@ export const useUploadEncryptedFile = (options?: UploadOptions) => {
     contractAddress: string;
   }) => {
     let notificationId = null;
+    if (!walletClient || !address) {
+      throw new Error("Wallet client not found");
+    }
+    const chainId = walletClient?.chain.id;
+    const chain = chainIdToLitNetwork[chainId];
+    const apiKey = await getUserAPIKey(address, walletClient);
     try {
       notificationId = notification.loading("Uploading file...");
-      const cid = await mutation.mutateAsync({ files, tokenId, contractAddress });
+      const cid = await UploadFileEncrypted({
+        file: files[0],
+        tokenId: tokenId,
+        address: contractAddress as Hex,
+        chain: chain,
+        apiKey,
+      });
       notification.remove(notificationId);
       notification.success("File uploaded successfully!");
       if (options?.onUploadSuccess) {
@@ -82,7 +66,9 @@ export const useUploadEncryptedFile = (options?: UploadOptions) => {
       }
     }
   };
-  return uploadEncryptedFile;
+  return useMutation({
+    mutationFn: uploadEncryptedFile,
+  });
 };
 
 type UploadOptions = {
@@ -130,16 +116,21 @@ export const UploadFileEncrypted = async ({
   chain: string;
   apiKey: string;
 }) => {
-  const lit = new Lit(chain, tokenId, address);
-  const encryptedPayload = JSON.stringify(
-    (
-      await lit.encryptNFT({
-        file,
-      })
-    ).jsonPayload,
-  );
+  try {
+    const lit = new Lit(chain, tokenId, address);
+    const encryptedPayload = JSON.stringify(
+      (
+        await lit.encryptNFT({
+          file,
+        })
+      ).jsonPayload,
+    );
 
-  const encryptedFile = new File([encryptedPayload], "encryptedFile");
-  const cid = await uploadFiles([encryptedFile], apiKey);
-  return cid;
+    const encryptedFile = new File([encryptedPayload], "encryptedFile");
+    const cid = await uploadFiles([encryptedFile], apiKey);
+    return cid;
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
 };

@@ -1,16 +1,16 @@
 import { LPACC_EVM_CONTRACT } from "./types";
 import {
   //   AuthSig,
-  LitAbility,
   LitAccessControlConditionResource,
   createSiweMessage,
   generateAuthSig,
 } from "@lit-protocol/auth-helpers";
-import { LitNetwork } from "@lit-protocol/constants";
+import { LIT_NETWORK, LIT_ABILITY } from "@lit-protocol/constants";
 import * as LitJsSdk from "@lit-protocol/lit-node-client";
 import { AccessControlConditions, AccsEVMParams, EncryptToJsonPayload } from "@lit-protocol/types";
 import { config } from "dotenv";
 import { ethers } from "ethers";
+import { encryptToJson, decryptFromJson } from "@lit-protocol/encryption";
 
 config();
 
@@ -22,7 +22,7 @@ export class Lit {
   constructor(chain: string, tokenId?: number, contractAddress?: string) {
     this.chain = chain;
     this.litNodeClient = new LitJsSdk.LitNodeClient({
-      litNetwork: LitNetwork.DatilDev,
+      litNetwork: LIT_NETWORK.DatilDev,
     });
     this.litNodeClient.disconnect();
     this.tokenId = tokenId;
@@ -79,7 +79,7 @@ export class Lit {
     }
     if (File) {
       // Encrypt the message
-      const encryptedString = await LitJsSdk.encryptToJson({
+      const encryptedString = await encryptToJson({
         evmContractConditions: this.accessControlConditions(),
         file: file,
         chain: this.chain,
@@ -92,7 +92,7 @@ export class Lit {
       };
     } else if (message) {
       // Encrypt the message
-      const encryptedString = await LitJsSdk.encryptToJson({
+      const encryptedString = await encryptToJson({
         evmContractConditions: this.accessControlConditions(),
         string: message,
         chain: this.chain,
@@ -116,7 +116,7 @@ export class Lit {
     }
     if (File) {
       // Encrypt the message
-      const encryptedString = await LitJsSdk.encryptToJson({
+      const encryptedString = await encryptToJson({
         evmContractConditions: this.accessControlConditions() as AccessControlConditions,
         file: file,
         chain: this.chain,
@@ -129,7 +129,7 @@ export class Lit {
       };
     } else if (message) {
       // Encrypt the message
-      const encryptedString = await LitJsSdk.encryptToJson({
+      const encryptedString = await encryptToJson({
         // evmContractConditions: this.accessControlConditions(),
         evmContractConditions: this.accessControlConditions() as AccessControlConditions,
         string: message,
@@ -155,7 +155,7 @@ export class Lit {
     // Get the session signatures
     // Decrypt the message
     try {
-      const decryptedString = await LitJsSdk.decryptFromJson({
+      const decryptedString = await decryptFromJson({
         parsedJsonData: payload,
         sessionSigs: sessionSignatures,
         litNodeClient: this.litNodeClient,
@@ -168,20 +168,6 @@ export class Lit {
     } catch (e) {
       console.error(e);
     }
-  }
-
-  async getSessionSignaturesByDelegation() {
-    const provider = new ethers.providers.Web3Provider(window.ethereum);
-    await provider.send("eth_requestAccounts", []);
-    const signer = provider.getSigner();
-    const walletAddress = await signer.getAddress();
-    const res = await fetch("/api/lit", {
-      method: "POST",
-      body: JSON.stringify({ delegateToAddress: walletAddress }),
-    });
-    const sessionSigs = await res.json();
-    console.log(sessionSigs);
-    return sessionSigs;
   }
   async getSessionSignatures() {
     // authSig: AuthSig
@@ -199,7 +185,7 @@ export class Lit {
       resourceAbilityRequests: [
         {
           resource: new LitAccessControlConditionResource("*"),
-          ability: LitAbility.AccessControlConditionDecryption,
+          ability: LIT_ABILITY.AccessControlConditionDecryption,
         },
       ],
       authNeededCallback: async ({ uri, expiration, resourceAbilityRequests }) => {

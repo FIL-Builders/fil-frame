@@ -30,6 +30,7 @@ export interface LPACC_EVM_CONTRACT {
     | "moonriver"
     | "moonbaseAlpha"
     | "filecoin"
+    | "filecoinCalibrationTestnet"
     | "hyperspace"
     | "sepolia"
     | "scrollAlphaTestnet"
@@ -94,7 +95,7 @@ export interface LPACC_EVM_CONTRACT {
 
 export const chainIdToLitNetwork: Record<number, string> = {
   314: "filecoin",
-  314159: "calibration",
+  314159: "filecoinCalibrationTestnet",
   11155111: "sepolia",
   421611: "arbitrumSepolia",
   11155420: "optimismSepolia",

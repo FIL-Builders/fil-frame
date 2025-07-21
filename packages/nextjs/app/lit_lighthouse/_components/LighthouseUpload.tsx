@@ -88,7 +88,7 @@ export const LigthouseLitEnctyptedFileUpload = ({
   chain: string;
   contractAddress: string;
 }) => {
-  const uploadEncryptedFile = useUploadEncryptedFile({
+  const { mutateAsync: uploadEncryptedFile } = useUploadEncryptedFile({
     onUploadSuccess: cid => {
       handleGetCID(cid);
     },
