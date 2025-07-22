@@ -18,6 +18,12 @@ interface SolhintData {
       enabled: boolean;
       runs: number;
     };
+    evmVersion: string;
+    outputSelection: Record<string, Record<string, string[]>>;
+    metadata: {
+      useLiteralContent: boolean;
+    };
+    remappings: string[];
   };
 }
 
@@ -29,77 +35,73 @@ interface DeploymentData {
 
 task("verify-contract", "Verifies a contract on Filfox")
   .addParam("contractName", "The name of the contract to verify")
-  .setAction(
-    async (taskArgs: VerifyContractParams, hre: HardhatRuntimeEnvironment) => {
-      const networkName = hre.network.name;
+  .setAction(async (taskArgs: VerifyContractParams, hre: HardhatRuntimeEnvironment) => {
+    const networkName = hre.network.name;
+    const chainId = hre.network.config.chainId;
 
-      const { contractName } = taskArgs;
-
-      const verificationData = extractVerificationData(
-        networkName,
-        contractName
-      );
-      const url =
-        networkName === "calibration"
-          ? "https://calibration.filfox.info/api/v1/tools/verifyContract"
-          : "https://filfox.info/api/v1/tools/verifyContract";
-      const headers = {
-        "Content-Type": "application/json",
-      };
-
-      try {
-        const response = await fetch(url, {
-          method: "POST",
-          headers: headers,
-          body: JSON.stringify(verificationData),
-        });
-
-        const result = await response.json();
-
-        handleVerificationResult({
-          result,
-          network: networkName,
-          address: verificationData.address,
-        });
-      } catch (error: any) {
-        console.error("⚠️ Error verifying contract: ", error.cause);
-        console.log(
-          "Please contact us on [Telegram](https://t.me/Filfoxofficial) if you encounter this error."
-        );
-      }
+    if (!chainId) {
+      throw new Error("Chain ID not found");
     }
-  );
 
-function extractVerificationData(network: string, contractName: string) {
-  const customNetworks = ["calibration", "filecoin"];
-  if (!customNetworks.includes(network)) {
-    throw new Error(
-      "Use regular hardhat verification for networks other than calibration and filecoin"
-    );
+    const { contractName } = taskArgs;
+
+    const verificationData = extractVerificationData(chainId, networkName, contractName, hre);
+    const url =
+      chainId === 314159
+        ? "https://calibration.filfox.info/api/v1/tools/verifyContract"
+        : chainId === 314
+        ? "https://filfox.info/api/v1/tools/verifyContract"
+        : "Not a filfox network";
+    const headers = {
+      "Content-Type": "application/json",
+    };
+
+    try {
+      const response = await fetch(url, {
+        method: "POST",
+        headers: headers,
+        body: JSON.stringify(verificationData),
+      });
+
+      const result = await response.json();
+
+      handleVerificationResult({
+        result,
+        network: networkName,
+        address: verificationData.address,
+      });
+    } catch (error: any) {
+      console.error("⚠️ Error verifying contract: ", error.cause);
+      console.log("Please contact us on [Telegram](https://t.me/Filfoxofficial) if you encounter this error.");
+    }
+  });
+
+function extractVerificationData(
+  chainId: number,
+  network: string,
+  contractName: string,
+  hre: HardhatRuntimeEnvironment,
+) {
+  const customNetworks = [314159, 314];
+  if (!customNetworks.includes(chainId)) {
+    throw new Error("Use regular hardhat verification for networks other than calibration and filecoin");
   }
 
   const deploymentsPath = `./deployments/${network}/${contractName}.json`;
-  const deployments: DeploymentData = JSON.parse(
-    fs.readFileSync(deploymentsPath, "utf8")
-  );
+  const deployments: DeploymentData = JSON.parse(fs.readFileSync(deploymentsPath, "utf8"));
 
   const solhintPath = `./deployments/${network}/solcInputs/${deployments.solcInputHash}.json`;
   const solhint: SolhintData = JSON.parse(fs.readFileSync(solhintPath, "utf8"));
   // Extract the necessary data from the deployments and solhint files
-  let sourceFiles = Object.keys(solhint.sources).reduce(
-    (acc: any, key: string) => {
-      acc[key] = solhint.sources[key]; // Add other sources
+  let sourceFiles = Object.keys(solhint.sources).reduce((acc: any, key: string) => {
+    acc[key] = solhint.sources[key]; // Add other sources
 
       return acc;
     }, {});
 
-  const contractToVerify = Object.keys(sourceFiles).find((key) =>
-    key.includes(contractName + ".sol")
-  );
+  const contractToVerify = Object.keys(sourceFiles).find(key => key.includes(contractName + ".sol"));
   if (!contractToVerify) {
-    throw new Error(
-      `Contract ${contractName} not found in the sources provided.`
-    );
+    throw new Error(`Contract ${contractName} not found in the sources provided.`);
   }
   // Ensure the contract source is the first entry
   const contractSource = sourceFiles[contractToVerify];
@@ -121,10 +123,11 @@ function extractVerificationData(network: string, contractName: string) {
   const optimize = solhint.settings.optimizer.enabled;
   const optimizeRuns = solhint.settings.optimizer.runs;
   const license = "";
-  const evmVersion = "default";
-  const viaIR = false;
+  const evmVersion = solhint.settings.evmVersion ?? "default";
+  const solidityConfig = hre.userConfig.solidity as any;
+  const viaIR = !!solidityConfig.settings?.viaIR;
   const libraries = "";
-  const metadata = "";
+  const metadata = solhint.settings.metadata ?? "";
 
   return {
     address: deployments.address,
@@ -142,15 +145,7 @@ function extractVerificationData(network: string, contractName: string) {
   };
 }
 
-function handleVerificationResult({
-  result,
-  network,
-  address,
-}: {
-  result: any;
-  network: string;
-  address: string;
-}) {
+function handleVerificationResult({ result, network, address }: { result: any; network: string; address: string }) {
   const explorerUrls = {
     calibration: "https://calibration.filfox.info/en/address/",
     filecoin: "https://filfox.info/en/address/",
@@ -171,9 +166,7 @@ function handleVerificationResult({
 
     case 2:
       console.log("⚠️ Error: Contract initCode not found.");
-      console.log(
-        "Please contact us on [Telegram](https://t.me/Filfoxofficial) if you encounter this error."
-      );
+      console.log("Please contact us on [Telegram](https://t.me/Filfoxofficial) if you encounter this error.");
       break;
 
     case 3:
@@ -184,13 +177,9 @@ function handleVerificationResult({
       break;
 
     case 4:
-      console.log(
-        `⚠️ Error: Verify failed for contract "${result.contractName}".`
-      );
+      console.log(`⚠️ Error: Verify failed for contract "${result.contractName}".`);
       console.log("Compiled bytecode doesn't match the contract's initCode.");
-      console.log(
-        "Please make sure all source files and compiler configurations are correct."
-      );
+      console.log("Please make sure all source files and compiler configurations are correct.");
       break;
 
     case 5:
@@ -204,9 +193,7 @@ function handleVerificationResult({
       break;
 
     case 7:
-      console.log(
-        "⚠️ Compilation error: Something is wrong with your source files."
-      );
+      console.log("⚠️ Compilation error: Something is wrong with your source files.");
       console.log(`Error message: ${result.errorMsg}`);
       console.log("Please fix the issue and try again.");
       break;
