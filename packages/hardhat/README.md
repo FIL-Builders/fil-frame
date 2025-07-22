@@ -19,3 +19,9 @@ For contracts deployed on Filecoin mainnet or Filecoin testnet (calibration) usi
 ```shell
 npx hardhat verify-contract --network $networkName --contract-name $contractName
 ```
+
+### enviroment variables
+
+VERIFY=true // Allows the deployment script to verify
+IGNORE_FILFOX=true // Ignores the verification in the filfox explorer
+IGNORE_BLOCKSCOUT=true // Ignores the verification on the Blockscout explorer

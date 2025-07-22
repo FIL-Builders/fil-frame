@@ -7,9 +7,7 @@ import { HardhatRuntimeEnvironment } from "hardhat/types";
  *
  * @param hre HardhatRuntimeEnvironment object.
  */
-const deployDealInfo: DeployFunction = async function (
-  hre: HardhatRuntimeEnvironment
-) {
+const deployDealInfo: DeployFunction = async function (hre: HardhatRuntimeEnvironment) {
   /*
     On localhost, the deployer account is the one that comes with Hardhat, which is already funded.
 
@@ -25,10 +23,12 @@ const deployDealInfo: DeployFunction = async function (
 
   const { deploy } = hre.deployments;
 
+  const args = [] as any;
+
   const DealInfo = await deploy("DealInfo", {
     from: deployer,
     // Contract constructor arguments
-    args: [],
+    args,
     log: true,
     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
     // automatically mining the contract deployment transaction. There is no effect on live networks.
@@ -40,27 +40,40 @@ const deployDealInfo: DeployFunction = async function (
 
   // Check if the --verify flag is present
   const shouldVerify = process.env.VERIFY === "true";
+  const ignoreFilfox = process.env.IGNORE_FILFOX === "true";
+  const ignoreBlockscout = process.env.IGNORE_BLOCKSCOUT === "true";
 
   if (shouldVerify) {
     // Timeout for 10 Seconds to wait for the contract to be indexed on explorer
-    console.log(
-      "⏳ Waiting for 10 seconds for the contract to be indexed on the explorer..."
-    );
-    await new Promise((resolve) => setTimeout(resolve, 10000));
+    console.log("⏳ Waiting for 15 seconds for the contract to be indexed on the explorer...");
+    await new Promise(resolve => setTimeout(resolve, 15000));
 
     console.log("🕵️‍♂️ Verifying the contract on the explorer...");
 
     const filecoinNetworks = ["calibration", "filecoin"];
     if (filecoinNetworks.includes(hre.network.name)) {
       // Verify the contract on the filfox explorer
-      await hre.run("verify-contract", {
-        contractName: "DealInfo",
-      });
-    } else {
-      await hre.run("verify:verify", {
-        address: DealInfoAddress,
-        constructorArguments: [deployer],
-      });
+      if (!ignoreFilfox) {
+        await hre.run("verify-contract", {
+          contractName: "DealInfo",
+        });
+      }
+    }
+    if (!ignoreBlockscout) {
+      try {
+        await hre.run("verify:verify", {
+          address: DealInfoAddress,
+          constructorArguments: args,
+          force: true,
+        });
+      } catch (error) {
+        console.error("Error verifying contract with force:", error);
+        console.log("🕵️‍♂️ Verifying the contract on the explorer without forcing verification...");
+        await hre.run("verify:verify", {
+          address: DealInfoAddress,
+          constructorArguments: args,
+        });
+      }
     }
   }
 };
