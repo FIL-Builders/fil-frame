@@ -1,17 +1,13 @@
 "use client";
 
 import React, { useCallback, useRef, useState } from "react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import LitLogo from "./svg/LitLogo";
 import LogoLandscape from "./svg/LogoLandscape";
 import { Bars3Icon, BugAntIcon } from "@heroicons/react/24/outline";
 import { FaucetButton, RainbowKitCustomConnectButton } from "~~/components/fil-frame";
 import { useOutsideClick } from "~~/hooks/fil-frame";
-
-const LitIcon = () => (
-  <Image alt="Lighthouse logo" src="/icons/lit-logo.svg" width={20} height={20} className="size-5 rounded-xl" />
-);
 
 type HeaderMenuLink = {
   label: string;
@@ -27,7 +23,7 @@ export const menuLinks: HeaderMenuLink[] = [
   {
     label: "Lit x Lighthouse",
     href: "/lit_lighthouse",
-    icon: <LitIcon />,
+    icon: <LitLogo />,
   },
   {
     label: "Debug Contracts",

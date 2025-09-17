@@ -8,6 +8,17 @@ node_modules
 !.yarn/releases
 !.yarn/sdks
 !.yarn/versions
+yarn.lock
+
+# pnpm
+pnpm-lock.yaml
+pnpm-workspace.yaml
+
+# npm
+npm-lock.yaml
+
+# bun
+bun.lockb
 
 # eslint
 .eslintcache
