@@ -1,4 +1,3 @@
-import { uploadFiles, uploadFilesEncrypted } from "./index";
 import { getUserAPIKey } from "./utils";
 import { useMutation } from "@tanstack/react-query";
 import CID from "cids";
